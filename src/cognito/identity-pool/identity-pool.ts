@@ -18,7 +18,7 @@ export class IdentityPoolConstruct {
   private membaAdminRole: Role
   private anonymousRole: Role
   private tenantAdminRole: Role
-  // private usersRole: Role
+  private usersRole: Role
   private readonly stage: string
 
   constructor(
@@ -36,7 +36,7 @@ export class IdentityPoolConstruct {
     this.membaAdminRole = this.createMembaAdminCognitoGroupRole()
     this.anonymousRole = this.createAnonymousCognitoGroupRole()
     this.tenantAdminRole = this.createTenantAdminCognitoGroupRole()
-    // this.usersRole = this.createUsersCognitoGroupRole()
+    this.usersRole = this.createUsersCognitoGroupRole()
     this.createUserGroupsAndAttachRoles()
   }
 
@@ -54,32 +54,6 @@ export class IdentityPoolConstruct {
       ],
     })
   }
-  // private createUsersCognitoGroupRole() {
-  //   const roleName = `${CONFIG.STACK_PREFIX}UsersGroupRole`
-  //
-  //   return new Role(this.scope, roleName, {
-  //     roleName,
-  //     description: 'Default role for tenant admins',
-  //     assumedBy: new FederatedPrincipal(
-  //       'cognito-identity.amazonaws.com',
-  //       {
-  //         StringEquals: {
-  //           'cognito-identity.amazonaws.com:aud': this.identityPool.ref,
-  //         },
-  //         'ForAnyValue:StringLike': {
-  //           'cognito-identity.amazonaws.com:amr': 'authenticated',
-  //         },
-  //       },
-  //       'sts:AssumeRoleWithWebIdentity',
-  //     ),
-  //     managedPolicies: [
-  //       ManagedPolicy.fromAwsManagedPolicyName(
-  //         'service-role/AWSLambdaBasicExecutionRole',
-  //       ),
-  //       ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayInvokeFullAccess'),
-  //     ],
-  //   })
-  // }
   private createTenantAdminCognitoGroupRole() {
     const roleName = `${CONFIG.STACK_PREFIX}AdminGroupRole`
 
@@ -161,23 +135,41 @@ export class IdentityPoolConstruct {
     })
   }
 
+  private createUsersCognitoGroupRole() {
+    const roleName = `${CONFIG.STACK_PREFIX}UsersGroupRole`
+
+    return new Role(this.scope, roleName, {
+      roleName,
+      description: 'Default role for users',
+      assumedBy: new FederatedPrincipal(
+        'cognito-identity.amazonaws.com',
+        {
+          StringEquals: {
+            'cognito-identity.amazonaws.com:aud': this.identityPool.ref,
+          },
+          'ForAnyValue:StringLike': {
+            'cognito-identity.amazonaws.com:amr': 'authenticated',
+          },
+        },
+        'sts:AssumeRoleWithWebIdentity',
+      ),
+      managedPolicies: [
+        ManagedPolicy.fromAwsManagedPolicyName(
+          'service-role/AWSLambdaBasicExecutionRole',
+        ),
+        ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayInvokeFullAccess'),
+      ],
+    })
+  }
+
   private createUserGroupsAndAttachRoles() {
     const tenantAdmins = 'TenantAdmins'
     const membaAdmins = 'MembaAdmins'
-    // const users = 'Users'
-    //
-    // new CfnUserPoolGroup(this.scope, users, {
-    //   groupName: tenantAdmins,
-    //   userPoolId: this.userPool.userPoolId,
-    //   description: 'A group for tenant users',
-    //   precedence: 4,
-    //   roleArn: this.usersRole.roleArn,
-    // })
 
     new CfnUserPoolGroup(this.scope, tenantAdmins, {
       groupName: tenantAdmins,
       userPoolId: this.userPool.userPoolId,
-      description: 'A group for tenant administrators',
+      description: 'The group for tenant administrators',
       precedence: 3,
       roleArn: this.tenantAdminRole.roleArn,
     })
@@ -185,7 +177,7 @@ export class IdentityPoolConstruct {
     new CfnUserPoolGroup(this.scope, membaAdmins, {
       groupName: membaAdmins,
       userPoolId: this.userPool.userPoolId,
-      description: 'The group memba admins with specific privileges',
+      description: 'The group for memba admins with specific privileges',
       precedence: 2,
       roleArn: this.membaAdminRole.roleArn,
     })
