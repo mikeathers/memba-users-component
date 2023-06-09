@@ -14,8 +14,8 @@ interface ConfigProps {
 const CONFIG: ConfigProps = {
   STACK_PREFIX: 'MembaUsers',
   REGION: 'eu-west-2',
-  AWS_ACCOUNT_ID_PROD: '943918019765',
-  AWS_ACCOUNT_ID_DEV: '214394749062',
+  AWS_ACCOUNT_ID_PROD: '635800996936',
+  AWS_ACCOUNT_ID_DEV: '544312030237',
   AWS_NO_REPLY_EMAIL_DEV: 'no-reply-dev@memba.co.uk',
   AWS_NO_REPLY_EMAIL_PROD: 'no-reply@memba.co.uk',
   FRONTEND_BASE_URL_DEV: 'https://dev.memba.co.uk',
