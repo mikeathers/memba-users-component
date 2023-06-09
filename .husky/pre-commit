@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+#echo "Checking branch name..."
+#
+#BRANCH=$(git rev-parse --abbrev-ref HEAD)
+#PROTECTED_BRANCHES="^(main)"
+#
+#if [[ $BRANCH =~ $PROTECTED_BRANCHES ]]; then
+#  echo "Direct commits to the main branch are not allowed. Please choose a new branch name."
+#  exit 1
+#fi
+#
+#echo "Finished checking branch name"
+
+echo "Running commit hooks..."
+
+echo "Running prettier:fix command"
+yarn prettier:fix
+
+echo "Running type-check command"
+yarn type-check
+
+echo "Running lint command"
+yarn lint-staged

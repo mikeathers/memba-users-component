@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.husky/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.husky/commit-msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.husky/post-merge" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.husky/pre-commit" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commitlint.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lint-staged.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prettier.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aws/certificate/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aws/route53/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/identity-pool/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/post-confirmation/add-user-to-group.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/post-confirmation/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/post-confirmation/post-confirmation-entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/post-confirmation/post-confirmation.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/pre-sign-up/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/pre-sign-up/pre-sign-up-entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/triggers/pre-sign-up/pre-sign-up.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/user-pool-client/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/user-pool/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/helpers.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/helpers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test-support/jest-setup.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/add-cors-header/add-cors-header.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/add-cors-header/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/error-has-message/error-has-message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/error-has-message/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/get-env/get-env.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/get-env/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.eslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/memba-users-component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/memba-users-component.test.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QxTLcWO0gYnUhjTk73tmALYMOj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/michaelatherton/Development/memba/memba-users-component/src",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier",
+    "ts.external.directory.path": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="" />
+      <created>1686294178024</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686294178024</updated>
+      <workItem from="1686294179411" duration="4319000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
