@@ -78,8 +78,8 @@ export class UserPoolClientConstruct {
       },
       supportedIdentityProviders: [
         UserPoolClientIdentityProvider.COGNITO,
-        UserPoolClientIdentityProvider.GOOGLE,
-        UserPoolClientIdentityProvider.APPLE,
+        // UserPoolClientIdentityProvider.GOOGLE,
+        // UserPoolClientIdentityProvider.APPLE,
       ],
       readAttributes: clientReadAttributes,
       writeAttributes: clientWriteAttributes,

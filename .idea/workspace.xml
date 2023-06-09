@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686294178024</updated>
-      <workItem from="1686294179411" duration="5396000" />
+      <workItem from="1686294179411" duration="9399000" />
     </task>
     <servers />
   </component>
