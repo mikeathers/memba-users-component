@@ -37,7 +37,7 @@ export class UserPoolConstruct {
     this.userPool = this.createUserPool()
     this.createTriggerPoliciesAndAssignToRoles()
     this.addHostedUIDomain()
-    this.addSES()
+    // this.addSES()
     // this.googleIdentityProvider = this.addGoogleIdentityProvider()
     // this.appleIdentityProvider = this.addAppleIdentityProvider()
   }

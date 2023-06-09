@@ -80,7 +80,6 @@ export class IdentityPoolConstruct {
   //     ],
   //   })
   // }
-
   private createTenantAdminCognitoGroupRole() {
     const roleName = `${CONFIG.STACK_PREFIX}AdminGroupRole`
 
