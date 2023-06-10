@@ -9,6 +9,9 @@ interface ConfigProps {
   FRONTEND_BASE_URL_PROD: string
   DOMAIN_URL: string
   DEV_DOMAIN_URL: string
+  API_URL: string
+  DEV_API_URL: string
+  SHARED_EVENT_BUS_NAME: string
 }
 
 const CONFIG: ConfigProps = {
@@ -22,6 +25,9 @@ const CONFIG: ConfigProps = {
   FRONTEND_BASE_URL_PROD: 'https://memba.co.uk',
   DOMAIN_URL: 'memba.co.uk',
   DEV_DOMAIN_URL: 'dev.memba.co.uk',
+  API_URL: 'users.memba.co.uk',
+  DEV_API_URL: 'users.dev.memba.co.uk',
+  SHARED_EVENT_BUS_NAME: 'MembaEventBus',
 }
 
 export default CONFIG
