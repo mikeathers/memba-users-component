@@ -52,7 +52,7 @@ export class UserPoolClientConstruct {
 
     const clientReadAttributes = new ClientAttributes()
       .withStandardAttributes(standardCognitoAttributes)
-      .withCustomAttributes(...['isAdmin'])
+      .withCustomAttributes(...['isMembaAdmin', 'isTenantAdmin'])
 
     const clientWriteAttributes = new ClientAttributes().withStandardAttributes({
       ...standardCognitoAttributes,

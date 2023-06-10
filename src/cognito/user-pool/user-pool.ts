@@ -166,7 +166,8 @@ export class UserPoolConstruct {
         email: true,
       },
       customAttributes: {
-        isAdmin: new BooleanAttribute({mutable: true}),
+        isMembaAdmin: new BooleanAttribute({mutable: true}),
+        isTenantAdmin: new BooleanAttribute({mutable: true}),
       },
       passwordPolicy: {
         minLength: 6,
