@@ -7,6 +7,7 @@
       <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/get-by-primary-key.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/index.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/query-by-secondary-key.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aws/index.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/databases/databases.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/databases/index.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/events/events.ts" afterDir="false" />
@@ -26,13 +27,18 @@
       <change afterPath="$PROJECT_DIR$/src/handlers/accounts/index.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/lambdas/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test-support/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test-support/mocks/api-gateway-event.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test-support/mocks/index.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/validators/account.validator.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/validators/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-support/jest-setup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-support/jest-setup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -48,6 +54,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2QxTLcWO0gYnUhjTk73tmALYMOj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,6 +75,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/aws" />
       <recent name="$PROJECT_DIR$" />
@@ -83,7 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1686294178024</updated>
       <workItem from="1686294179411" duration="13326000" />
-      <workItem from="1686411770842" duration="3229000" />
+      <workItem from="1686411770842" duration="3649000" />
     </task>
     <servers />
   </component>
