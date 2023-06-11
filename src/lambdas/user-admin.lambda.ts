@@ -54,7 +54,7 @@ export class UserAdminLambda {
     }
 
     const userAdminLambda = new NodejsFunction(scope, lambdaName, {
-      entry: join(__dirname, '../handlers/user-admin'),
+      entry: join(__dirname, '../handlers/user-admin/index.ts'),
       ...handlerProps,
     })
 
