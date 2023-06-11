@@ -16,10 +16,10 @@ import {addCorsHeader} from '../../utils'
 
 import AttributeValue = DocumentClient.AttributeValue
 
-jest.mock('../../../aws')
+jest.mock('../../aws')
 jest.mock('uuid')
-jest.mock('../../../events')
-jest.mock('../../../utils')
+jest.mock('../../events')
+jest.mock('../../utils')
 
 const mockAddCorsHeader = mocked(addCorsHeader)
 const mockGetByPrimaryKey = mocked(getByPrimaryKey)
@@ -40,7 +40,6 @@ jest.doMock('aws-sdk', () => ({
   DynamoDB: {
     DocumentClient: jest.fn((options) => {
       optionsUsedToConstructDocumentClient = {...options}
-
       return {
         scan: mockedScan,
         put: mockedPut,
@@ -78,7 +77,7 @@ const body = {
 describe('Account handler', () => {
   beforeEach(() => {
     jest.resetAllMocks()
-    process.env.TABLE_NAME = 'Accounts-Dev'
+    process.env.TABLE_NAME = 'Users-Dev'
     process.env.EVENT_BUS_ARN = 'test-event-bus'
   })
 
