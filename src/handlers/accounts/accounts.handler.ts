@@ -9,7 +9,7 @@ import {
   getAccountById,
   getAllAccounts,
   updateAccount,
-} from '../functions'
+} from './functions'
 
 const dbClient = new DynamoDB.DocumentClient()
 

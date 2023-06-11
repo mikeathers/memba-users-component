@@ -55,7 +55,7 @@ export class AccountsLambda {
     }
 
     const accountLambda = new NodejsFunction(scope, lambdaName, {
-      entry: join(__dirname, '../handlers/index.ts'),
+      entry: join(__dirname, '../handlers/accounts/index.ts'),
       ...lambdaProps,
     })
 

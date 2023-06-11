@@ -1,7 +1,7 @@
 import {DynamoDB} from 'aws-sdk'
-import {HttpStatusCode, QueryResult} from '../../types'
-import {publishDeleteAccountEvent} from '../../events'
-import {queryBySecondaryKey} from '../../aws'
+import {HttpStatusCode, QueryResult} from '../../../types'
+import {publishDeleteAccountEvent} from '../../../events'
+import {queryBySecondaryKey} from '../../../aws'
 
 interface DeleteAccountProps {
   id: string | undefined

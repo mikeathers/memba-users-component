@@ -2,10 +2,10 @@ import {APIGatewayProxyEvent} from 'aws-lambda'
 import {DynamoDB} from 'aws-sdk'
 import {v4 as uuidv4} from 'uuid'
 
-import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../types'
-import {validateCreateAccountRequest} from '../../validators'
-import {queryBySecondaryKey} from '../../aws'
-import {publishCreateAccountEvent} from '../../events'
+import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../types'
+import {validateCreateAccountRequest} from '../../../validators'
+import {queryBySecondaryKey} from '../../../aws'
+import {publishCreateAccountEvent} from '../../../events'
 
 interface CreateAccountProps {
   event: APIGatewayProxyEvent

@@ -12,6 +12,8 @@ import {Databases} from './databases'
 import {Queue} from 'aws-cdk-lib/aws-sqs'
 import {AccountsLambda} from './lambdas'
 import {AccountApi} from './api-gateway'
+import {UserAdminLambda} from './lambdas/user-admin.lambda'
+import {EventBus} from 'aws-cdk-lib/aws-events'
 
 interface MembaUserComponentStackProps extends StackProps {
   stage: string
@@ -57,12 +59,21 @@ export class MembaUsersComponentStack extends Stack {
       queueName: `${CONFIG.STACK_PREFIX}DLQ-${stage}`,
     })
 
+    const eventBus = EventBus.fromEventBusArn(this, `MembaEventBus`, eventBusArn)
+
     const {accountsLambda} = new AccountsLambda({
       scope: this,
       stage,
       eventBusArn,
       deadLetterQueue,
       table: databases.accountsTable,
+    })
+
+    new UserAdminLambda({
+      scope: this,
+      stage,
+      eventBus,
+      deadLetterQueue,
     })
 
     new AccountApi({

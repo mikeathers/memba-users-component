@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/user-admin/functions/create-user-group.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/user-admin/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/handler/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/handler/accounts.handler.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/functions/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/functions/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/delete-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/functions/get-account-by-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/get-account-by-id.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/functions/get-all-accounts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/get-all-accounts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/functions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/functions/update-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/update-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/handler/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/handler/accounts.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/handler/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,19 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/michaelatherton/Development/memba/memba-users-component/src",
-    "nodejs.jest.jest_package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier",
-    "ts.external.directory.path": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/" />
@@ -45,6 +64,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/handlers/accounts" />
       <recent name="$PROJECT_DIR$/src/handlers" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -92,7 +112,7 @@
       <option name="presentableId" value="Default" />
       <updated>1686294178024</updated>
       <workItem from="1686294179411" duration="13326000" />
-      <workItem from="1686411770842" duration="5585000" />
+      <workItem from="1686411770842" duration="11924000" />
     </task>
     <servers />
   </component>
