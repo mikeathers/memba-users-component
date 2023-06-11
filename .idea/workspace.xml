@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api-gateway/account.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api-gateway/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/get-by-primary-key.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/query-by-secondary-key.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/databases/databases.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/databases/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/events.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/publishers/account/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/publishers/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/delete-account.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/get-account-by-id.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/get-all-accounts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/update-account.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/handler/accounts.handler.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/handler/accounts.handler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/handler/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lambdas/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test-support/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test-support/mocks/api-gateway-event.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test-support/mocks/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validators/account.validator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validators/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test-support/jest-setup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-support/jest-setup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,18 +24,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/michaelatherton/Development/memba/memba-users-component/src",
+    "nodejs.jest.jest_package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier",
+    "ts.external.directory.path": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/" />
@@ -84,6 +48,26 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Custom Message Entry" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" />
+      <test-names>
+        <test-name value="Custom Message Entry" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.Custom Message Entry" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -93,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1686294178024</updated>
       <workItem from="1686294179411" duration="13326000" />
-      <workItem from="1686411770842" duration="3649000" />
+      <workItem from="1686411770842" duration="5110000" />
     </task>
     <servers />
   </component>
