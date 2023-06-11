@@ -1,6 +1,6 @@
 import {DynamoDB} from 'aws-sdk'
-import {HttpStatusCode, QueryResult} from '../../../types'
-import {getByPrimaryKey} from '../../../aws'
+import {HttpStatusCode, QueryResult} from '../../types'
+import {getByPrimaryKey} from '../../aws'
 
 interface GetAccountByIdProps {
   id: string

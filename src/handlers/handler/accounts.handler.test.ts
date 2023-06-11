@@ -1,18 +1,18 @@
 import {DocumentClient} from 'aws-sdk/lib/dynamodb/document_client'
 import {v4 as uuidv4} from 'uuid'
-import {HttpStatusCode} from '../../../types'
-import {getByPrimaryKey} from '../../../aws'
+import {HttpStatusCode} from '../../types'
+import {getByPrimaryKey} from '../../aws'
 import {mocked} from 'jest-mock'
 import AWS, {DynamoDB} from 'aws-sdk'
 
-import {queryBySecondaryKey} from '../../../aws'
-import {sampleAPIGatewayEvent} from '../../../test-support'
+import {queryBySecondaryKey} from '../../aws'
+import {sampleAPIGatewayEvent} from '../../test-support'
 import {
   publishCreateAccountEvent,
   publishUpdateAccountEvent,
   publishDeleteAccountEvent,
-} from '../../../events'
-import {addCorsHeader} from '../../../utils'
+} from '../../events'
+import {addCorsHeader} from '../../utils'
 
 import AttributeValue = DocumentClient.AttributeValue
 

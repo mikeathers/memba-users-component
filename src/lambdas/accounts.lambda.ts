@@ -27,7 +27,7 @@ export class AccountsLambda {
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
     const {scope, stage, table, eventBusArn, deadLetterQueue} = props
 
-    const lambdaName = `${CONFIG.STACK_PREFIX}AccountLambda-${stage}`
+    const lambdaName = `${CONFIG.STACK_PREFIX}Lambda-${stage}`
 
     const lambdaProps: NodejsFunctionProps = {
       functionName: lambdaName,
@@ -55,7 +55,7 @@ export class AccountsLambda {
     }
 
     const accountLambda = new NodejsFunction(scope, lambdaName, {
-      entry: join(__dirname, '../handlers/accounts/index.ts'),
+      entry: join(__dirname, '../handlers/index.ts'),
       ...lambdaProps,
     })
 

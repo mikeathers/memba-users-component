@@ -1,5 +1,5 @@
 import {DynamoDB} from 'aws-sdk'
-import {HttpStatusCode, QueryResult} from '../../../types'
+import {HttpStatusCode, QueryResult} from '../../types'
 
 interface GetAllAccountsProps {
   dbClient: DynamoDB.DocumentClient

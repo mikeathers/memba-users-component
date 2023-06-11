@@ -1,8 +1,8 @@
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda'
 import {DynamoDB} from 'aws-sdk'
 
-import {addCorsHeader, errorHasMessage} from '../../../utils'
-import {HttpStatusCode} from '../../../types'
+import {addCorsHeader, errorHasMessage} from '../../utils'
+import {HttpStatusCode} from '../../types'
 import {
   createAccount,
   deleteAccount,

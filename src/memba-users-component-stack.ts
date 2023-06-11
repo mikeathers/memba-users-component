@@ -52,14 +52,10 @@ export class MembaUsersComponentStack extends Stack {
       stage,
     )
 
-    const deadLetterQueue = new Queue(
-      this,
-      `${CONFIG.STACK_PREFIX}AccountsDLQ-${stage}`,
-      {
-        retentionPeriod: Duration.days(7),
-        queueName: `${CONFIG.STACK_PREFIX}AccountsDLQ-${stage}`,
-      },
-    )
+    const deadLetterQueue = new Queue(this, `${CONFIG.STACK_PREFIX}DLQ-${stage}`, {
+      retentionPeriod: Duration.days(7),
+      queueName: `${CONFIG.STACK_PREFIX}DLQ-${stage}`,
+    })
 
     const {accountsLambda} = new AccountsLambda({
       scope: this,
@@ -89,10 +85,6 @@ export class MembaUsersComponentStack extends Stack {
 
     new CfnOutput(this, 'IdentityPoolId', {
       value: identityPool.ref,
-    })
-
-    new CfnOutput(this, 'Region', {
-      value: Stack.of(this).region,
     })
   }
 }
