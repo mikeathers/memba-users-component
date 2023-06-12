@@ -7,7 +7,7 @@ interface createUserGroupProps {
   userGroupRoleArn: string
 }
 
-export const createUserGroup = (props: createUserGroupProps) => {
+export const createUserGroup = async (props: createUserGroupProps) => {
   try {
     const {cognito, tenantName, userPoolId, userGroupRoleArn} = props
 
@@ -21,13 +21,9 @@ export const createUserGroup = (props: createUserGroupProps) => {
 
     console.log('Create Group Params: ', params)
 
-    const response = cognito.createGroup(params, (err, data) => {
-      console.log('CALLBACK')
-      console.log('CREATE GROUP ERR: ', err)
-      console.log('CREATE GROUP RESULT:', data)
-    })
-    console.log('RESPONSE: ', response)
+    return cognito.createGroup(params).promise()
   } catch (err) {
     console.error('ERROR', err)
+    return null
   }
 }

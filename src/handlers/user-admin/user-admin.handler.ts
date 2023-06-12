@@ -14,12 +14,14 @@ async function handler(event: any) {
       console.log('User Admin Handler')
       console.log('Details: ', {userPoolId, userGroupRoleArn})
 
-      createUserGroup({
+      const result = await createUserGroup({
         cognito,
         tenantName: event.detail.tenantName,
         userPoolId,
         userGroupRoleArn,
       })
+
+      console.log('RESULT: ', result)
     }
   }
 }
