@@ -8,6 +8,7 @@ const dbClient = new DynamoDB.DocumentClient()
 async function handler(event: any) {
   if (event['detail-type'] !== undefined) {
     if (event['source'] === 'Users' && event['detail-type'] === 'Create') {
+      console.log('EVENT', event)
       await createAccount({
         event,
         dbClient,

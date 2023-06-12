@@ -19,4 +19,7 @@ export const validateCreateAccountRequest = (arg: CreateAccountRequest): void =>
   if (!arg.authenticatedUserId) {
     throw new MissingFieldError('Value for authenticatedUserId required!')
   }
+  if (!arg.tenantName) {
+    throw new MissingFieldError('Value for tenantName required!')
+  }
 }

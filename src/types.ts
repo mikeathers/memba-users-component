@@ -12,6 +12,7 @@ export type CreateAccountRequest = {
   firstName: string
   lastName: string
   emailAddress: string
+  tenantName: string
 }
 
 export type UpdateAccountRequest = Pick<

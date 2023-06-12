@@ -22,6 +22,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   const eventDetail = eventType === 'api' ? event.body : event.detail
 
+  console.log('EVENT DETAIL: ', eventDetail)
+
   if (eventDetail) {
     const item = JSON.parse(eventDetail) as CreateAccountRequest
     item.id = uuidv4()

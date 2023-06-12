@@ -58,6 +58,7 @@ async function handler(event: any) {
           firstName,
           lastName,
           emailAddress,
+          tenantName,
         })
       })
 
