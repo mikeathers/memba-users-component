@@ -8,6 +8,7 @@ import {Runtime, Tracing} from 'aws-cdk-lib/aws-lambda'
 import {Duration} from 'aws-cdk-lib'
 import {RetentionDays} from 'aws-cdk-lib/aws-logs'
 import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
+import {Effect, PolicyStatement} from 'aws-cdk-lib/aws-iam'
 
 interface UserAdminLambdaProps {
   scope: Construct
@@ -28,6 +29,8 @@ export class UserAdminLambda {
     const userGroupRoleArnDev = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_DEV}:role/${CONFIG.USER_GROUP_ROLE_ARN}`
     const userGroupRoleArnProd = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_PROD}:role/${CONFIG.USER_GROUP_ROLE_ARN}`
     const userGroupRoleArn = stage === 'prod' ? userGroupRoleArnProd : userGroupRoleArnDev
+    const accountId =
+      stage === 'prod' ? CONFIG.AWS_ACCOUNT_ID_PROD : CONFIG.AWS_ACCOUNT_ID_DEV
 
     const handlerProps: NodejsFunctionProps = {
       functionName: lambdaName,
@@ -65,6 +68,14 @@ export class UserAdminLambda {
         detailType: ['CreateTenantAdminAndUserGroup'],
       },
     })
+
+    userAdminLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['cognito-idp:CreateGroup', 'cognito-idp:SignUp'],
+        resources: [`arn:aws:cognito-idp:eu-west-2:${accountId}:userpool/${userPoolId}`],
+        effect: Effect.ALLOW,
+      }),
+    )
 
     userAdminRule.addTarget(new LambdaFunction(userAdminLambda))
 
