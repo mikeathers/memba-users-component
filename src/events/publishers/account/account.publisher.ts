@@ -26,15 +26,14 @@ const updateIdToAccountId = (
 }
 
 export const publishCreateUserAccountEvent = async (
-  requestDetails: CreateAccountEvent,
+  requestDetails: Omit<CreateAccountEvent, 'id'>,
 ) => {
-  const updatedEvent = updateIdToAccountId(requestDetails)
   const eventBusName = getEnv('EVENT_BUS_ARN')
   const params = {
     Entries: [
       {
         Source: 'Users',
-        Detail: JSON.stringify(updatedEvent),
+        Detail: JSON.stringify(requestDetails),
         DetailType: 'Create',
         Time: new Date(),
         EventBusName: eventBusName,

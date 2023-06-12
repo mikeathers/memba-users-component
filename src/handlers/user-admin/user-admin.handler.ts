@@ -58,7 +58,6 @@ async function handler(event: any) {
           firstName,
           lastName,
           emailAddress,
-          id: uuidv4(),
         })
       })
 
