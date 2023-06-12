@@ -12,7 +12,7 @@ export const createUserGroup = async (props: createUserGroupProps) => {
     const {cognito, tenantName, userPoolId, userGroupRoleArn} = props
 
     const params = {
-      GroupName: `${tenantName}UsersGroup`,
+      GroupName: `${tenantName}`,
       UserPoolId: userPoolId,
       Description: `A group for ${tenantName} users`,
       Precedence: 4,
