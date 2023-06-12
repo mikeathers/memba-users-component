@@ -40,6 +40,7 @@ export class UserAdminLambda {
         USER_POOL_ID: userPoolId,
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
         USER_POOL_CLIENT_ID: clientId,
+        EVENT_BUS_ARN: eventBus.eventBusArn,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,
