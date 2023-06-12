@@ -21,13 +21,11 @@ export const createUserGroup = (props: createUserGroupProps) => {
 
     console.log('Create Group Params: ', params)
 
-    const response = cognito
-      .createGroup(params, (err, data) => {
-        console.log('CALLBACK')
-        console.log('CREATE GROUP ERR: ', err)
-        console.log('CREATE GROUP RESULT:', data)
-      })
-      .promise()
+    const response = cognito.createGroup(params, (err, data) => {
+      console.log('CALLBACK')
+      console.log('CREATE GROUP ERR: ', err)
+      console.log('CREATE GROUP RESULT:', data)
+    })
     console.log('RESPONSE: ', response)
   } catch (err) {
     console.error('ERROR', err)
