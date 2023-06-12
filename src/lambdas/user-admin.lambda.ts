@@ -26,8 +26,8 @@ export class UserAdminLambda {
     const {scope, stage, eventBus, deadLetterQueue} = props
     const lambdaName = `${CONFIG.STACK_PREFIX}AdminLambda-${stage}`
     const userPoolId = stage === 'prod' ? CONFIG.USER_POOL_ID : CONFIG.DEV_USER_POOL_ID
-    const userGroupRoleArnDev = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_DEV}:role/${CONFIG.USER_GROUP_ROLE_ARN}`
-    const userGroupRoleArnProd = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_PROD}:role/${CONFIG.USER_GROUP_ROLE_ARN}`
+    const userGroupRoleArnDev = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_DEV}:role/${CONFIG.USER_GROUP_ROLE_NAME}`
+    const userGroupRoleArnProd = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_PROD}:role/${CONFIG.USER_GROUP_ROLE_NAME}`
     const userGroupRoleArn = stage === 'prod' ? userGroupRoleArnProd : userGroupRoleArnDev
     const accountId =
       stage === 'prod' ? CONFIG.AWS_ACCOUNT_ID_PROD : CONFIG.AWS_ACCOUNT_ID_DEV
@@ -71,8 +71,16 @@ export class UserAdminLambda {
 
     userAdminLambda.addToRolePolicy(
       new PolicyStatement({
-        actions: ['cognito-idp:CreateGroup', 'iam:PassRole', 'cognito-idp:SignUp'],
+        actions: ['cognito-idp:CreateGroup', 'cognito-idp:SignUp'],
         resources: [`arn:aws:cognito-idp:eu-west-2:${accountId}:userpool/${userPoolId}`],
+        effect: Effect.ALLOW,
+      }),
+    )
+
+    userAdminLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['iam:PassRole'],
+        resources: [`arn:aws:iam::${accountId}:role/${CONFIG.USER_GROUP_ROLE_NAME}`],
         effect: Effect.ALLOW,
       }),
     )

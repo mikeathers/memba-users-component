@@ -14,7 +14,7 @@ interface ConfigProps {
   SHARED_EVENT_BUS_NAME: string
   USER_POOL_ID: string
   DEV_USER_POOL_ID: string
-  USER_GROUP_ROLE_ARN: string
+  USER_GROUP_ROLE_NAME: string
 }
 
 const CONFIG: ConfigProps = {
@@ -33,7 +33,7 @@ const CONFIG: ConfigProps = {
   SHARED_EVENT_BUS_NAME: 'MembaEventBus',
   USER_POOL_ID: 'eu-west-2_5wmsSeZyn',
   DEV_USER_POOL_ID: 'eu-west-2_H6F7KWKl8',
-  USER_GROUP_ROLE_ARN: 'MembaUsersUsersGroupRole',
+  USER_GROUP_ROLE_NAME: 'MembaUsersUsersGroupRole',
 }
 
 export default CONFIG
