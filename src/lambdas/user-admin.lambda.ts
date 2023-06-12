@@ -31,12 +31,15 @@ export class UserAdminLambda {
     const userGroupRoleArn = stage === 'prod' ? userGroupRoleArnProd : userGroupRoleArnDev
     const accountId =
       stage === 'prod' ? CONFIG.AWS_ACCOUNT_ID_PROD : CONFIG.AWS_ACCOUNT_ID_DEV
+    const clientId =
+      stage === 'prod' ? CONFIG.USER_POOL_CLIENT_ID : CONFIG.DEV_USER_POOL_CLIENT_ID
 
     const handlerProps: NodejsFunctionProps = {
       functionName: lambdaName,
       environment: {
         USER_POOL_ID: userPoolId,
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
+        CLIENT_ID: clientId,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,

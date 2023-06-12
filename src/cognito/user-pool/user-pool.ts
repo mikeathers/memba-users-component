@@ -180,7 +180,7 @@ export class UserPoolConstruct {
       removalPolicy: RemovalPolicy.DESTROY,
       lambdaTriggers: {
         customMessage: this.customMessagesTrigger,
-        postConfirmation: this.postConfirmationTrigger,
+        // postConfirmation: this.postConfirmationTrigger,
         preSignUp: this.preSignUpTrigger,
       },
     })

@@ -23,7 +23,7 @@ export const createUserGroup = async (props: createUserGroupProps) => {
 
     return cognito.createGroup(params).promise()
   } catch (err) {
-    console.error('ERROR', err)
+    console.error('CREATE USER GROUP ERROR', err)
     return null
   }
 }
