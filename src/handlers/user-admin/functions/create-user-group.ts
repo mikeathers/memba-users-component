@@ -20,7 +20,8 @@ export const createUserGroup = (props: createUserGroupProps) => {
 
   console.log('Create Group Params: ', params)
 
-  const result = cognito.createGroup(params)
-
-  console.log('Create Group Result: ', result)
+  cognito.createGroup(params, (err, data) => {
+    if (err) console.log('CREATE GROUP ERR: ', err)
+    if (data) console.log('CREATE GROUP RESULT:', data)
+  })
 }
