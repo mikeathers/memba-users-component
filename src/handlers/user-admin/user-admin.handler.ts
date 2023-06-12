@@ -27,8 +27,6 @@ async function handler(event: any) {
         tenantAdminPassword,
       } = event.detail
 
-      const username = uuidv4()
-
       const createUserGroupResult = await createUserGroup({
         cognito,
         tenantName,
@@ -43,14 +41,13 @@ async function handler(event: any) {
         userPoolClientId,
         email: tenantAdminEmail,
         password: tenantAdminPassword,
-        username,
       })
 
       const addAdminToUserGroupResult = await addAdminToUserGroup({
         cognito,
         userPoolId,
         groupName: tenantName,
-        username,
+        username: tenantAdminEmail,
       })
 
       console.log('CREATE GROUP RESULT: ', createUserGroupResult)
