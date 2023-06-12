@@ -22,7 +22,7 @@ export const publishCreateAccountEvent = async (requestDetails: CreateAccountEve
   const params = {
     Entries: [
       {
-        Source: 'Account',
+        Source: 'AccountEventLog',
         Detail: JSON.stringify(updatedEvent),
         DetailType: 'Create',
         Time: new Date(),
@@ -40,7 +40,7 @@ export const publishUpdateAccountEvent = async (requestDetails: UpdateAccountEve
   const params = {
     Entries: [
       {
-        Source: 'Account',
+        Source: 'AccountEventLog',
         Detail: JSON.stringify(updatedEvent),
         DetailType: 'Update',
         Time: new Date(),
@@ -58,7 +58,7 @@ export const publishDeleteAccountEvent = async (requestDetails: DeleteAccountEve
   const params = {
     Entries: [
       {
-        Source: 'Account',
+        Source: 'AccountEventLog',
         Detail: JSON.stringify(updatedEvent),
         DetailType: 'Delete',
         Time: new Date(),
