@@ -74,7 +74,11 @@ export class UserAdminLambda {
 
     userAdminLambda.addToRolePolicy(
       new PolicyStatement({
-        actions: ['cognito-idp:CreateGroup', 'cognito-idp:SignUp'],
+        actions: [
+          'cognito-idp:CreateGroup',
+          'cognito-idp:SignUp',
+          'cognito-idp:AdminAddUserToGroup',
+        ],
         resources: [`arn:aws:cognito-idp:eu-west-2:${accountId}:userpool/${userPoolId}`],
         effect: Effect.ALLOW,
       }),
