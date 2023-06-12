@@ -1,11 +1,12 @@
 /* eslint-disable */
 import {CognitoIdentityServiceProvider} from 'aws-sdk'
 import {createUserGroup} from './functions/create-user-group'
+import CONFIG from '../../config'
 
 async function handler(event: any) {
   if (event['detail-type'] !== undefined) {
     if (event['detail-type'] === 'CreateTenantAdminAndUserGroup') {
-      const cognito = new CognitoIdentityServiceProvider()
+      const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
 
       const userPoolId = process.env.USER_POOL_ID ?? ''
       const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
