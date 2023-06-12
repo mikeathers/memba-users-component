@@ -54,11 +54,13 @@ export class UserPoolClientConstruct {
       .withStandardAttributes(standardCognitoAttributes)
       .withCustomAttributes(...['isMembaAdmin', 'isTenantAdmin'])
 
-    const clientWriteAttributes = new ClientAttributes().withStandardAttributes({
-      ...standardCognitoAttributes,
-      emailVerified: false,
-      phoneNumberVerified: false,
-    })
+    const clientWriteAttributes = new ClientAttributes()
+      .withStandardAttributes({
+        ...standardCognitoAttributes,
+        emailVerified: false,
+        phoneNumberVerified: false,
+      })
+      .withCustomAttributes(...['isTenantAdmin'])
 
     const userPoolClientName = `${CONFIG.STACK_PREFIX}UserPoolClient-${this.stage}`
 
