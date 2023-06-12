@@ -13,7 +13,7 @@ export async function handler(
     await addUserToGroup({
       userPoolId,
       username,
-      groupName: '',
+      groupName: 'Users',
     })
     return callback(null, event)
     // eslint-disable-next-line
