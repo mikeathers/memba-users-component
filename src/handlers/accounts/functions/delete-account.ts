@@ -1,6 +1,6 @@
 import {DynamoDB} from 'aws-sdk'
 import {HttpStatusCode, QueryResult} from '../../../types'
-import {publishDeleteAccountEvent} from '../../../events'
+import {publishDeleteAccountLogEvent} from '../../../events'
 import {queryBySecondaryKey} from '../../../aws'
 
 interface DeleteAccountProps {
@@ -38,7 +38,7 @@ export const deleteAccount = async (props: DeleteAccountProps): Promise<QueryRes
 
     const result = await dbClient.delete(params).promise()
     if (result.Attributes) {
-      await publishDeleteAccountEvent({
+      await publishDeleteAccountLogEvent({
         id,
         userWhoDeletedAccountId: authenticatedUserId,
       })

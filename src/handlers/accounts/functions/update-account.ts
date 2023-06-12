@@ -3,7 +3,7 @@ import {APIGatewayProxyEvent} from 'aws-lambda'
 
 import {HttpStatusCode, QueryResult, UpdateAccountRequest} from '../../../types'
 import {getByPrimaryKey} from '../../../aws'
-import {publishUpdateAccountEvent} from '../../../events'
+import {publishUpdateAccountLogEvent} from '../../../events'
 
 interface UpdateAccountProps {
   event: APIGatewayProxyEvent
@@ -65,7 +65,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
 
     const result = await dbClient.update(params).promise()
 
-    await publishUpdateAccountEvent(updateAccountData)
+    await publishUpdateAccountLogEvent(updateAccountData)
 
     return {
       body: {

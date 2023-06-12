@@ -1,25 +1,29 @@
-import {APIGatewayProxyEvent} from 'aws-lambda'
 import {DynamoDB} from 'aws-sdk'
 import {v4 as uuidv4} from 'uuid'
 
 import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../types'
 import {validateCreateAccountRequest} from '../../../validators'
 import {queryBySecondaryKey} from '../../../aws'
-import {publishCreateAccountEvent} from '../../../events'
+import {publishCreateAccountLogEvent} from '../../../events'
 
 interface CreateAccountProps {
-  event: APIGatewayProxyEvent
+  event: any
   dbClient: DynamoDB.DocumentClient
   authenticatedUserId: string
+  eventType: 'api' | 'eventBridge'
 }
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
-  const {event, dbClient, authenticatedUserId} = props
+  //eslint-disable-next-line
+  const {event, dbClient, authenticatedUserId, eventType} = props
 
   const tableName = process.env.TABLE_NAME ?? ''
 
-  if (event.body) {
-    const item = JSON.parse(event.body) as CreateAccountRequest
+  //eslint-disable-next-line
+  const eventDetail = eventType === 'api' ? event.body : event.detail
+
+  if (eventDetail) {
+    const item = JSON.parse(eventDetail) as CreateAccountRequest
     item.id = uuidv4()
     item.authenticatedUserId = authenticatedUserId ?? ''
     validateCreateAccountRequest(item)
@@ -39,7 +43,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
         })
         .promise()
 
-      await publishCreateAccountEvent(item)
+      await publishCreateAccountLogEvent(item)
 
       return {
         body: {

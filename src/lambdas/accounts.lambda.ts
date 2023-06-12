@@ -8,13 +8,15 @@ import {RetentionDays} from 'aws-cdk-lib/aws-logs'
 import {Queue} from 'aws-cdk-lib/aws-sqs'
 
 import CONFIG from '../config'
+import {IEventBus, Rule} from 'aws-cdk-lib/aws-events'
+import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
 
 interface AccountLambdaProps {
   scope: Construct
   table: ITable
   stage: string
-  eventBusArn: string
   deadLetterQueue: Queue
+  eventBus: IEventBus
 }
 
 export class AccountsLambda {
@@ -25,7 +27,7 @@ export class AccountsLambda {
   }
 
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
-    const {scope, stage, table, eventBusArn, deadLetterQueue} = props
+    const {scope, stage, table, eventBus, deadLetterQueue} = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}Lambda-${stage}`
 
@@ -34,7 +36,7 @@ export class AccountsLambda {
       environment: {
         PRIMARY_KEY: 'id',
         TABLE_NAME: table.tableName,
-        EVENT_BUS_ARN: eventBusArn,
+        EVENT_BUS_ARN: eventBus.eventBusArn,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,
@@ -58,6 +60,16 @@ export class AccountsLambda {
       entry: join(__dirname, '../handlers/accounts/index.ts'),
       ...lambdaProps,
     })
+
+    const createUserRule = new Rule(scope, 'CreateUserRule', {
+      eventBus,
+      eventPattern: {
+        source: ['Users'],
+        detailType: ['Create'],
+      },
+    })
+
+    createUserRule.addTarget(new LambdaFunction(accountLambda))
 
     table.grantReadWriteData(accountLambda)
 

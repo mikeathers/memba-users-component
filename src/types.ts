@@ -9,7 +9,6 @@ export type CreateAccountRequest = {
   townCity: string
   postCode: string
   authenticatedUserId: string
-  comment: string
   firstName: string
   lastName: string
   emailAddress: string

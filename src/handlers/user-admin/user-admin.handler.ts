@@ -6,6 +6,7 @@ import {createUserGroup} from './functions/create-user-group'
 import CONFIG from '../../config'
 import {createAdminUser} from './functions/create-admin-user'
 import {addAdminToUserGroup} from './functions/add-admin-to-user-group'
+import {publishCreateUserAccountEvent} from '../../events'
 
 const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
 
@@ -21,10 +22,15 @@ async function handler(event: any) {
 
       const {
         tenantName,
-        tenantAdminFirstName,
-        tenantAdminLastName,
-        tenantAdminEmail,
-        tenantAdminPassword,
+        firstName,
+        lastName,
+        emailAddress,
+        password,
+        addressLineOne,
+        addressLineTwo,
+        doorNumber,
+        townCity,
+        postCode,
       } = event.detail
 
       const createUserGroupResult = await createUserGroup({
@@ -36,18 +42,31 @@ async function handler(event: any) {
 
       const createAdminUserResult = await createAdminUser({
         cognito,
-        firstName: tenantAdminFirstName,
-        lastName: tenantAdminLastName,
+        firstName,
+        lastName,
         userPoolClientId,
-        email: tenantAdminEmail,
-        password: tenantAdminPassword,
+        emailAddress,
+        password,
+      })?.then(async (res) => {
+        await publishCreateUserAccountEvent({
+          authenticatedUserId: res.UserSub,
+          addressLineOne,
+          addressLineTwo,
+          doorNumber,
+          townCity,
+          postCode,
+          firstName,
+          lastName,
+          emailAddress,
+          id: uuidv4(),
+        })
       })
 
       const addAdminToUserGroupResult = await addAdminToUserGroup({
         cognito,
         userPoolId,
         groupName: tenantName,
-        username: tenantAdminEmail,
+        username: emailAddress,
       })
 
       console.log('CREATE GROUP RESULT: ', createUserGroupResult)

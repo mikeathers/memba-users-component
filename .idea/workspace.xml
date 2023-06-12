@@ -2,6 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/handle-api-request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/delete-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/update-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/update-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1686294178024</updated>
       <workItem from="1686294179411" duration="13326000" />
-      <workItem from="1686411770842" duration="29380000" />
+      <workItem from="1686411770842" duration="35271000" />
     </task>
     <servers />
   </component>

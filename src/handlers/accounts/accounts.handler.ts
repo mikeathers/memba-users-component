@@ -1,77 +1,23 @@
-import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda'
+/* eslint-disable */
+import {handleApiRequest} from './functions/handle-api-request'
+import {createAccount} from './functions'
 import {DynamoDB} from 'aws-sdk'
-
-import {addCorsHeader, errorHasMessage} from '../../utils'
-import {HttpStatusCode} from '../../types'
-import {
-  createAccount,
-  deleteAccount,
-  getAccountById,
-  getAllAccounts,
-  updateAccount,
-} from './functions'
 
 const dbClient = new DynamoDB.DocumentClient()
 
-async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
-  console.log('request:', JSON.stringify(event, null, 2))
-
-  const result: APIGatewayProxyResult = {
-    statusCode: HttpStatusCode.OK,
-    body: '',
-  }
-
-  addCorsHeader(event)
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const authenticatedUserId = event.requestContext.authorizer?.claims['sub'] as string
-
-    switch (event.httpMethod) {
-      case 'GET':
-        if (event.pathParameters?.id) {
-          const response = await getAccountById({id: event.pathParameters.id, dbClient})
-          result.body = JSON.stringify(response.body)
-          result.statusCode = response.statusCode
-        } else {
-          const response = await getAllAccounts({dbClient})
-          result.body = JSON.stringify(response.body)
-          result.statusCode = response.statusCode
-        }
-        break
-      case 'POST': {
-        const response = await createAccount({event, dbClient, authenticatedUserId})
-        result.body = JSON.stringify(response.body)
-        result.statusCode = response.statusCode
-        break
-      }
-      case 'PUT': {
-        const response = await updateAccount({event, dbClient})
-        result.body = JSON.stringify(response.body)
-        result.statusCode = response.statusCode
-        break
-      }
-      case 'DELETE': {
-        const response = await deleteAccount({
-          dbClient,
-          id: event.pathParameters?.id,
-          authenticatedUserId,
-        })
-        result.body = JSON.stringify(response.body)
-        result.statusCode = response.statusCode
-        break
-      }
-      default:
-        throw new Error(`Unsupported route: "${event.httpMethod}"`)
+async function handler(event: any) {
+  if (event['detail-type'] !== undefined) {
+    if (event['source'] === 'Users' && event['detail-type'] === 'Create') {
+      await createAccount({
+        event,
+        dbClient,
+        authenticatedUserId: event.authenticatedUserId,
+        eventType: 'eventBridge',
+      })
     }
-  } catch (err) {
-    console.error(err)
-    result.statusCode = 500
-
-    if (errorHasMessage(err)) result.body = err.message
-    else result.body = 'Something went very wrong.'
   }
-  return result
+
+  return await handleApiRequest(event, dbClient)
 }
 
 export {handler}

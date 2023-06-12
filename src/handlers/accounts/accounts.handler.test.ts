@@ -8,9 +8,9 @@ import AWS, {DynamoDB} from 'aws-sdk'
 import {queryBySecondaryKey} from '../../aws'
 import {sampleAPIGatewayEvent} from '../../test-support'
 import {
-  publishCreateAccountEvent,
-  publishUpdateAccountEvent,
-  publishDeleteAccountEvent,
+  publishCreateAccountLogEvent,
+  publishUpdateAccountLogEvent,
+  publishDeleteAccountLogEvent,
 } from '../../events'
 import {addCorsHeader} from '../../utils'
 
@@ -24,9 +24,9 @@ jest.mock('../../utils')
 const mockAddCorsHeader = mocked(addCorsHeader)
 const mockGetByPrimaryKey = mocked(getByPrimaryKey)
 const mockQueryBySecondaryKey = mocked(queryBySecondaryKey)
-const mockPublishCreateAccountEvent = mocked(publishCreateAccountEvent)
-const mockPublishUpdateAccountEvent = mocked(publishUpdateAccountEvent)
-const mockPublishDeleteAccountEvent = mocked(publishDeleteAccountEvent)
+const mockPublishCreateAccountEvent = mocked(publishCreateAccountLogEvent)
+const mockPublishUpdateAccountEvent = mocked(publishUpdateAccountLogEvent)
+const mockPublishDeleteAccountEvent = mocked(publishDeleteAccountLogEvent)
 const mockUuid = mocked(uuidv4)
 const mockedScan = jest.fn()
 const mockedPut = jest.fn()
@@ -78,7 +78,6 @@ describe('Account handler', () => {
   beforeEach(() => {
     jest.resetAllMocks()
     process.env.TABLE_NAME = 'Users-Dev'
-    process.env.EVENT_BUS_ARN = 'test-event-bus'
   })
 
   describe('Handler', () => {
