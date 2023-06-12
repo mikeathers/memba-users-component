@@ -18,5 +18,9 @@ export const createUserGroup = (props: createUserGroupProps) => {
     RoleArn: userGroupRoleArn,
   }
 
-  cognito.createGroup(params)
+  console.log('Create Group Params: ', params)
+
+  const result = cognito.createGroup(params)
+
+  console.log('Create Group Result: ', result)
 }

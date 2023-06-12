@@ -10,6 +10,9 @@ async function handler(event: any) {
       const userPoolId = process.env.USER_POOL_ID ?? ''
       const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
 
+      console.log('User Admin Handler')
+      console.log('Details: ', {userPoolId, userGroupRoleArn})
+
       createUserGroup({
         cognito,
         tenantName: event.detail.tenantName,
