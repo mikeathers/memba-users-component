@@ -39,7 +39,7 @@ export class UserAdminLambda {
       environment: {
         USER_POOL_ID: userPoolId,
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
-        CLIENT_ID: clientId,
+        USER_POOL_CLIENT_ID: clientId,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,
