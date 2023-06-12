@@ -38,7 +38,6 @@ async function handler(event: any) {
 
       const createAdminUserResult = await createAdminUser({
         cognito,
-        groupName: tenantName,
         firstName: tenantAdminFirstName,
         lastName: tenantAdminLastName,
         userPoolClientId,
