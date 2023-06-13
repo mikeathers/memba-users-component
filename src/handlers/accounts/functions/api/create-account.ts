@@ -1,30 +1,25 @@
 import {DynamoDB} from 'aws-sdk'
 import {v4 as uuidv4} from 'uuid'
 
-import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../types'
-import {validateCreateAccountRequest} from '../../../validators'
-import {queryBySecondaryKey} from '../../../aws'
-import {publishCreateAccountLogEvent} from '../../../events'
+import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../../types'
+import {validateCreateAccountRequest} from '../../../../validators'
+import {queryBySecondaryKey} from '../../../../aws'
+import {publishCreateAccountLogEvent} from '../../../../events'
 
 interface CreateAccountProps {
   event: any
   dbClient: DynamoDB.DocumentClient
   authenticatedUserId: string
-  eventType: 'api' | 'eventBridge'
 }
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
   //eslint-disable-next-line
-  const {event, dbClient, authenticatedUserId, eventType} = props
+  const {event, dbClient, authenticatedUserId} = props
 
   const tableName = process.env.TABLE_NAME ?? ''
 
   //eslint-disable-next-line
-  const eventDetail = eventType === 'api' ? event.body : event.detail
-
-  console.log('EVENT DETAIL: ', eventDetail)
-
-  if (!eventDetail) {
+  if (!event.body) {
     return {
       body: {
         message: 'The event is missing a body and cannot be parsed.',
@@ -33,7 +28,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     }
   }
 
-  const item = JSON.parse(JSON.stringify(eventDetail)) as CreateAccountRequest
+  //eslint-disable-next-line
+  const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
   item.authenticatedUserId = authenticatedUserId ?? ''
   validateCreateAccountRequest(item)

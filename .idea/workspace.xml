@@ -2,9 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/handle-event-bridge.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test-support/mocks/event-bridge-event.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/get-account-by-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-account-by-id.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/get-all-accounts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-all-accounts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/handle-api-request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/update-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/update-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-support/mocks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-support/mocks/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,35 +39,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/michaelatherton/Development/memba/memba-users-component/src/handlers/accounts/functions/event-bridge",
+    "nodejs.jest.jest_package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge" />
       <recent name="$PROJECT_DIR$/src/" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/aws" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
       <recent name="$PROJECT_DIR$/src/handlers/accounts" />
       <recent name="$PROJECT_DIR$/src/handlers" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler.POST createAccount.should return a 200 (OK) if account is created">
-    <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.Account handler.Handler.EventBridge Event.should call db put with account details">
+    <configuration name="Account handler.Handler" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -64,23 +79,11 @@
       <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
+        <test-name value="Handler" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Account handler" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/handlers/handler/accounts.handler.test.ts" />
-      <test-names>
-        <test-name value="Account handler" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Account handler.POST createAccount.should return a 200 (OK) if account is created" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Account handler.Handler.EventBridge Event.should call db put with account details" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -90,30 +93,67 @@
       <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
-        <test-name value="POST createAccount" />
-        <test-name value="should return a 200 (OK) if account is created" />
+        <test-name value="Handler" />
+        <test-name value="EventBridge Event" />
+        <test-name value="should call db put with account details" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Custom Message Entry" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Account handler.Handler.EventBridge Event.should call publishCreateAccountLogEvent if event created successfully" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
       <test-names>
-        <test-name value="Custom Message Entry" />
+        <test-name value="Account handler" />
+        <test-name value="Handler" />
+        <test-name value="EventBridge Event" />
+        <test-name value="should call publishCreateAccountLogEvent if event created successfully" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Account handler.Handler.EventBridge Event.should throw an error if account already exists" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <test-names>
+        <test-name value="Account handler" />
+        <test-name value="Handler" />
+        <test-name value="EventBridge Event" />
+        <test-name value="should throw an error if account already exists" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Account handler.Handler.EventBridge Event.should throw an error if event has no details" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <test-names>
+        <test-name value="Account handler" />
+        <test-name value="Handler" />
+        <test-name value="EventBridge Event" />
+        <test-name value="should throw an error if event has no details" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Account handler.POST createAccount.should return a 200 (OK) if account is created" />
-        <item itemvalue="Jest.Account handler (1)" />
-        <item itemvalue="Jest.Account handler" />
-        <item itemvalue="Jest.Custom Message Entry" />
+        <item itemvalue="Jest.Account handler.Handler.EventBridge Event.should call db put with account details" />
+        <item itemvalue="Jest.Account handler.Handler.EventBridge Event.should throw an error if event has no details" />
+        <item itemvalue="Jest.Account handler.Handler.EventBridge Event.should throw an error if account already exists" />
+        <item itemvalue="Jest.Account handler.Handler" />
+        <item itemvalue="Jest.Account handler.Handler.EventBridge Event.should call publishCreateAccountLogEvent if event created successfully" />
       </list>
     </recent_temporary>
   </component>
@@ -143,5 +183,29 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts</url>
+          <line>26</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts</url>
+          <line>37</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts</url>
+          <line>35</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

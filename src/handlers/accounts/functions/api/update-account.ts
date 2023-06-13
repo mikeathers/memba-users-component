@@ -1,9 +1,9 @@
 import {DynamoDB} from 'aws-sdk'
 import {APIGatewayProxyEvent} from 'aws-lambda'
 
-import {HttpStatusCode, QueryResult, UpdateAccountRequest} from '../../../types'
-import {getByPrimaryKey} from '../../../aws'
-import {publishUpdateAccountLogEvent} from '../../../events'
+import {HttpStatusCode, QueryResult, UpdateAccountRequest} from '../../../../types'
+import {getByPrimaryKey} from '../../../../aws'
+import {publishUpdateAccountLogEvent} from '../../../../events'
 
 interface UpdateAccountProps {
   event: APIGatewayProxyEvent

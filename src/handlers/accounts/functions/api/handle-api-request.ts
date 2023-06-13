@@ -1,8 +1,8 @@
 import {DocumentClient} from 'aws-sdk/clients/dynamodb'
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda'
 
-import {HttpStatusCode} from '../../../types'
-import {addCorsHeader, errorHasMessage} from '../../../utils'
+import {HttpStatusCode} from '../../../../types'
+import {addCorsHeader, errorHasMessage} from '../../../../utils'
 import {getAccountById} from './get-account-by-id'
 import {getAllAccounts} from './get-all-accounts'
 import {createAccount} from './create-account'
@@ -43,7 +43,6 @@ export const handleApiRequest = async (
           event,
           dbClient,
           authenticatedUserId,
-          eventType: 'api',
         })
         result.body = JSON.stringify(response.body)
         result.statusCode = response.statusCode

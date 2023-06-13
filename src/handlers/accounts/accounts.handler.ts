@@ -1,21 +1,12 @@
 /* eslint-disable */
-import {handleApiRequest} from './functions/handle-api-request'
-import {createAccount} from './functions'
 import {DynamoDB} from 'aws-sdk'
+import {handleApiRequest, handleEventBridge} from './functions'
 
 const dbClient = new DynamoDB.DocumentClient()
 
 async function handler(event: any) {
   if (event['detail-type'] !== undefined) {
-    if (event['source'] === 'Users' && event['detail-type'] === 'Create') {
-      console.log('EVENT', event)
-      await createAccount({
-        event,
-        dbClient,
-        authenticatedUserId: event.authenticatedUserId,
-        eventType: 'eventBridge',
-      })
-    }
+    return await handleEventBridge(event, dbClient)
   }
 
   return await handleApiRequest(event, dbClient)
