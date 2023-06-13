@@ -26,6 +26,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
       firstName,
       lastName,
       emailAddress,
+      tenantName,
     } = updateAccountData
 
     const accountExists = await getByPrimaryKey({
@@ -49,7 +50,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
       Key: {id},
       UpdateExpression:
         'SET addressLineOne = :addressLineOne, addressLineTwo = :addressLineTwo, doorNumber = :doorNumber, townCity = :townCity, postCode = :postCode,' +
-        ' lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress',
+        ' lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, tenantName = :tenantName',
       ExpressionAttributeValues: {
         ':doorNumber': doorNumber,
         ':addressLineOne': addressLineOne,
@@ -59,6 +60,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
         ':lastName': lastName,
         ':firstName': firstName,
         ':emailAddress': emailAddress,
+        ':tenantName': tenantName,
       },
       ReturnValues: 'ALL_NEW',
     }

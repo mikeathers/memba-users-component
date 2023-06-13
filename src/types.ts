@@ -26,6 +26,7 @@ export type UpdateAccountRequest = Pick<
   | 'lastName'
   | 'firstName'
   | 'emailAddress'
+  | 'tenantName'
 >
 
 export type QueryResult = {
