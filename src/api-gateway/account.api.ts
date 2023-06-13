@@ -97,7 +97,7 @@ export class AccountApi {
 
     api.addApiKey('ApiKey', {
       apiKeyName: `web-app-key`,
-      value: secret.secretValueFromJson('api_key').toString(),
+      value: secret.secretValueFromJson('api_key').unsafeUnwrap(),
     })
 
     const root = api.root
