@@ -160,7 +160,7 @@ describe('Account handler', () => {
         })
 
         it('should throw an error if event has no details', async () => {
-          mockGetByPrimaryKey.mockResolvedValue(undefined)
+          mockGetByPrimaryKey.mockResolvedValue({Item: undefined})
           try {
             await handler({
               ...sampleEventBridgeEvent,
@@ -379,7 +379,7 @@ describe('Account handler', () => {
       })
 
       it('should return a 500 (Internal Server Error) if event has not body', async () => {
-        mockGetByPrimaryKey.mockResolvedValue(undefined)
+        mockGetByPrimaryKey.mockResolvedValue({Item: undefined})
         await expect(
           handler({
             ...sampleAPIGatewayEvent,
@@ -454,7 +454,7 @@ describe('Account handler', () => {
       })
 
       it('should return a 400 (Bad Request) if account to update does not exist', async () => {
-        mockGetByPrimaryKey.mockResolvedValue(undefined)
+        mockGetByPrimaryKey.mockResolvedValue({Item: undefined})
 
         await expect(
           handler({
@@ -472,7 +472,7 @@ describe('Account handler', () => {
       })
 
       it('should return a 500 (Internal Server Error) if event has not body', async () => {
-        mockGetByPrimaryKey.mockResolvedValue(undefined)
+        mockGetByPrimaryKey.mockResolvedValue({Item: undefined})
 
         await expect(
           handler({

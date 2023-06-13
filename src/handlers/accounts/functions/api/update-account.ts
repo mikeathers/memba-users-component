@@ -35,7 +35,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
       dbClient,
     })
 
-    if (!accountExists) {
+    if (!accountExists.Item) {
       return {
         body: {
           message: `Account with Id: ${id} does not exist and could not be updated.`,

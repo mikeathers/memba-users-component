@@ -1,5 +1,5 @@
 import {DynamoDB} from 'aws-sdk'
-import {AttributeMap} from 'aws-sdk/clients/dynamodb'
+import {AttributeMap, GetItemOutput} from 'aws-sdk/clients/dynamodb'
 
 interface GetByPrimaryKeyProps {
   queryKey: string
@@ -10,17 +10,12 @@ interface GetByPrimaryKeyProps {
 
 export const getByPrimaryKey = async (
   props: GetByPrimaryKeyProps,
-): Promise<AttributeMap | undefined> => {
+): Promise<GetItemOutput> => {
   const {queryKey, queryValue, tableName, dbClient} = props
   const params = {
     TableName: tableName,
     Key: {[queryKey]: queryValue},
   }
 
-  console.log('PARAMS: ', params)
-
-  const queryResponse = await dbClient.get(params).promise()
-
-  console.log('QUERY RES: ', queryResponse)
-  return queryResponse.Item
+  return await dbClient.get(params).promise()
 }
