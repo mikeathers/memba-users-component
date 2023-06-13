@@ -2,17 +2,17 @@ import {PromiseResult} from 'aws-sdk/lib/request'
 import {AWSError, DynamoDB} from 'aws-sdk'
 
 export type CreateAccountRequest = {
-  id: string
+  authenticatedUserId: string
   addressLineOne: string
   addressLineTwo: string
   doorNumber: string
   townCity: string
   postCode: string
-  authenticatedUserId: string
   firstName: string
   lastName: string
   emailAddress: string
   tenantName: string
+  id: string
 }
 
 export type UpdateAccountRequest = Pick<
