@@ -1,13 +1,17 @@
 import {Construct} from 'constructs'
 import {IFunction} from 'aws-cdk-lib/aws-lambda'
 import {
+  ApiKey,
   AuthorizationType,
   CognitoUserPoolsAuthorizer,
   Cors,
   CorsOptions,
   LambdaIntegration,
   MethodOptions,
+  Period,
   RestApi,
+  UsagePlan,
+  UsagePlanProps,
 } from 'aws-cdk-lib/aws-apigateway'
 import {UserPool} from 'aws-cdk-lib/aws-cognito'
 import {ServicePrincipal} from 'aws-cdk-lib/aws-iam'
@@ -16,6 +20,7 @@ import {ApiGateway} from 'aws-cdk-lib/aws-route53-targets'
 import {ICertificate} from 'aws-cdk-lib/aws-certificatemanager'
 import CONFIG from '../config'
 import {Secret} from 'aws-cdk-lib/aws-secretsmanager'
+import {UsagePlanPerApiStage} from 'aws-cdk-lib/aws-apigateway/lib/usage-plan'
 
 interface AccountApiProps {
   scope: Construct
@@ -95,10 +100,29 @@ export class AccountApi {
       },
     })
 
-    api.addApiKey('ApiKey', {
-      apiKeyName: `web-app-key`,
+    const apiKeyName = 'web-app-key'
+
+    const apiKey = new ApiKey(scope, `AccountsApiKey`, {
+      apiKeyName,
+      description: `APIKey used to access resources`,
+      enabled: true,
       value: secret.secretValueFromJson('api_key').unsafeUnwrap(),
     })
+
+    const apiStage: UsagePlanPerApiStage = {
+      api,
+      stage: api.deploymentStage,
+    }
+
+    const usagePlanProps: UsagePlanProps = {
+      name: 'AccountsApiUsagePlan',
+      apiStages: [apiStage],
+      throttle: {burstLimit: 500, rateLimit: 1000},
+      quota: {limit: 10000000, period: Period.MONTH},
+    }
+
+    const usagePlan = api.addUsagePlan('AccountsUsagePlan', usagePlanProps)
+    usagePlan.addApiKey(apiKey)
 
     const root = api.root
 
