@@ -95,6 +95,7 @@ export class AccountApi {
     const secret = new Secret(scope, `${CONFIG.STACK_PREFIX}ApiSecret`, {
       generateSecretString: {
         generateStringKey: 'api_key',
+        secretStringTemplate: JSON.stringify({username: 'web_user'}),
         excludeCharacters: ' %+~`#$&*()|[]{}:;<>?!\'/@"\\',
       },
     })
