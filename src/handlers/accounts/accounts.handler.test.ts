@@ -232,6 +232,42 @@ describe('Account handler', () => {
       })
     })
 
+    describe('GET getAccountByEmail', () => {
+      it('should return a 200 (OK) if the account is found with the provided email address', async () => {
+        mockQueryBySecondaryKey.mockResolvedValue([{Item: apiResult} as AttributeValue])
+        await expect(
+          handler({
+            ...sampleAPIGatewayEvent,
+            httpMethod: 'GET',
+            pathParameters: {emailAddress: 'joe@gmail.com'},
+          }),
+        ).resolves.toEqual({
+          statusCode: HttpStatusCode.OK,
+          body: JSON.stringify({
+            message: 'Account has been found.',
+            result: {Item: {...apiResult}},
+          }),
+        })
+      })
+
+      it('should return a 400 (Bad Request) if the account is not found using the provided email address', async () => {
+        const emailAddress = 'joe@gmail.com'
+        mockGetByPrimaryKey.mockResolvedValue({})
+        await expect(
+          handler({
+            ...sampleAPIGatewayEvent,
+            httpMethod: 'GET',
+            pathParameters: {emailAddress},
+          }),
+        ).resolves.toEqual({
+          statusCode: HttpStatusCode.BAD_REQUEST,
+          body: JSON.stringify({
+            message: `Account with email: ${emailAddress} does not exist.`,
+          }),
+        })
+      })
+    })
+
     describe('GET allAccounts', () => {
       it('should return a 200 (OK) if accounts are found', async () => {
         mockedScan.mockImplementation(() => {

@@ -8,6 +8,7 @@ import {getAllAccounts} from './get-all-accounts'
 import {createAccount} from './create-account'
 import {updateAccount} from './update-account'
 import {deleteAccount} from './delete-account'
+import {getAccountByEmail} from './get-account-by-email'
 
 export const handleApiRequest = async (
   event: APIGatewayProxyEvent,
@@ -30,6 +31,13 @@ export const handleApiRequest = async (
       case 'GET':
         if (event.pathParameters?.id) {
           const response = await getAccountById({id: event.pathParameters.id, dbClient})
+          result.body = JSON.stringify(response.body)
+          result.statusCode = response.statusCode
+        } else if (event.pathParameters?.emailAddress) {
+          const response = await getAccountByEmail({
+            emailAddress: event.pathParameters.emailAddress,
+            dbClient,
+          })
           result.body = JSON.stringify(response.body)
           result.statusCode = response.statusCode
         } else {

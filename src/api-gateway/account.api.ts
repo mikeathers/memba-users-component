@@ -97,6 +97,11 @@ export class AccountApi {
       .addResource('{id}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), methodOptions)
 
+    const getAccountByEmail = root.addResource('get-account-by-email')
+    getAccountByEmail
+      .addResource('{emailAddress}')
+      .addMethod('GET', new LambdaIntegration(accountsLambda), methodOptions)
+
     root
       .addResource('update-account')
       .addMethod('PUT', new LambdaIntegration(accountsLambda), methodOptions)

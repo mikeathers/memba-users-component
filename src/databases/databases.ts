@@ -33,6 +33,14 @@ export class Databases extends Construct {
       },
     })
 
+    accountsTable.addGlobalSecondaryIndex({
+      indexName: 'emailAddress',
+      partitionKey: {
+        name: 'emailAddress',
+        type: AttributeType.STRING,
+      },
+    })
+
     return accountsTable
   }
 }
