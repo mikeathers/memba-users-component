@@ -100,7 +100,7 @@ export class AccountApi {
       },
     })
 
-    const apiKeyName = 'web-app-key'
+    const apiKeyName = 'x-api-key'
 
     const apiKey = new ApiKey(scope, `AccountsApiKey`, {
       apiKeyName,
