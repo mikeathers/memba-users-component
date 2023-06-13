@@ -60,6 +60,7 @@ const result = {
   emailAddress: 'joebloggs@gmail.com',
   postCode: 'L1 2HK',
   doorNumber: '12',
+  tenantName: 'test-tenant',
   id: '8f9e060d-3028-411a-9a00-d3b00966638b',
   authenticatedUserId: '12345',
 }
@@ -72,6 +73,7 @@ const body = {
   emailAddress: 'joebloggs@gmail.com',
   postCode: 'L1 2HK',
   doorNumber: '12',
+  tenantName: 'test-tenant',
 }
 
 describe('Account handler', () => {

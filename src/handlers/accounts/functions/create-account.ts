@@ -24,49 +24,50 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
   console.log('EVENT DETAIL: ', eventDetail)
 
-  if (eventDetail) {
-    const item = JSON.parse(eventDetail) as CreateAccountRequest
-    item.id = uuidv4()
-    item.authenticatedUserId = authenticatedUserId ?? ''
-    validateCreateAccountRequest(item)
-
-    const accountExists = await queryBySecondaryKey({
-      queryKey: 'authenticatedUserId',
-      queryValue: authenticatedUserId,
-      tableName,
-      dbClient,
-    })
-
-    if (accountExists && accountExists.length < 1) {
-      await dbClient
-        .put({
-          TableName: tableName,
-          Item: item,
-        })
-        .promise()
-
-      await publishCreateAccountLogEvent(item)
-
-      return {
-        body: {
-          message: 'Account created successfully!',
-          result: item,
-        },
-        statusCode: HttpStatusCode.CREATED,
-      }
-    } else {
-      return {
-        body: {
-          message: 'Account details already exist for the authenticated user.',
-        },
-        statusCode: HttpStatusCode.BAD_REQUEST,
-      }
+  if (!eventDetail) {
+    return {
+      body: {
+        message: 'The event is missing a body and cannot be parsed.',
+      },
+      statusCode: HttpStatusCode.INTERNAL_SERVER,
     }
   }
+
+  const item = JSON.parse(eventDetail) as CreateAccountRequest
+  item.id = uuidv4()
+  item.authenticatedUserId = authenticatedUserId ?? ''
+  validateCreateAccountRequest(item)
+
+  const accountExists = await queryBySecondaryKey({
+    queryKey: 'authenticatedUserId',
+    queryValue: authenticatedUserId,
+    tableName,
+    dbClient,
+  })
+
+  if (accountExists && accountExists?.length > 0) {
+    return {
+      body: {
+        message: 'Account details already exist for the authenticated user.',
+      },
+      statusCode: HttpStatusCode.BAD_REQUEST,
+    }
+  }
+
+  await dbClient
+    .put({
+      TableName: tableName,
+      Item: item,
+    })
+    .promise()
+
+  await publishCreateAccountLogEvent(item)
+
   return {
     body: {
-      message: 'The event is missing a body and cannot be parsed.',
+      message: 'Account created successfully!',
+      result: item,
     },
-    statusCode: HttpStatusCode.INTERNAL_SERVER,
+    statusCode: HttpStatusCode.CREATED,
   }
 }

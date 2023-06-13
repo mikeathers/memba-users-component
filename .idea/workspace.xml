@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validators/account.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/account.validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +54,20 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler">
+  <component name="RunManager" selected="Jest.Account handler.POST createAccount.should return a 200 (OK) if account is created">
+    <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <test-names>
+        <test-name value="Account handler" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Account handler" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -66,6 +78,21 @@
       <test-file value="$PROJECT_DIR$/src/handlers/handler/accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Account handler.POST createAccount.should return a 200 (OK) if account is created" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <test-names>
+        <test-name value="Account handler" />
+        <test-name value="POST createAccount" />
+        <test-name value="should return a 200 (OK) if account is created" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -84,6 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Account handler.POST createAccount.should return a 200 (OK) if account is created" />
+        <item itemvalue="Jest.Account handler (1)" />
         <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Custom Message Entry" />
       </list>
