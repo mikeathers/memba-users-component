@@ -12,11 +12,15 @@ export const getByPrimaryKey = async (
   props: GetByPrimaryKeyProps,
 ): Promise<AttributeMap | undefined> => {
   const {queryKey, queryValue, tableName, dbClient} = props
-  const queryResponse = await dbClient
-    .get({
-      TableName: tableName,
-      Key: {[queryKey]: queryValue},
-    })
-    .promise()
+  const params = {
+    TableName: tableName,
+    Key: {[queryKey]: queryValue},
+  }
+
+  console.log('PARAMS: ', params)
+
+  const queryResponse = await dbClient.get(params).promise()
+
+  console.log('QUERY RES: ', queryResponse)
   return queryResponse.Item
 }

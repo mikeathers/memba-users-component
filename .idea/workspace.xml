@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-account-by-email.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api-gateway/account.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-gateway/account.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/databases/databases.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/databases/databases.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/dynamodb/get-by-primary-key.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/dynamodb/get-by-primary-key.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
