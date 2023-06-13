@@ -33,7 +33,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     }
   }
 
-  const item = JSON.parse(eventDetail) as CreateAccountRequest
+  const item = eventDetail as CreateAccountRequest
   item.id = uuidv4()
   item.authenticatedUserId = authenticatedUserId ?? ''
   validateCreateAccountRequest(item)
