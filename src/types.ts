@@ -13,6 +13,7 @@ export type CreateAccountRequest = {
   emailAddress: string
   tenantName: string
   id: string
+  tenantUrl: string
 }
 
 export type UpdateAccountRequest = Pick<

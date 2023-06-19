@@ -31,6 +31,7 @@ async function handler(event: any) {
         doorNumber,
         townCity,
         postCode,
+        tenantUrl,
       } = event.detail
 
       const createUserGroupResult = await createUserGroup({
@@ -59,6 +60,7 @@ async function handler(event: any) {
           lastName,
           emailAddress,
           tenantName,
+          tenantUrl,
         })
       })
 
