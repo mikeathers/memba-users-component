@@ -62,6 +62,7 @@ const body = {
   postCode: 'L1 2HK',
   doorNumber: '12',
   tenantName: 'test-tenant',
+  tenantUrl: 'test-tenant.memba.co.uk',
 }
 const apiResult = {
   ...body,
@@ -78,8 +79,9 @@ const detail = {
   postCode: 'BL1 6HY',
   firstName: 'Mike',
   lastName: 'Atherton',
-  emailAddress: 'mikeatherton06@gmail.com',
-  tenantName: 'mikes-gym',
+  emailAddress: 'test@test.com',
+  tenantName: 'test-tenant',
+  tenantUrl: 'test-tenant.memba.co.uk',
 }
 
 const eventBridgeResult = {
