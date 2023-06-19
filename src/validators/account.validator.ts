@@ -22,4 +22,7 @@ export const validateCreateAccountRequest = (arg: CreateAccountRequest): void =>
   if (!arg.tenantName) {
     throw new MissingFieldError('Value for tenantName required!')
   }
+  if (!arg.tenantUrl) {
+    throw new MissingFieldError('Value for tenantUrl required!')
+  }
 }
