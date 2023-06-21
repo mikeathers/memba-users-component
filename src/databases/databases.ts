@@ -6,14 +6,14 @@ import {RemovalPolicy} from 'aws-cdk-lib'
 export class Databases extends Construct {
   public readonly accountsTable: ITable
 
-  constructor(scope: Construct, id: string, stage: string) {
+  constructor(scope: Construct, id: string) {
     super(scope, id)
 
-    this.accountsTable = this.createAccountsTable({scope: this, stage})
+    this.accountsTable = this.createAccountsTable({scope: this})
   }
 
-  private createAccountsTable(props: {stage: string; scope: Construct}) {
-    const {scope, stage} = props
+  private createAccountsTable(props: {scope: Construct}) {
+    const {scope} = props
     const tableName = CONFIG.STACK_PREFIX
     const accountsTable = new Table(scope, tableName, {
       partitionKey: {
