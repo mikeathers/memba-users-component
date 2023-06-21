@@ -29,7 +29,7 @@ export class AccountsLambda {
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
     const {scope, stage, table, eventBus, deadLetterQueue} = props
 
-    const lambdaName = `${CONFIG.STACK_PREFIX}Lambda-${stage}`
+    const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
 
     const lambdaProps: NodejsFunctionProps = {
       functionName: lambdaName,

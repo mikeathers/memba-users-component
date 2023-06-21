@@ -18,6 +18,7 @@ import {EventBus} from 'aws-cdk-lib/aws-events'
 interface MembaUserComponentStackProps extends StackProps {
   stage: string
 }
+
 export class MembaUsersComponentStack extends Stack {
   constructor(scope: Construct, id: string, props: MembaUserComponentStackProps) {
     super(scope, id, props)
@@ -29,12 +30,7 @@ export class MembaUsersComponentStack extends Stack {
 
     const {userPool} = new UserPoolConstruct(this, stage)
     const {userPoolClient} = new UserPoolClientConstruct(this, userPool, stage)
-    const {identityPool} = new IdentityPoolConstruct(
-      this,
-      userPool,
-      userPoolClient,
-      stage,
-    )
+    const {identityPool} = new IdentityPoolConstruct(this, userPool, userPoolClient)
 
     const hostedZoneUrl = stage === 'prod' ? CONFIG.DOMAIN_URL : CONFIG.DEV_DOMAIN_URL
 
@@ -48,18 +44,14 @@ export class MembaUsersComponentStack extends Stack {
       region: 'eu-west-2',
     })
 
-    const databases = new Databases(
-      this,
-      `${CONFIG.STACK_PREFIX}Databases-${stage}`,
-      stage,
-    )
+    const databases = new Databases(this, `${CONFIG.STACK_PREFIX}Databases`, stage)
 
     const deadLetterQueue = new Queue(this, `${CONFIG.STACK_PREFIX}DLQ-${stage}`, {
       retentionPeriod: Duration.days(7),
-      queueName: `${CONFIG.STACK_PREFIX}DLQ-${stage}`,
+      queueName: `${CONFIG.STACK_PREFIX}DLQ`,
     })
 
-    const eventBus = EventBus.fromEventBusArn(this, `MembaEventBus`, eventBusArn)
+    const eventBus = EventBus.fromEventBusArn(this, `SharedEventBus`, eventBusArn)
 
     const {accountsLambda} = new AccountsLambda({
       scope: this,

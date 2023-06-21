@@ -20,7 +20,7 @@ interface ConfigProps {
 }
 
 const CONFIG: ConfigProps = {
-  STACK_PREFIX: 'MembaUsers',
+  STACK_PREFIX: 'Users',
   REGION: 'eu-west-2',
   AWS_ACCOUNT_ID_PROD: '635800996936',
   AWS_ACCOUNT_ID_DEV: '544312030237',
@@ -32,10 +32,10 @@ const CONFIG: ConfigProps = {
   DEV_DOMAIN_URL: 'dev.memba.co.uk',
   API_URL: 'users.memba.co.uk',
   DEV_API_URL: 'users.dev.memba.co.uk',
-  SHARED_EVENT_BUS_NAME: 'MembaEventBus',
+  SHARED_EVENT_BUS_NAME: 'SharedEventBus',
   USER_POOL_ID: 'eu-west-2_5wmsSeZyn',
   DEV_USER_POOL_ID: 'eu-west-2_H6F7KWKl8',
-  USER_GROUP_ROLE_NAME: 'MembaUsersUsersGroupRole',
+  USER_GROUP_ROLE_NAME: 'Users-UsersGroupRole',
   USER_POOL_CLIENT_ID: '2pmgfik1pahc2uusejs3fe8kru',
   DEV_USER_POOL_CLIENT_ID: '712hh8ocdqmu3g4se27deg555i',
 }

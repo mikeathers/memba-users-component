@@ -19,18 +19,11 @@ export class IdentityPoolConstruct {
   private anonymousRole: Role
   private tenantAdminRole: Role
   private usersRole: Role
-  private readonly stage: string
 
-  constructor(
-    scope: Construct,
-    userPool: UserPool,
-    userPoolClient: UserPoolClient,
-    stage: string,
-  ) {
+  constructor(scope: Construct, userPool: UserPool, userPoolClient: UserPoolClient) {
     this.scope = scope
     this.userPool = userPool
     this.userPoolClient = userPoolClient
-    this.stage = stage
 
     this.identityPool = this.createIdentityPool()
     this.membaAdminRole = this.createMembaAdminCognitoGroupRole()
@@ -41,7 +34,7 @@ export class IdentityPoolConstruct {
   }
 
   private createIdentityPool() {
-    const identityPoolName = `${CONFIG.STACK_PREFIX}IdentityPool-${this.stage}`
+    const identityPoolName = `${CONFIG.STACK_PREFIX}IdentityPool`
 
     return new CfnIdentityPool(this.scope, identityPoolName, {
       identityPoolName,
@@ -55,7 +48,7 @@ export class IdentityPoolConstruct {
     })
   }
   private createTenantAdminCognitoGroupRole() {
-    const roleName = `${CONFIG.STACK_PREFIX}AdminGroupRole`
+    const roleName = `${CONFIG.STACK_PREFIX}-AdminGroupRole`
 
     return new Role(this.scope, roleName, {
       roleName,
@@ -82,7 +75,7 @@ export class IdentityPoolConstruct {
   }
 
   private createAnonymousCognitoGroupRole() {
-    const roleName = `${CONFIG.STACK_PREFIX}AnonymousGroupRole`
+    const roleName = `${CONFIG.STACK_PREFIX}-AnonymousGroupRole`
 
     return new Role(this.scope, roleName, {
       roleName,
@@ -109,7 +102,7 @@ export class IdentityPoolConstruct {
   }
 
   private createMembaAdminCognitoGroupRole() {
-    const roleName = `${CONFIG.STACK_PREFIX}MembaAdminsGroupRole`
+    const roleName = `${CONFIG.STACK_PREFIX}-MembaAdminsGroupRole`
 
     return new Role(this.scope, roleName, {
       roleName,
@@ -136,7 +129,7 @@ export class IdentityPoolConstruct {
   }
 
   private createUsersCognitoGroupRole() {
-    const roleName = `${CONFIG.STACK_PREFIX}UsersGroupRole`
+    const roleName = `${CONFIG.STACK_PREFIX}-UsersGroupRole`
 
     return new Role(this.scope, roleName, {
       roleName,

@@ -154,7 +154,7 @@ export class UserPoolConstruct {
   }
 
   private createUserPool() {
-    const userPoolName = `${CONFIG.STACK_PREFIX}UserPool-${this.stage}`
+    const userPoolName = `SharedUserPool`
 
     return new UserPool(this.scope, userPoolName, {
       userPoolName,
@@ -187,7 +187,7 @@ export class UserPoolConstruct {
   }
 
   private addHostedUIDomain() {
-    const uniquePrefix = `${CONFIG.STACK_PREFIX}-${this.stage}`.toLowerCase()
+    const uniquePrefix = CONFIG.STACK_PREFIX.toLowerCase()
     this.userPool.addDomain(uniquePrefix, {
       cognitoDomain: {
         domainPrefix: uniquePrefix,

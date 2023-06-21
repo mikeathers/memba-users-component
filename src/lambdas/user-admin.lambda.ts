@@ -24,7 +24,7 @@ export class UserAdminLambda {
 
   private createUserAdminLambda(props: UserAdminLambdaProps) {
     const {scope, stage, eventBus, deadLetterQueue} = props
-    const lambdaName = `${CONFIG.STACK_PREFIX}AdminLambda-${stage}`
+    const lambdaName = `${CONFIG.STACK_PREFIX}AdminLambda`
     const userPoolId = stage === 'prod' ? CONFIG.USER_POOL_ID : CONFIG.DEV_USER_POOL_ID
     const userGroupRoleArnDev = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_DEV}:role/${CONFIG.USER_GROUP_ROLE_NAME}`
     const userGroupRoleArnProd = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_PROD}:role/${CONFIG.USER_GROUP_ROLE_NAME}`

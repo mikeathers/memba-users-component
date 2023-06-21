@@ -40,11 +40,11 @@ export class AccountApi {
     const {scope, accountsLambda, stage, userPoolId, certificate, hostedZone} = props
     const userPool = UserPool.fromUserPoolId(scope, 'UserPool', userPoolId)
 
-    const restApiName = `${CONFIG.STACK_PREFIX}Api (${stage})`
+    const restApiName = `${CONFIG.STACK_PREFIX}-Api`
 
     const authorizer = new CognitoUserPoolsAuthorizer(
       scope,
-      `${CONFIG.STACK_PREFIX}ApiAuthorizer-${stage}`,
+      `${CONFIG.STACK_PREFIX}ApiAuthorizer`,
       {
         cognitoUserPools: [userPool],
         authorizerName: `${CONFIG.STACK_PREFIX}ApiAuthorizer-${stage}`,

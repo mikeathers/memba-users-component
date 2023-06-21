@@ -7,13 +7,13 @@ import {MembaUsersComponentStack} from './memba-users-component-stack'
 
 const app = new App()
 const stage = getStage(app)
-const stackName = `${CONFIG.STACK_PREFIX}Component-${stage}`
+const stackName = `${CONFIG.STACK_PREFIX}Component`
 
 const defaultConfig = {
   stage,
   stackName: stackName,
   tags: {
-    service: 'auth-component',
+    service: 'users-component',
     version: 'N/A',
     env: 'dev',
   },

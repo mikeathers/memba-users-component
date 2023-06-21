@@ -14,7 +14,7 @@ export class Databases extends Construct {
 
   private createAccountsTable(props: {stage: string; scope: Construct}) {
     const {scope, stage} = props
-    const tableName = `${CONFIG.STACK_PREFIX}-${stage}`
+    const tableName = CONFIG.STACK_PREFIX
     const accountsTable = new Table(scope, tableName, {
       partitionKey: {
         name: 'id',

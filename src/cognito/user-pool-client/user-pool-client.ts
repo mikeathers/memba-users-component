@@ -62,7 +62,7 @@ export class UserPoolClientConstruct {
       })
       .withCustomAttributes(...['isTenantAdmin'])
 
-    const userPoolClientName = `${CONFIG.STACK_PREFIX}UserPoolClient-${this.stage}`
+    const userPoolClientName = `Memba-UserPoolClient`
 
     const callbackUrl =
       this.stage === 'prod'
