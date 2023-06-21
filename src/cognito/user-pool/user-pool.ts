@@ -18,6 +18,13 @@ import {RetentionDays} from 'aws-cdk-lib/aws-logs'
 
 import CONFIG from '../../config'
 
+interface UserPoolConstructProps {
+  scope: Construct
+  stage: string
+  accountId: string
+  region: string
+}
+
 export class UserPoolConstruct {
   public userPool: UserPool
   // public googleIdentityProvider: UserPoolIdentityProviderGoogle
@@ -28,7 +35,8 @@ export class UserPoolConstruct {
   private readonly preSignUpTrigger: NodejsFunction
   private readonly stage: string
 
-  constructor(scope: Construct, stage: string) {
+  constructor(props: UserPoolConstructProps) {
+    const {scope, stage, accountId, region} = props
     this.scope = scope
     this.stage = stage
     this.preSignUpTrigger = this.createPreSignUpTrigger()
@@ -135,9 +143,7 @@ export class UserPoolConstruct {
     )
   }
 
-  private addSES() {
-    const accountId =
-      this.stage === 'prod' ? CONFIG.AWS_ACCOUNT_ID_PROD : CONFIG.AWS_ACCOUNT_ID_DEV
+  private addSES(accountId: string, region: string) {
     const emailAddress =
       this.stage === 'prod'
         ? CONFIG.AWS_NO_REPLY_EMAIL_PROD
@@ -149,7 +155,7 @@ export class UserPoolConstruct {
     cfnUserPool.emailConfiguration = {
       emailSendingAccount: 'DEVELOPER',
       from: `Memba <${noReply}@${suffix}>`,
-      sourceArn: `arn:aws:ses:${CONFIG.REGION}:${accountId}:identity/${emailAddress}`,
+      sourceArn: `arn:aws:ses:${region}:${accountId}:identity/${emailAddress}`,
     }
   }
 
@@ -196,12 +202,14 @@ export class UserPoolConstruct {
     })
   }
 
-  private addGoogleIdentityProvider() {
-    const devSecretArn =
-      'arn:aws:secretsmanager:eu-west-2:214394749062:secret:google-client-credentials-jM1GTj'
-    const prodSecretArn =
-      'arn:aws:secretsmanager:eu-west-2:943918019765:secret:google-client-credentials-YkdWSz'
-    const secretArn = this.stage === 'prod' ? prodSecretArn : devSecretArn
+  private addGoogleIdentityProvider(accountId: string, region: string) {
+    const devSuffix = 'jM1GTj'
+    const prodSuffix = 'YkdWSz'
+    const secretArnPrefix = `arn:aws:secretsmanager:${region}:${accountId}:secret:google-client-credentials`
+    const secretArn =
+      this.stage === 'prod'
+        ? `${secretArnPrefix}-${prodSuffix}`
+        : `${secretArnPrefix}-${devSuffix} `
 
     const googleSecret = SecretsManager.Secret.fromSecretCompleteArn(
       this.scope,
@@ -227,12 +235,14 @@ export class UserPoolConstruct {
     })
   }
 
-  private addAppleIdentityProvider() {
-    const devSecretArn =
-      'arn:aws:secretsmanager:eu-west-2:214394749062:secret:apple-client-credentials-g7CKBd'
-    const prodSecretArn =
-      'arn:aws:secretsmanager:eu-west-2:214394749062:secret:apple-client-credentials-g7CKBd'
-    const secretArn = this.stage === 'prod' ? prodSecretArn : devSecretArn
+  private addAppleIdentityProvider(accountId: string, region: string) {
+    const devSuffix = 'g7CKBd'
+    const prodSuffix = 'g7CKBd'
+    const secretArnPrefix = `arn:aws:secretsmanager:${region}:${accountId}:secret:apple-client-credentials`
+    const secretArn =
+      this.stage === 'prod'
+        ? `${secretArnPrefix}-${prodSuffix}`
+        : `${secretArnPrefix}-${devSuffix} `
 
     const appleSecret = SecretsManager.Secret.fromSecretCompleteArn(
       this.scope,

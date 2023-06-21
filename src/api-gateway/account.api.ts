@@ -13,7 +13,7 @@ import {
   UsagePlan,
   UsagePlanProps,
 } from 'aws-cdk-lib/aws-apigateway'
-import {UserPool} from 'aws-cdk-lib/aws-cognito'
+import {IUserPool, UserPool} from 'aws-cdk-lib/aws-cognito'
 import {ServicePrincipal} from 'aws-cdk-lib/aws-iam'
 import {ARecord, IHostedZone, RecordTarget} from 'aws-cdk-lib/aws-route53'
 import {ApiGateway} from 'aws-cdk-lib/aws-route53-targets'
@@ -26,7 +26,7 @@ interface AccountApiProps {
   scope: Construct
   accountsLambda: IFunction
   stage: string
-  userPoolId: string
+  userPool: IUserPool
   certificate: ICertificate
   hostedZone: IHostedZone
 }
@@ -37,8 +37,7 @@ export class AccountApi {
   }
 
   private createAccountApi(props: AccountApiProps) {
-    const {scope, accountsLambda, stage, userPoolId, certificate, hostedZone} = props
-    const userPool = UserPool.fromUserPoolId(scope, 'UserPool', userPoolId)
+    const {scope, accountsLambda, stage, userPool, certificate, hostedZone} = props
 
     const restApiName = `${CONFIG.STACK_PREFIX}-Api`
 
@@ -47,7 +46,7 @@ export class AccountApi {
       `${CONFIG.STACK_PREFIX}ApiAuthorizer`,
       {
         cognitoUserPools: [userPool],
-        authorizerName: `${CONFIG.STACK_PREFIX}ApiAuthorizer-${stage}`,
+        authorizerName: `${CONFIG.STACK_PREFIX}ApiAuthorizer`,
         identitySource: 'method.request.header.Authorization',
       },
     )

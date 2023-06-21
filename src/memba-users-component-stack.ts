@@ -24,13 +24,18 @@ export class MembaUsersComponentStack extends Stack {
     super(scope, id, props)
     const {stage} = props
 
-    const devEventBusArn = `arn:aws:events:${CONFIG.REGION}:${CONFIG.AWS_ACCOUNT_ID_DEV}:event-bus/${CONFIG.SHARED_EVENT_BUS_NAME}`
-    const prodEventBusArn = `arn:aws:events:${CONFIG.REGION}:${CONFIG.AWS_ACCOUNT_ID_PROD}:event-bus/${CONFIG.SHARED_EVENT_BUS_NAME}`
-    const eventBusArn = stage === 'prod' ? prodEventBusArn : devEventBusArn
+    const accountId = Stack.of(scope).account
+    const region = Stack.of(scope).region
 
-    const {userPool} = new UserPoolConstruct(this, stage)
+    const eventBusArn = `arn:aws:events:${region}:${accountId}:event-bus/${CONFIG.SHARED_EVENT_BUS_NAME}`
+
+    const {userPool} = new UserPoolConstruct({scope: this, stage, region, accountId})
     const {userPoolClient} = new UserPoolClientConstruct(this, userPool, stage)
-    const {identityPool} = new IdentityPoolConstruct(this, userPool, userPoolClient)
+    const {identityPool, usersRole} = new IdentityPoolConstruct(
+      this,
+      userPool,
+      userPoolClient,
+    )
 
     const hostedZoneUrl = stage === 'prod' ? CONFIG.DOMAIN_URL : CONFIG.DEV_DOMAIN_URL
 
@@ -55,7 +60,6 @@ export class MembaUsersComponentStack extends Stack {
 
     const {accountsLambda} = new AccountsLambda({
       scope: this,
-      stage,
       eventBus,
       deadLetterQueue,
       table: databases.accountsTable,
@@ -63,15 +67,17 @@ export class MembaUsersComponentStack extends Stack {
 
     new UserAdminLambda({
       scope: this,
-      stage,
       eventBus,
       deadLetterQueue,
+      userPool,
+      userGroupRoleArn: usersRole.roleArn,
+      userPoolClientId: userPoolClient.userPoolClientId,
     })
 
     new AccountApi({
       scope: this,
       stage,
-      userPoolId: userPool.userPoolId,
+      userPool,
       accountsLambda,
       certificate: accountApiCertificate,
       hostedZone,

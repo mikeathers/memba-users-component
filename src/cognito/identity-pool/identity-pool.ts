@@ -18,7 +18,7 @@ export class IdentityPoolConstruct {
   private membaAdminRole: Role
   private anonymousRole: Role
   private tenantAdminRole: Role
-  private usersRole: Role
+  public usersRole: Role
 
   constructor(scope: Construct, userPool: UserPool, userPoolClient: UserPoolClient) {
     this.scope = scope

@@ -12,11 +12,6 @@ interface ConfigProps {
   API_URL: string
   DEV_API_URL: string
   SHARED_EVENT_BUS_NAME: string
-  USER_POOL_ID: string
-  DEV_USER_POOL_ID: string
-  USER_GROUP_ROLE_NAME: string
-  USER_POOL_CLIENT_ID: string
-  DEV_USER_POOL_CLIENT_ID: string
 }
 
 const CONFIG: ConfigProps = {
@@ -33,11 +28,6 @@ const CONFIG: ConfigProps = {
   API_URL: 'users.memba.co.uk',
   DEV_API_URL: 'users.dev.memba.co.uk',
   SHARED_EVENT_BUS_NAME: 'SharedEventBus',
-  USER_POOL_ID: 'eu-west-2_5wmsSeZyn',
-  DEV_USER_POOL_ID: 'eu-west-2_H6F7KWKl8',
-  USER_GROUP_ROLE_NAME: 'Users-UsersGroupRole',
-  USER_POOL_CLIENT_ID: '2pmgfik1pahc2uusejs3fe8kru',
-  DEV_USER_POOL_CLIENT_ID: '712hh8ocdqmu3g4se27deg555i',
 }
 
 export default CONFIG

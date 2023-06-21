@@ -5,16 +5,19 @@ import {NodejsFunction, NodejsFunctionProps} from 'aws-cdk-lib/aws-lambda-nodejs
 import CONFIG from '../config'
 import path, {join} from 'path'
 import {Runtime, Tracing} from 'aws-cdk-lib/aws-lambda'
-import {Duration} from 'aws-cdk-lib'
+import {Duration, Stack} from 'aws-cdk-lib'
 import {RetentionDays} from 'aws-cdk-lib/aws-logs'
 import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
 import {Effect, PolicyStatement} from 'aws-cdk-lib/aws-iam'
+import {IUserPool} from 'aws-cdk-lib/aws-cognito'
 
 interface UserAdminLambdaProps {
   scope: Construct
-  stage: string
   eventBus: IEventBus
   deadLetterQueue: IQueue
+  userPool: IUserPool
+  userGroupRoleArn: string
+  userPoolClientId: string
 }
 
 export class UserAdminLambda {
@@ -23,23 +26,24 @@ export class UserAdminLambda {
   }
 
   private createUserAdminLambda(props: UserAdminLambdaProps) {
-    const {scope, stage, eventBus, deadLetterQueue} = props
+    const {
+      scope,
+      eventBus,
+      deadLetterQueue,
+      userGroupRoleArn,
+      userPool,
+      userPoolClientId,
+    } = props
+
     const lambdaName = `${CONFIG.STACK_PREFIX}AdminLambda`
-    const userPoolId = stage === 'prod' ? CONFIG.USER_POOL_ID : CONFIG.DEV_USER_POOL_ID
-    const userGroupRoleArnDev = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_DEV}:role/${CONFIG.USER_GROUP_ROLE_NAME}`
-    const userGroupRoleArnProd = `arn:aws:iam::${CONFIG.AWS_ACCOUNT_ID_PROD}:role/${CONFIG.USER_GROUP_ROLE_NAME}`
-    const userGroupRoleArn = stage === 'prod' ? userGroupRoleArnProd : userGroupRoleArnDev
-    const accountId =
-      stage === 'prod' ? CONFIG.AWS_ACCOUNT_ID_PROD : CONFIG.AWS_ACCOUNT_ID_DEV
-    const clientId =
-      stage === 'prod' ? CONFIG.USER_POOL_CLIENT_ID : CONFIG.DEV_USER_POOL_CLIENT_ID
+    const accountId = Stack.of(scope).account
 
     const handlerProps: NodejsFunctionProps = {
       functionName: lambdaName,
       environment: {
-        USER_POOL_ID: userPoolId,
+        USER_POOL_ID: userPool.userPoolId,
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
-        USER_POOL_CLIENT_ID: clientId,
+        USER_POOL_CLIENT_ID: userPoolClientId,
         EVENT_BUS_ARN: eventBus.eventBusArn,
       },
       runtime: Runtime.NODEJS_16_X,
@@ -80,7 +84,7 @@ export class UserAdminLambda {
           'cognito-idp:SignUp',
           'cognito-idp:AdminAddUserToGroup',
         ],
-        resources: [`arn:aws:cognito-idp:eu-west-2:${accountId}:userpool/${userPoolId}`],
+        resources: [userPool.userPoolArn],
         effect: Effect.ALLOW,
       }),
     )
@@ -88,7 +92,7 @@ export class UserAdminLambda {
     userAdminLambda.addToRolePolicy(
       new PolicyStatement({
         actions: ['iam:PassRole'],
-        resources: [`arn:aws:iam::${accountId}:role/${CONFIG.USER_GROUP_ROLE_NAME}`],
+        resources: [userGroupRoleArn],
         effect: Effect.ALLOW,
       }),
     )

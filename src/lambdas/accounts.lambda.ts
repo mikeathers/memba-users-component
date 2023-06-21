@@ -14,7 +14,6 @@ import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
 interface AccountLambdaProps {
   scope: Construct
   table: ITable
-  stage: string
   deadLetterQueue: Queue
   eventBus: IEventBus
 }
@@ -27,7 +26,7 @@ export class AccountsLambda {
   }
 
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
-    const {scope, stage, table, eventBus, deadLetterQueue} = props
+    const {scope, table, eventBus, deadLetterQueue} = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
 
