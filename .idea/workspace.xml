@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api-gateway/account.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-gateway/account.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
@@ -202,7 +197,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/api-gateway/account.api.ts</url>
-          <line>97</line>
+          <line>96</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

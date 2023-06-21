@@ -24,8 +24,8 @@ export class MembaUsersComponentStack extends Stack {
     super(scope, id, props)
     const {stage} = props
 
-    const accountId = Stack.of(scope).account
-    const region = Stack.of(scope).region
+    const accountId = Stack.of(this).account
+    const region = Stack.of(this).region
 
     const eventBusArn = `arn:aws:events:${region}:${accountId}:event-bus/${CONFIG.SHARED_EVENT_BUS_NAME}`
 
