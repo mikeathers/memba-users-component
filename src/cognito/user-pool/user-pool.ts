@@ -187,7 +187,8 @@ export class UserPoolConstruct {
   }
 
   private addHostedUIDomain() {
-    const uniquePrefix = CONFIG.STACK_PREFIX.toLowerCase()
+    const uniquePrefix = this.stage === 'prod' ? 'memba' : 'memba-dev'
+
     this.userPool.addDomain(uniquePrefix, {
       cognitoDomain: {
         domainPrefix: uniquePrefix,
