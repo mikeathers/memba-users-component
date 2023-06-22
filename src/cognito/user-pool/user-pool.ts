@@ -36,7 +36,7 @@ export class UserPoolConstruct {
   private readonly stage: string
 
   constructor(props: UserPoolConstructProps) {
-    const {scope, stage, accountId, region} = props
+    const {scope, stage} = props
     this.scope = scope
     this.stage = stage
     this.preSignUpTrigger = this.createPreSignUpTrigger()

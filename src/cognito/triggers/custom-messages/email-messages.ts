@@ -84,7 +84,7 @@ const head = `
 
 export const completeSignup = (link: string): CustomMessageReturnValue => {
   return {
-    emailSubject: `Confirm your heatio account`,
+    emailSubject: `Confirm your Memba account`,
     emailMessage: `
    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -130,10 +130,10 @@ export const completeSignup = (link: string): CustomMessageReturnValue => {
           </div>
         </div>
         </div>
-        <div style="margin-top: 24px;text-align: center;">
-          <p style="font-family: Roboto,arial; margin-bottom: 8px;">Edward Pavilion, Royal Albert Dock, Liverpool L3 4AF</p>
-          <p style="font-family: Roboto,arial;">© 2023 by Memba Ltd</p>
-        </div>
+<!--        <div style="margin-top: 24px;text-align: center;">-->
+<!--          <p style="font-family: Roboto,arial; margin-bottom: 8px;">Edward Pavilion, Royal Albert Dock, Liverpool L3 4AF</p>-->
+<!--          <p style="font-family: Roboto,arial;">© 2023 by Memba Ltd</p>-->
+<!--        </div>-->
         </div>
     </body>
 </html>
@@ -189,10 +189,10 @@ export const forgotPassword = (link: string): CustomMessageReturnValue => {
         </div>
       </div>
       </div>
-      <div style="margin-top: 24px;text-align: center;">
-        <p style="font-family: Roboto,arial; margin-bottom: 8px;">Edward Pavilion, Royal Albert Dock, Liverpool L3 4AF</p>
-        <p style="font-family: Roboto,arial;">© 2023 by Memba Ltd</p>
-      </div>
+<!--      <div style="margin-top: 24px;text-align: center;">-->
+<!--        <p style="font-family: Roboto,arial; margin-bottom: 8px;">Edward Pavilion, Royal Albert Dock, Liverpool L3 4AF</p>-->
+<!--        <p style="font-family: Roboto,arial;">© 2023 by Memba Ltd</p>-->
+<!--      </div>-->
       </div>
     </body>
 </html>

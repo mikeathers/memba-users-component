@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/add-user-to-group.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lint-staged.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/lint-staged.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/functions/add-admin-to-user-group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/user-admin/functions/add-admin-to-user-group.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/functions/create-admin-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/user-admin/functions/create-admin-user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,31 +40,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/michaelatherton/Development/memba/memba-users-component/src/handlers/accounts/functions/api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/michaelatherton/Development/memba/memba-users-component/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge" />
       <recent name="$PROJECT_DIR$/src/" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/aws" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
@@ -160,6 +172,7 @@
       <workItem from="1687268256762" duration="34000" />
       <workItem from="1687325240651" duration="608000" />
       <workItem from="1687328914681" duration="4067000" />
+      <workItem from="1687443557636" duration="5108000" />
     </task>
     <servers />
   </component>
@@ -180,21 +193,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts</url>
-          <line>26</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts</url>
-          <line>37</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts</url>
-          <line>35</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/api-gateway/account.api.ts</url>
           <line>96</line>

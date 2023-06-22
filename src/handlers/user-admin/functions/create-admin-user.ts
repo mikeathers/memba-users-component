@@ -7,11 +7,20 @@ interface CreateAdminUserProps {
   userPoolClientId: string
   emailAddress: string
   password: string
+  tenantId: string
 }
 
 export const createAdminUser = (props: CreateAdminUserProps) => {
   try {
-    const {lastName, firstName, password, userPoolClientId, emailAddress, cognito} = props
+    const {
+      lastName,
+      firstName,
+      password,
+      userPoolClientId,
+      emailAddress,
+      cognito,
+      tenantId,
+    } = props
 
     const params = {
       ClientId: userPoolClientId,
@@ -33,6 +42,10 @@ export const createAdminUser = (props: CreateAdminUserProps) => {
         {
           Name: 'email',
           Value: emailAddress,
+        },
+        {
+          Name: 'custom:tenantId',
+          Value: tenantId,
         },
       ],
     }

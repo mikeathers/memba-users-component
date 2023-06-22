@@ -5,10 +5,10 @@ import {NodejsFunction, NodejsFunctionProps} from 'aws-cdk-lib/aws-lambda-nodejs
 import CONFIG from '../config'
 import path, {join} from 'path'
 import {Runtime, Tracing} from 'aws-cdk-lib/aws-lambda'
-import {Duration, Stack} from 'aws-cdk-lib'
+import {Duration} from 'aws-cdk-lib'
 import {RetentionDays} from 'aws-cdk-lib/aws-logs'
 import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
-import {Effect, PolicyStatement} from 'aws-cdk-lib/aws-iam'
+import {Effect, IRole, PolicyStatement} from 'aws-cdk-lib/aws-iam'
 import {IUserPool} from 'aws-cdk-lib/aws-cognito'
 
 interface UserAdminLambdaProps {
@@ -18,6 +18,7 @@ interface UserAdminLambdaProps {
   userPool: IUserPool
   userGroupRoleArn: string
   userPoolClientId: string
+  tenantAdminRole: IRole
 }
 
 export class UserAdminLambda {
@@ -33,10 +34,11 @@ export class UserAdminLambda {
       userGroupRoleArn,
       userPool,
       userPoolClientId,
+      tenantAdminRole,
     } = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AdminLambda`
-    const accountId = Stack.of(scope).account
+    // const accountId = Stack.of(scope).account
 
     const handlerProps: NodejsFunctionProps = {
       functionName: lambdaName,
@@ -45,6 +47,7 @@ export class UserAdminLambda {
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
         USER_POOL_CLIENT_ID: userPoolClientId,
         EVENT_BUS_ARN: eventBus.eventBusArn,
+        TENANT_ADMIN_ROLE: tenantAdminRole.roleName,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,

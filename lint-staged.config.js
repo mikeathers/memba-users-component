@@ -1,4 +1,8 @@
 module.exports = {
-  '**/*.{js,jsx,ts,tsx}': (filenames) => [`yarn eslint --fix ${filenames.join(' ')}`],
-  '**/*.(md|json)': (filenames) => `yarn prettier --write ${filenames.join(' ')}`,
+  '**/*.{ts,js}': (filenames) => [
+    `prettier --write ${filenames.join(' ')}`,
+    `eslint . --fix ${filenames.join(' ')}`,
+    `tsc --project tsconfig.json --pretty --noEmit`,
+  ],
+  '**/*.(md|json)': (filenames) => `prettier --write ${filenames.join(' ')}`,
 }

@@ -1,5 +1,5 @@
 import {DynamoDB} from 'aws-sdk'
-import {AttributeMap, GetItemOutput} from 'aws-sdk/clients/dynamodb'
+import {GetItemOutput} from 'aws-sdk/clients/dynamodb'
 
 interface GetByPrimaryKeyProps {
   queryKey: string

@@ -16,6 +16,7 @@ async function handler(event: any) {
       const userPoolId = process.env.USER_POOL_ID ?? ''
       const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
       const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
+      const tenantAdminRole = process.env.TENANT_ADMIN_ROLE ?? ''
 
       console.log('User Admin Handler')
       console.log('Details: ', {userPoolId, userGroupRoleArn})
@@ -32,6 +33,7 @@ async function handler(event: any) {
         townCity,
         postCode,
         tenantUrl,
+        tenantId,
       } = event.detail
 
       const createUserGroupResult = await createUserGroup({
@@ -48,6 +50,7 @@ async function handler(event: any) {
         userPoolClientId,
         emailAddress,
         password,
+        tenantId,
       })?.then(async (res) => {
         await publishCreateUserAccountEvent({
           authenticatedUserId: res.UserSub,
@@ -61,19 +64,21 @@ async function handler(event: any) {
           emailAddress,
           tenantName,
           tenantUrl,
+          tenantId,
+          isTenantAdmin: true,
         })
       })
 
-      const addAdminToUserGroupResult = await addAdminToUserGroup({
+      await addAdminToUserGroup({
         cognito,
         userPoolId,
         groupName: tenantName,
         username: emailAddress,
+        tenantAdminRole,
       })
 
       console.log('CREATE GROUP RESULT: ', createUserGroupResult)
       console.log('CREATE ADMIN RESULT: ', createAdminUserResult)
-      console.log('ADD ADMIN TO GROUP RESULT: ', addAdminToUserGroupResult)
     }
   }
 }

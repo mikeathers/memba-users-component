@@ -10,12 +10,14 @@ import {Queue} from 'aws-cdk-lib/aws-sqs'
 import CONFIG from '../config'
 import {IEventBus, Rule} from 'aws-cdk-lib/aws-events'
 import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
+import {IUserPool} from 'aws-cdk-lib/aws-cognito'
 
 interface AccountLambdaProps {
   scope: Construct
   table: ITable
   deadLetterQueue: Queue
   eventBus: IEventBus
+  userPool: IUserPool
 }
 
 export class AccountsLambda {
@@ -26,7 +28,7 @@ export class AccountsLambda {
   }
 
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
-    const {scope, table, eventBus, deadLetterQueue} = props
+    const {scope, table, eventBus, deadLetterQueue, userPool} = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
 
@@ -36,6 +38,7 @@ export class AccountsLambda {
         PRIMARY_KEY: 'id',
         TABLE_NAME: table.tableName,
         EVENT_BUS_ARN: eventBus.eventBusArn,
+        USER_POOL_ID: userPool.userPoolId,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,

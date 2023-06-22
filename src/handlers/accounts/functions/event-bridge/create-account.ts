@@ -1,9 +1,9 @@
 import {DynamoDB} from 'aws-sdk'
 import {v4 as uuidv4} from 'uuid'
 
-import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../../types'
+import {CreateAccountRequest} from '../../../../types'
 import {validateCreateAccountRequest} from '../../../../validators'
-import {getByPrimaryKey, queryBySecondaryKey} from '../../../../aws'
+import {queryBySecondaryKey} from '../../../../aws'
 import {publishCreateAccountLogEvent} from '../../../../events'
 
 interface CreateAccountProps {

@@ -17,7 +17,7 @@ export class IdentityPoolConstruct {
   private readonly userPoolClient: UserPoolClient
   private membaAdminRole: Role
   private anonymousRole: Role
-  private tenantAdminRole: Role
+  public tenantAdminRole: Role
   public usersRole: Role
 
   constructor(scope: Construct, userPool: UserPool, userPoolClient: UserPoolClient) {

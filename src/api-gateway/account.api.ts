@@ -10,10 +10,9 @@ import {
   MethodOptions,
   Period,
   RestApi,
-  UsagePlan,
   UsagePlanProps,
 } from 'aws-cdk-lib/aws-apigateway'
-import {IUserPool, UserPool} from 'aws-cdk-lib/aws-cognito'
+import {IUserPool} from 'aws-cdk-lib/aws-cognito'
 import {ServicePrincipal} from 'aws-cdk-lib/aws-iam'
 import {ARecord, IHostedZone, RecordTarget} from 'aws-cdk-lib/aws-route53'
 import {ApiGateway} from 'aws-cdk-lib/aws-route53-targets'

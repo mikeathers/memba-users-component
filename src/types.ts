@@ -14,6 +14,8 @@ export type CreateAccountRequest = {
   tenantName: string
   id: string
   tenantUrl: string
+  tenantId: string
+  isTenantAdmin: boolean
 }
 
 export type UpdateAccountRequest = Pick<
