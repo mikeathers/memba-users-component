@@ -14,7 +14,7 @@ interface CreateAccountProps {
   authenticatedUserId: string
 }
 
-const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
+export const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
   //eslint-disable-next-line

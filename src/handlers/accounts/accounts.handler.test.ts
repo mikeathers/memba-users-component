@@ -34,13 +34,11 @@ const mockedUpdate = jest.fn()
 const mockedDelete = jest.fn()
 const mockUuidResult = '8f9e060d-3028-411a-9a00-d3b00966638b'
 
-let optionsUsedToConstructDocumentClient: DynamoDB.Types.ClientConfiguration
-
 jest.doMock('aws-sdk', () => ({
   EventBridge: jest.fn(),
+  CognitoIdentityServiceProvider: jest.fn(),
   DynamoDB: {
     DocumentClient: jest.fn((options) => {
-      optionsUsedToConstructDocumentClient = {...options}
       return {
         scan: mockedScan,
         put: mockedPut,
@@ -63,11 +61,13 @@ const body = {
   doorNumber: '12',
   tenantName: 'test-tenant',
   tenantUrl: 'test-tenant.memba.co.uk',
+  tenantId: '1234',
 }
 const apiResult = {
   ...body,
   id: mockUuidResult,
   authenticatedUserId: '12345',
+  isTenantAdmin: false,
 }
 
 const detail = {
@@ -403,6 +403,7 @@ describe('Account handler', () => {
         ...body,
         id: '8f9e060d-3028-411a-9a00-d3b00966638b',
         authenticatedUserId: '12345',
+        isTenantAdmin: false,
       }
 
       it('should return a 200 (OK) if account is updated', async () => {
