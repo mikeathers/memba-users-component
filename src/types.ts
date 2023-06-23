@@ -11,6 +11,7 @@ export type CreateAccountRequest = {
   firstName: string
   lastName: string
   emailAddress: string
+  password: string
   tenantName: string
   id: string
   tenantUrl: string

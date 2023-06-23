@@ -7,6 +7,7 @@ import {queryBySecondaryKey} from '../../../../aws'
 import {publishCreateAccountLogEvent} from '../../../../events'
 
 interface CreateAccountProps {
+  //eslint-disable-next-line
   event: any
   dbClient: DynamoDB.DocumentClient
 }

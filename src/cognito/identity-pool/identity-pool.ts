@@ -17,14 +17,18 @@ export class IdentityPoolConstruct {
   private readonly userPoolClient: UserPoolClient
   private membaAdminRole: Role
   private anonymousRole: Role
-  public tenantAdminRole: Role
+  private tenantAdminRole: Role
   public usersRole: Role
+  public tenantAdminGroupName: string
+  private readonly membaAdminGroupName: string
 
   constructor(scope: Construct, userPool: UserPool, userPoolClient: UserPoolClient) {
     this.scope = scope
     this.userPool = userPool
     this.userPoolClient = userPoolClient
 
+    this.tenantAdminGroupName = 'TenantAdmins'
+    this.membaAdminGroupName = 'MembaAdmins'
     this.identityPool = this.createIdentityPool()
     this.membaAdminRole = this.createMembaAdminCognitoGroupRole()
     this.anonymousRole = this.createAnonymousCognitoGroupRole()
@@ -156,8 +160,8 @@ export class IdentityPoolConstruct {
   }
 
   private createUserGroupsAndAttachRoles() {
-    const tenantAdmins = 'TenantAdmins'
-    const membaAdmins = 'MembaAdmins'
+    const tenantAdmins = this.tenantAdminGroupName
+    const membaAdmins = this.membaAdminGroupName
 
     new CfnUserPoolGroup(this.scope, tenantAdmins, {
       groupName: tenantAdmins,

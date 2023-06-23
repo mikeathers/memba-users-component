@@ -18,6 +18,7 @@ interface AccountLambdaProps {
   deadLetterQueue: Queue
   eventBus: IEventBus
   userPool: IUserPool
+  userPoolClientId: string
 }
 
 export class AccountsLambda {
@@ -28,7 +29,7 @@ export class AccountsLambda {
   }
 
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
-    const {scope, table, eventBus, deadLetterQueue, userPool} = props
+    const {scope, table, eventBus, deadLetterQueue, userPool, userPoolClientId} = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
 
@@ -39,6 +40,7 @@ export class AccountsLambda {
         TABLE_NAME: table.tableName,
         EVENT_BUS_ARN: eventBus.eventBusArn,
         USER_POOL_ID: userPool.userPoolId,
+        USER_POOL_CLIENT_ID: userPoolClientId,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,

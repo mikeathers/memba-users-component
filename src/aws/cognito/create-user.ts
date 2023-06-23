@@ -1,25 +1,25 @@
-import {CognitoIdentityServiceProvider} from 'aws-sdk'
+import {cognito} from './index'
 
 interface CreateAdminUserProps {
-  cognito: CognitoIdentityServiceProvider
   firstName: string
   lastName: string
   userPoolClientId: string
   emailAddress: string
   password: string
   tenantId: string
+  isTenantAdmin: boolean
 }
 
-export const createAdminUser = (props: CreateAdminUserProps) => {
+export const createUser = (props: CreateAdminUserProps) => {
   try {
     const {
-      lastName,
       firstName,
+      lastName,
       password,
-      userPoolClientId,
       emailAddress,
-      cognito,
+      userPoolClientId,
       tenantId,
+      isTenantAdmin,
     } = props
 
     const params = {
@@ -37,7 +37,7 @@ export const createAdminUser = (props: CreateAdminUserProps) => {
         },
         {
           Name: 'custom:isTenantAdmin',
-          Value: 'true',
+          Value: String(isTenantAdmin),
         },
         {
           Name: 'email',
@@ -51,7 +51,7 @@ export const createAdminUser = (props: CreateAdminUserProps) => {
     }
     return cognito.signUp(params).promise()
   } catch (err) {
-    console.log('CREATE ADMIN USER ERROR: ', err)
+    console.log('CREATE USER ERROR: ', err)
     return null
   }
 }

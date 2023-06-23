@@ -31,7 +31,7 @@ export class MembaUsersComponentStack extends Stack {
 
     const {userPool} = new UserPoolConstruct({scope: this, stage, region, accountId})
     const {userPoolClient} = new UserPoolClientConstruct(this, userPool, stage)
-    const {identityPool, usersRole, tenantAdminRole} = new IdentityPoolConstruct(
+    const {identityPool, usersRole, tenantAdminGroupName} = new IdentityPoolConstruct(
       this,
       userPool,
       userPoolClient,
@@ -64,6 +64,7 @@ export class MembaUsersComponentStack extends Stack {
       deadLetterQueue,
       table: databases.accountsTable,
       userPool,
+      userPoolClientId: userPoolClient.userPoolClientId,
     })
 
     new UserAdminLambda({
@@ -73,7 +74,7 @@ export class MembaUsersComponentStack extends Stack {
       userPool,
       userGroupRoleArn: usersRole.roleArn,
       userPoolClientId: userPoolClient.userPoolClientId,
-      tenantAdminRole,
+      tenantAdminGroupName,
     })
 
     new AccountApi({

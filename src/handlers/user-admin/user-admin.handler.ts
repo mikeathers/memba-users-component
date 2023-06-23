@@ -1,59 +1,58 @@
-/* eslint-disable */
-import {CognitoIdentityServiceProvider} from 'aws-sdk'
-import {v4 as uuidv4} from 'uuid'
-
-import {createUserGroup} from './functions/create-user-group'
-import CONFIG from '../../config'
-import {createAdminUser} from './functions/create-admin-user'
-import {addAdminToUserGroup} from './functions/add-admin-to-user-group'
 import {publishCreateUserAccountEvent} from '../../events'
+import {addUserToGroup, createUser, createUserGroup} from '../../aws/cognito'
+import {CreateAccountRequest} from '../../types'
 
-const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
-
+//eslint-disable-next-line
 async function handler(event: any) {
-  if (event['detail-type'] !== undefined) {
-    if (event['detail-type'] === 'CreateTenantAdminAndUserGroup') {
-      const userPoolId = process.env.USER_POOL_ID ?? ''
-      const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
-      const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
-      const tenantAdminRole = process.env.TENANT_ADMIN_ROLE ?? ''
+  try {
+    //eslint-disable-next-line
+    if (event['detail-type'] !== undefined) {
+      //eslint-disable-next-line
+      if (event['detail-type'] === 'CreateTenantAdminAndUserGroup') {
+        const userPoolId = process.env.USER_POOL_ID ?? ''
+        const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
+        const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
+        const tenantAdminGroupName = process.env.TENANT_ADMIN_GROUP_NAME ?? ''
 
-      console.log('User Admin Handler')
-      console.log('Details: ', {userPoolId, userGroupRoleArn})
+        console.log('User Admin Handler')
+        console.log('Details: ', {userPoolId, userGroupRoleArn})
 
-      const {
-        tenantName,
-        firstName,
-        lastName,
-        emailAddress,
-        password,
-        addressLineOne,
-        addressLineTwo,
-        doorNumber,
-        townCity,
-        postCode,
-        tenantUrl,
-        tenantId,
-      } = event.detail
+        const {
+          tenantName,
+          firstName,
+          lastName,
+          emailAddress,
+          password,
+          addressLineOne,
+          addressLineTwo,
+          doorNumber,
+          townCity,
+          postCode,
+          tenantUrl,
+          tenantId,
+          //eslint-disable-next-line
+        } = event.detail as CreateAccountRequest
 
-      const createUserGroupResult = await createUserGroup({
-        cognito,
-        tenantName,
-        userPoolId,
-        userGroupRoleArn,
-      })
+        await createUserGroup({
+          userGroupRoleArn,
+          groupName: tenantName,
+          userPoolId,
+        })
 
-      const createAdminUserResult = await createAdminUser({
-        cognito,
-        firstName,
-        lastName,
-        userPoolClientId,
-        emailAddress,
-        password,
-        tenantId,
-      })?.then(async (res) => {
+        const userResult = await createUser({
+          firstName,
+          lastName,
+          userPoolClientId,
+          emailAddress,
+          password,
+          tenantId,
+          isTenantAdmin: true,
+        })
+
+        console.log('USER RESULT: ', userResult)
+
         await publishCreateUserAccountEvent({
-          authenticatedUserId: res.UserSub,
+          authenticatedUserId: userResult?.UserSub ?? '',
           addressLineOne,
           addressLineTwo,
           doorNumber,
@@ -67,19 +66,17 @@ async function handler(event: any) {
           tenantId,
           isTenantAdmin: true,
         })
-      })
 
-      await addAdminToUserGroup({
-        cognito,
-        userPoolId,
-        groupName: tenantName,
-        username: emailAddress,
-        tenantAdminRole,
-      })
-
-      console.log('CREATE GROUP RESULT: ', createUserGroupResult)
-      console.log('CREATE ADMIN RESULT: ', createAdminUserResult)
+        addUserToGroup({
+          groups: [tenantName, tenantAdminGroupName],
+          userPoolId,
+          username: emailAddress,
+        })
+      }
     }
+  } catch (error) {
+    console.log('USER ADMIN HANDLER ERROR: ', error)
+    throw error
   }
 }
 

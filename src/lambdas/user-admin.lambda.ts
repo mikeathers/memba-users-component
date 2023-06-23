@@ -8,7 +8,7 @@ import {Runtime, Tracing} from 'aws-cdk-lib/aws-lambda'
 import {Duration} from 'aws-cdk-lib'
 import {RetentionDays} from 'aws-cdk-lib/aws-logs'
 import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
-import {Effect, IRole, PolicyStatement} from 'aws-cdk-lib/aws-iam'
+import {Effect, PolicyStatement} from 'aws-cdk-lib/aws-iam'
 import {IUserPool} from 'aws-cdk-lib/aws-cognito'
 
 interface UserAdminLambdaProps {
@@ -18,7 +18,7 @@ interface UserAdminLambdaProps {
   userPool: IUserPool
   userGroupRoleArn: string
   userPoolClientId: string
-  tenantAdminRole: IRole
+  tenantAdminGroupName: string
 }
 
 export class UserAdminLambda {
@@ -34,7 +34,7 @@ export class UserAdminLambda {
       userGroupRoleArn,
       userPool,
       userPoolClientId,
-      tenantAdminRole,
+      tenantAdminGroupName,
     } = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AdminLambda`
@@ -47,7 +47,7 @@ export class UserAdminLambda {
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
         USER_POOL_CLIENT_ID: userPoolClientId,
         EVENT_BUS_ARN: eventBus.eventBusArn,
-        TENANT_ADMIN_ROLE: tenantAdminRole.roleName,
+        TENANT_ADMIN_GROUP_NAME: tenantAdminGroupName,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,

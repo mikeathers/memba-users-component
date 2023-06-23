@@ -5,23 +5,27 @@ import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../../typ
 import {validateCreateAccountRequest} from '../../../../validators'
 import {queryBySecondaryKey} from '../../../../aws'
 import {publishCreateAccountLogEvent} from '../../../../events'
-import {addUserToGroup} from './add-user-to-group'
 import CONFIG from '../../../../config'
+import {addUserToGroup, createUser} from '../../../../aws/cognito'
+import {rollbackCreateAccount} from './rollback-create-account'
 
 interface CreateAccountProps {
+  //eslint-disable-next-line
   event: any
   dbClient: DynamoDB.DocumentClient
   authenticatedUserId: string
+  isTenantAdmin: boolean
 }
 
 export const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
   //eslint-disable-next-line
-  const {event, dbClient, authenticatedUserId} = props
+  const {event, dbClient, authenticatedUserId, isTenantAdmin} = props
 
   const tableName = process.env.TABLE_NAME ?? ''
   const userPoolId = process.env.USER_POOL_ID ?? ''
+  const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
 
   //eslint-disable-next-line
   if (!event.body) {
@@ -37,7 +41,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
   item.authenticatedUserId = authenticatedUserId ?? ''
-  item.isTenantAdmin = false
+  item.isTenantAdmin = isTenantAdmin
   validateCreateAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
@@ -56,27 +60,59 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     }
   }
 
-  await dbClient
-    .put({
-      TableName: tableName,
-      Item: item,
+  try {
+    const userResult = await createUser({
+      firstName: item.firstName,
+      lastName: item.lastName,
+      password: item.password,
+      emailAddress: item.password,
+      userPoolClientId,
+      tenantId: item.tenantId,
+      isTenantAdmin,
     })
-    .promise()
 
-  await addUserToGroup({
-    cognito,
-    groupName: item.tenantName,
-    username: item.emailAddress,
-    userPoolId,
-  })
+    item.authenticatedUserId = userResult?.UserSub ?? ''
 
-  await publishCreateAccountLogEvent(item)
+    await dbClient
+      .put({
+        TableName: tableName,
+        Item: item,
+      })
+      .promise()
 
-  return {
-    body: {
-      message: 'Account created successfully!',
-      result: item,
-    },
-    statusCode: HttpStatusCode.CREATED,
+    addUserToGroup({
+      groups: [item.tenantName],
+      username: item.emailAddress,
+      userPoolId,
+    })
+
+    await publishCreateAccountLogEvent(item)
+
+    return {
+      body: {
+        message: 'Account created successfully!',
+        result: item,
+      },
+      statusCode: HttpStatusCode.CREATED,
+    }
+  } catch (error) {
+    console.log('CREATE USER ERROR', error)
+
+    await rollbackCreateAccount({
+      userId: item.id,
+      username: item.emailAddress,
+      groupName: item.tenantName,
+      userPoolId,
+      authenticatedUserId: item.authenticatedUserId,
+      dbClient,
+    })
+
+    return {
+      body: {
+        message: 'The account failed to create.',
+        result: item,
+      },
+      statusCode: HttpStatusCode.INTERNAL_SERVER,
+    }
   }
 }

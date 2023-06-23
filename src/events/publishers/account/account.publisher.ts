@@ -26,7 +26,7 @@ const updateIdToAccountId = (
 }
 
 export const publishCreateUserAccountEvent = async (
-  requestDetails: Omit<CreateAccountEvent, 'id'>,
+  requestDetails: Omit<CreateAccountEvent, 'id' | 'password'>,
 ) => {
   const eventBusName = getEnv('EVENT_BUS_ARN')
   const params = {

@@ -47,13 +47,25 @@ export const handleApiRequest = async (
         }
         break
       case 'POST': {
-        const response = await createAccount({
-          event,
-          dbClient,
-          authenticatedUserId,
-        })
-        result.body = JSON.stringify(response.body)
-        result.statusCode = response.statusCode
+        if (event.path.includes('create-account')) {
+          const response = await createAccount({
+            event,
+            dbClient,
+            authenticatedUserId,
+            isTenantAdmin: false,
+          })
+          result.body = JSON.stringify(response.body)
+          result.statusCode = response.statusCode
+        } else if (event.path.includes('create-tenant-admin-account')) {
+          const response = await createAccount({
+            event,
+            dbClient,
+            authenticatedUserId,
+            isTenantAdmin: true,
+          })
+          result.body = JSON.stringify(response.body)
+          result.statusCode = response.statusCode
+        }
         break
       }
       case 'PUT': {

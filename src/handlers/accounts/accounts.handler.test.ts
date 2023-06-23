@@ -38,7 +38,7 @@ jest.doMock('aws-sdk', () => ({
   EventBridge: jest.fn(),
   CognitoIdentityServiceProvider: jest.fn(),
   DynamoDB: {
-    DocumentClient: jest.fn((options) => {
+    DocumentClient: jest.fn(() => {
       return {
         scan: mockedScan,
         put: mockedPut,
@@ -331,6 +331,7 @@ describe('Account handler', () => {
             httpMethod: 'POST',
             pathParameters: null,
             body: JSON.stringify(body),
+            path: '/create-account',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.CREATED,
@@ -357,6 +358,7 @@ describe('Account handler', () => {
           httpMethod: 'POST',
           pathParameters: null,
           body: JSON.stringify(body),
+          path: '/create-account',
         })
 
         expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(apiResult)
@@ -371,6 +373,7 @@ describe('Account handler', () => {
             httpMethod: 'POST',
             pathParameters: null,
             body: JSON.stringify(body),
+            path: '/create-account',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
@@ -388,6 +391,7 @@ describe('Account handler', () => {
             httpMethod: 'POST',
             pathParameters: null,
             body: null,
+            path: '/create-account',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.INTERNAL_SERVER,

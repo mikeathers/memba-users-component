@@ -132,6 +132,10 @@ export class AccountApi {
       .addResource('create-account')
       .addMethod('POST', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
+    root
+      .addResource('create-tenant-admin-account')
+      .addMethod('POST', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
+
     const getAccountById = root.addResource('get-account-by-id')
     getAccountById
       .addResource('{id}')

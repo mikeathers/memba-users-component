@@ -1,20 +1,19 @@
-import {CognitoIdentityServiceProvider} from 'aws-sdk'
+import {cognito} from './index'
 
 interface createUserGroupProps {
-  cognito: CognitoIdentityServiceProvider
-  tenantName: string
+  groupName: string
   userPoolId: string
   userGroupRoleArn: string
 }
 
 export const createUserGroup = async (props: createUserGroupProps) => {
   try {
-    const {cognito, tenantName, userPoolId, userGroupRoleArn} = props
+    const {groupName, userPoolId, userGroupRoleArn} = props
 
     const params = {
-      GroupName: `${tenantName}`,
+      GroupName: groupName,
       UserPoolId: userPoolId,
-      Description: `A group for ${tenantName} users`,
+      Description: `A group for ${groupName} users`,
       Precedence: 4,
       RoleArn: userGroupRoleArn,
     }
