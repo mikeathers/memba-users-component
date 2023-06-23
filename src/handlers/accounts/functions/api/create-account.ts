@@ -40,7 +40,6 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
-  item.authenticatedUserId = authenticatedUserId ?? ''
   item.isTenantAdmin = isTenantAdmin
   validateCreateAccountRequest(item)
 
