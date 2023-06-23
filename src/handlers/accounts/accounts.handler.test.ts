@@ -69,8 +69,8 @@ const body = {
 const apiResult = {
   ...body,
   id: mockUuidResult,
-  authenticatedUserId: '12345',
   isTenantAdmin: false,
+  authenticatedUserId: '12345',
 }
 
 const detail = {
