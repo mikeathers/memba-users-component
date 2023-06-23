@@ -4,6 +4,7 @@ import {
   BooleanAttribute,
   CfnUserPool,
   ProviderAttribute,
+  StringAttribute,
   UserPool,
   UserPoolIdentityProviderApple,
   UserPoolIdentityProviderGoogle,
@@ -174,7 +175,7 @@ export class UserPoolConstruct {
       customAttributes: {
         isMembaAdmin: new BooleanAttribute({mutable: true}),
         isTenantAdmin: new BooleanAttribute({mutable: true}),
-        tenantId: new BooleanAttribute({mutable: true}),
+        tenantId: new StringAttribute({mutable: true}),
       },
       passwordPolicy: {
         minLength: 6,
