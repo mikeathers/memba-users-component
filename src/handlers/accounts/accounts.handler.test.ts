@@ -390,7 +390,7 @@ describe('Account handler', () => {
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
           body: JSON.stringify({
-            message: `Account details already exist for the authenticated user.`,
+            message: `Account details already exist for the user.`,
           }),
         })
       })
