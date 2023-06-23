@@ -18,6 +18,7 @@ export type CreateAccountRequest = {
   tenantId: string
   isTenantAdmin: boolean
 }
+export type CreateAccountInDb = Omit<CreateAccountRequest, 'password'>
 
 export type UpdateAccountRequest = Pick<
   CreateAccountRequest,

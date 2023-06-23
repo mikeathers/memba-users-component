@@ -67,7 +67,7 @@ async function handler(event: any) {
           isTenantAdmin: true,
         })
 
-        addUserToGroup({
+        await addUserToGroup({
           groups: [tenantName, tenantAdminGroupName],
           userPoolId,
           username: emailAddress,

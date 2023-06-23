@@ -1,9 +1,14 @@
 import {CognitoIdentityServiceProvider, DynamoDB} from 'aws-sdk'
 import {v4 as uuidv4} from 'uuid'
 
-import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../../types'
+import {
+  CreateAccountInDb,
+  CreateAccountRequest,
+  HttpStatusCode,
+  QueryResult,
+} from '../../../../types'
 import {validateCreateAccountRequest} from '../../../../validators'
-import {getByPrimaryKey, queryBySecondaryKey} from '../../../../aws'
+import {queryBySecondaryKey} from '../../../../aws'
 import {publishCreateAccountLogEvent} from '../../../../events'
 import CONFIG from '../../../../config'
 import {addUserToGroup, createUser, createUserGroup} from '../../../../aws/cognito'
@@ -81,10 +86,12 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
     item.authenticatedUserId = userResult?.UserSub ?? ''
 
+    const dbUserDetails = item as CreateAccountInDb
+
     await dbClient
       .put({
         TableName: tableName,
-        Item: item,
+        Item: dbUserDetails,
       })
       .promise()
 
@@ -92,7 +99,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       ? [item.tenantName, tenantAdminGroupName]
       : [item.tenantName]
 
-    addUserToGroup({
+    await addUserToGroup({
       groups: tenantGroups,
       username: item.emailAddress,
       userPoolId,

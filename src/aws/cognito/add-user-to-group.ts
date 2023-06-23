@@ -10,15 +10,18 @@ export const addUserToGroup = (props: AddAdminToUserGroupProps) => {
   try {
     const {groups, userPoolId, username} = props
 
-    groups.forEach((group) => {
+    const results = groups.map((group) => {
       const params = {
         GroupName: group,
         UserPoolId: userPoolId,
         Username: username,
       }
-      cognito.adminAddUserToGroup(params)
+
+      return cognito.adminAddUserToGroup(params).promise()
     })
+    return Promise.all(results)
   } catch (error) {
     console.log('ADD USER TO GROUP ERROR: ', error)
+    return null
   }
 }
