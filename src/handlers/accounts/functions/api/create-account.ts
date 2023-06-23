@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 
 import {CreateAccountRequest, HttpStatusCode, QueryResult} from '../../../../types'
 import {validateCreateAccountRequest} from '../../../../validators'
-import {queryBySecondaryKey} from '../../../../aws'
+import {getByPrimaryKey, queryBySecondaryKey} from '../../../../aws'
 import {publishCreateAccountLogEvent} from '../../../../events'
 import CONFIG from '../../../../config'
 import {addUserToGroup, createUser} from '../../../../aws/cognito'
@@ -44,8 +44,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   validateCreateAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
-    queryKey: 'authenticatedUserId',
-    queryValue: authenticatedUserId,
+    queryKey: 'emailAddress',
+    queryValue: item.emailAddress,
     tableName,
     dbClient,
   })
@@ -53,7 +53,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   if (accountExists && accountExists?.length > 0) {
     return {
       body: {
-        message: 'Account details already exist for the authenticated user.',
+        message: 'Account details already exist for the user.',
       },
       statusCode: HttpStatusCode.BAD_REQUEST,
     }
