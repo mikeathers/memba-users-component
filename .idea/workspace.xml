@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/cognito/delete-user-group.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/cognito/delete-user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aws/cognito/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/rollback-create-account.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api-gateway/account.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-gateway/account.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/add-user-to-group.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/functions/add-admin-to-user-group.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/functions/create-admin-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/functions/create-user-group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-user-group.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/user-admin/user-admin.handler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/accounts.lambda.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/user-admin.lambda.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +61,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler">
+  <component name="RunManager" selected="Jest.Account handler.Handler">
     <configuration name="Account handler" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -137,7 +117,7 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
@@ -147,18 +127,18 @@
       <test-names>
         <test-name value="Account handler" />
         <test-name value="Handler" />
-        <test-name value="GET getAccountByEmail" />
-        <test-name value="should return a 200 (OK) if the account is found with the provided email address" />
+        <test-name value="POST createAccount" />
+        <test-name value="should return a 200 (OK) if account is created" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Account handler.Handler" />
+        <item itemvalue="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created" />
+        <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Account handler.Handler.EventBridge Event.Create Account.should throw an error if event has no details" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail" />
-        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +158,7 @@
       <workItem from="1687268256762" duration="34000" />
       <workItem from="1687325240651" duration="608000" />
       <workItem from="1687328914681" duration="4067000" />
-      <workItem from="1687443557636" duration="12887000" />
+      <workItem from="1687443557636" duration="14401000" />
     </task>
     <servers />
   </component>

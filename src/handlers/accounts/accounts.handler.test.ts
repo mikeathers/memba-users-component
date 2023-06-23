@@ -6,6 +6,7 @@ import {mocked} from 'jest-mock'
 import AWS, {DynamoDB} from 'aws-sdk'
 
 import {queryBySecondaryKey} from '../../aws'
+import {createUser} from '../../aws/cognito'
 import {sampleAPIGatewayEvent, sampleEventBridgeEvent} from '../../test-support'
 import {
   publishCreateAccountLogEvent,
@@ -20,6 +21,7 @@ jest.mock('../../aws')
 jest.mock('uuid')
 jest.mock('../../events')
 jest.mock('../../utils')
+jest.mock('../../aws/cognito')
 
 const mockAddCorsHeader = mocked(addCorsHeader)
 const mockGetByPrimaryKey = mocked(getByPrimaryKey)
@@ -33,6 +35,7 @@ const mockedPut = jest.fn()
 const mockedUpdate = jest.fn()
 const mockedDelete = jest.fn()
 const mockUuidResult = '8f9e060d-3028-411a-9a00-d3b00966638b'
+const mockCreateUser = mocked(createUser)
 
 jest.doMock('aws-sdk', () => ({
   EventBridge: jest.fn(),
@@ -316,6 +319,9 @@ describe('Account handler', () => {
     describe('POST createAccount', () => {
       it('should return a 200 (OK) if account is created', async () => {
         mockQueryBySecondaryKey.mockResolvedValue([])
+        mockCreateUser.mockReturnValue(
+          Promise.resolve({...expect.anything(), UserSub: '12345'}),
+        )
         mockUuid.mockReturnValue(mockUuidResult)
         mockedPut.mockImplementation(() => {
           return {
@@ -344,6 +350,9 @@ describe('Account handler', () => {
 
       it('should call publishCreateAccountLogEvent if event created successfully', async () => {
         mockQueryBySecondaryKey.mockResolvedValue([])
+        mockCreateUser.mockReturnValue(
+          Promise.resolve({...expect.anything(), UserSub: '12345'}),
+        )
         mockUuid.mockReturnValue(mockUuidResult)
         mockedPut.mockImplementation(() => {
           return {
@@ -366,6 +375,9 @@ describe('Account handler', () => {
 
       it('should return a 400 (Bad Request) if account already exists', async () => {
         mockQueryBySecondaryKey.mockResolvedValue([{Item: apiResult} as AttributeValue])
+        mockCreateUser.mockReturnValue(
+          Promise.resolve({...expect.anything(), UserSub: '12345'}),
+        )
         mockUuid.mockReturnValue(mockUuidResult)
         await expect(
           handler({
