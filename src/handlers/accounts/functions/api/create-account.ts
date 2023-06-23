@@ -6,14 +6,13 @@ import {validateCreateAccountRequest} from '../../../../validators'
 import {getByPrimaryKey, queryBySecondaryKey} from '../../../../aws'
 import {publishCreateAccountLogEvent} from '../../../../events'
 import CONFIG from '../../../../config'
-import {addUserToGroup, createUser} from '../../../../aws/cognito'
+import {addUserToGroup, createUser, createUserGroup} from '../../../../aws/cognito'
 import {rollbackCreateAccount} from './rollback-create-account'
 
 interface CreateAccountProps {
   //eslint-disable-next-line
   event: any
   dbClient: DynamoDB.DocumentClient
-  authenticatedUserId: string
   isTenantAdmin: boolean
 }
 
@@ -21,11 +20,13 @@ export const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
   //eslint-disable-next-line
-  const {event, dbClient, authenticatedUserId, isTenantAdmin} = props
+  const {event, dbClient, isTenantAdmin} = props
 
   const tableName = process.env.TABLE_NAME ?? ''
   const userPoolId = process.env.USER_POOL_ID ?? ''
   const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
+  const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
+  const tenantAdminGroupName = process.env.TENANT_ADMIN_GROUP_NAME ?? ''
 
   //eslint-disable-next-line
   if (!event.body) {
@@ -59,12 +60,20 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     }
   }
 
+  if (isTenantAdmin) {
+    await createUserGroup({
+      userGroupRoleArn,
+      groupName: item.tenantName,
+      userPoolId,
+    })
+  }
+
   try {
     const userResult = await createUser({
       firstName: item.firstName,
       lastName: item.lastName,
       password: item.password,
-      emailAddress: item.password,
+      emailAddress: item.emailAddress,
       userPoolClientId,
       tenantId: item.tenantId,
       isTenantAdmin,
@@ -79,8 +88,12 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       })
       .promise()
 
+    const tenantGroups = isTenantAdmin
+      ? [item.tenantName, tenantAdminGroupName]
+      : [item.tenantName]
+
     addUserToGroup({
-      groups: [item.tenantName],
+      groups: tenantGroups,
       username: item.emailAddress,
       userPoolId,
     })

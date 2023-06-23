@@ -11,6 +11,7 @@ import CONFIG from '../config'
 import {IEventBus, Rule} from 'aws-cdk-lib/aws-events'
 import {LambdaFunction} from 'aws-cdk-lib/aws-events-targets'
 import {IUserPool} from 'aws-cdk-lib/aws-cognito'
+import {Effect, PolicyStatement} from 'aws-cdk-lib/aws-iam'
 
 interface AccountLambdaProps {
   scope: Construct
@@ -19,6 +20,8 @@ interface AccountLambdaProps {
   eventBus: IEventBus
   userPool: IUserPool
   userPoolClientId: string
+  userGroupRoleArn: string
+  tenantAdminGroupName: string
 }
 
 export class AccountsLambda {
@@ -29,7 +32,16 @@ export class AccountsLambda {
   }
 
   private createAccountsLambda(props: AccountLambdaProps): NodejsFunction {
-    const {scope, table, eventBus, deadLetterQueue, userPool, userPoolClientId} = props
+    const {
+      scope,
+      table,
+      eventBus,
+      deadLetterQueue,
+      userPool,
+      userPoolClientId,
+      userGroupRoleArn,
+      tenantAdminGroupName,
+    } = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
 
@@ -41,6 +53,8 @@ export class AccountsLambda {
         EVENT_BUS_ARN: eventBus.eventBusArn,
         USER_POOL_ID: userPool.userPoolId,
         USER_POOL_CLIENT_ID: userPoolClientId,
+        USER_GROUP_ROLE_ARN: userGroupRoleArn,
+        TENANT_ADMIN_GROUP_NAME: tenantAdminGroupName,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,
@@ -72,6 +86,27 @@ export class AccountsLambda {
         detailType: ['Create'],
       },
     })
+
+    accountLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: [
+          'cognito-idp:CreateGroup',
+          'cognito-idp:SignUp',
+          'cognito-idp:AdminAddUserToGroup',
+          'cognito-idp:AdminDeleteUser',
+        ],
+        resources: [userPool.userPoolArn],
+        effect: Effect.ALLOW,
+      }),
+    )
+
+    accountLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['iam:PassRole'],
+        resources: [userGroupRoleArn],
+        effect: Effect.ALLOW,
+      }),
+    )
 
     createUserRule.addTarget(new LambdaFunction(accountLambda))
 

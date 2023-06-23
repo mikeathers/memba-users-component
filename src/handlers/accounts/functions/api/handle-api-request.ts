@@ -51,7 +51,6 @@ export const handleApiRequest = async (
           const response = await createAccount({
             event,
             dbClient,
-            authenticatedUserId,
             isTenantAdmin: false,
           })
           result.body = JSON.stringify(response.body)
@@ -60,7 +59,6 @@ export const handleApiRequest = async (
           const response = await createAccount({
             event,
             dbClient,
-            authenticatedUserId,
             isTenantAdmin: true,
           })
           result.body = JSON.stringify(response.body)

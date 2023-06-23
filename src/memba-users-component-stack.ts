@@ -65,6 +65,8 @@ export class MembaUsersComponentStack extends Stack {
       table: databases.accountsTable,
       userPool,
       userPoolClientId: userPoolClient.userPoolClientId,
+      userGroupRoleArn: usersRole.roleArn,
+      tenantAdminGroupName,
     })
 
     new UserAdminLambda({
