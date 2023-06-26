@@ -49,11 +49,11 @@ class CustomMessage {
     this.usernameParameter = props.usernameParameter
 
     this.FRONTEND_LINKS = {
-      SEND_CODE_POST_SIGN_UP: `${this.FRONTEND_BASE_URL}/app/complete-registration?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
-      SEND_CODE_FORGOT_PASSWORD: `${this.FRONTEND_BASE_URL}/app/complete-password-reset?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
-      SEND_CODE_VERIFY_NEW_EMAIL: `${this.FRONTEND_BASE_URL}/app/verify-new-email?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
-      SEND_TEMPORARY_PASSWORD: `${this.FRONTEND_BASE_URL}/app/login-with-temp-credentials`,
-      RESEND_CONFIRMATION_CODE: `${this.FRONTEND_BASE_URL}/app/complete-registration?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      SEND_CODE_POST_SIGN_UP: `${this.FRONTEND_BASE_URL}/complete-registration?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      SEND_CODE_FORGOT_PASSWORD: `${this.FRONTEND_BASE_URL}/complete-password-reset?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      SEND_CODE_VERIFY_NEW_EMAIL: `${this.FRONTEND_BASE_URL}/verify-new-email?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      SEND_TEMPORARY_PASSWORD: `${this.FRONTEND_BASE_URL}/login-with-temp-credentials`,
+      RESEND_CONFIRMATION_CODE: `${this.FRONTEND_BASE_URL}/complete-registration?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
     }
   }
 

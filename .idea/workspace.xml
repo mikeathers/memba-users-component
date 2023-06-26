@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
-    </list>
+    <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,7 +154,8 @@
       <workItem from="1687268256762" duration="34000" />
       <workItem from="1687325240651" duration="608000" />
       <workItem from="1687328914681" duration="4067000" />
-      <workItem from="1687443557636" duration="26477000" />
+      <workItem from="1687443557636" duration="28592000" />
+      <workItem from="1687756580225" duration="592000" />
     </task>
     <servers />
   </component>
