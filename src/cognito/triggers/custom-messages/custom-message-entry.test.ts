@@ -55,7 +55,7 @@ describe('Custom Message Entry', () => {
     handler(event, mockContext, mockCallBack)
 
     const expectedResult = completeSignup(
-      `${CONFIG.FRONTEND_BASE_URL_DEV}/app/complete-registration?code=${codeParam}&emailAddress=${email}`,
+      `${CONFIG.FRONTEND_BASE_URL_DEV}/complete-sign-up?code=${codeParam}&emailAddress=${email}`,
     )
 
     const expectedEvent: Event = {
@@ -75,7 +75,7 @@ describe('Custom Message Entry', () => {
     handler(event, mockContext, mockCallBack)
 
     const expectedResult = forgotPassword(
-      `${CONFIG.FRONTEND_BASE_URL_DEV}/app/complete-password-reset?code=${codeParam}&emailAddress=${email}`,
+      `${CONFIG.FRONTEND_BASE_URL_DEV}/complete-password-reset?code=${codeParam}&emailAddress=${email}`,
     )
 
     const expectedEvent: Event = {
@@ -95,7 +95,7 @@ describe('Custom Message Entry', () => {
     handler(event, mockContext, mockCallBack)
 
     const expectedResult = verifyNewEmail(
-      `${CONFIG.FRONTEND_BASE_URL_DEV}/app/verify-new-email?code=${codeParam}&emailAddress=${email}`,
+      `${CONFIG.FRONTEND_BASE_URL_DEV}/verify-new-email?code=${codeParam}&emailAddress=${email}`,
       giveName,
     )
 
@@ -116,7 +116,7 @@ describe('Custom Message Entry', () => {
     handler(event, mockContext, mockCallBack)
 
     const expectedResult = temporaryPassword(
-      `${CONFIG.FRONTEND_BASE_URL_DEV}/app/login-with-temp-credentials`,
+      `${CONFIG.FRONTEND_BASE_URL_DEV}/login-with-temp-credentials`,
       giveName,
       email,
       codeParam,
