@@ -44,15 +44,16 @@ export const publishCreateUserAccountEvent = async (
   await eventBridge.putEvents(params).promise()
 }
 
-export const publishCreateAccountLogEvent = async (
+export const publishCreateLogEvent = async (
   requestDetails: CreateAccountLogEvent,
+  source: string,
 ) => {
   const updatedEvent = updateIdToAccountId(requestDetails)
   const eventBusName = getEnv('EVENT_BUS_ARN')
   const params = {
     Entries: [
       {
-        Source: 'AccountEventLog',
+        Source: source,
         Detail: JSON.stringify(updatedEvent),
         DetailType: 'Create',
         Time: new Date(),
@@ -64,15 +65,16 @@ export const publishCreateAccountLogEvent = async (
   await eventBridge.putEvents(params).promise()
 }
 
-export const publishUpdateAccountLogEvent = async (
+export const publishUpdateLogEvent = async (
   requestDetails: UpdateAccountLogEvent,
+  source: string,
 ) => {
   const updatedEvent = updateIdToAccountId(requestDetails)
   const eventBusName = getEnv('EVENT_BUS_ARN')
   const params = {
     Entries: [
       {
-        Source: 'AccountEventLog',
+        Source: source,
         Detail: JSON.stringify(updatedEvent),
         DetailType: 'Update',
         Time: new Date(),
@@ -84,15 +86,16 @@ export const publishUpdateAccountLogEvent = async (
   await eventBridge.putEvents(params).promise()
 }
 
-export const publishDeleteAccountLogEvent = async (
+export const publishDeleteLogEvent = async (
   requestDetails: DeleteAccountLogEvent,
+  source: string,
 ) => {
   const updatedEvent = updateIdToAccountId(requestDetails)
   const eventBusName = getEnv('EVENT_BUS_ARN')
   const params = {
     Entries: [
       {
-        Source: 'AccountEventLog',
+        Source: source,
         Detail: JSON.stringify(updatedEvent),
         DetailType: 'Delete',
         Time: new Date(),

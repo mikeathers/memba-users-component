@@ -58,5 +58,5 @@ export const createAccount = async (props: CreateAccountProps) => {
     })
     .promise()
 
-  await publishCreateLogEvent(item, 'AccountEventLog')
+  await publishCreateLogEvent(item, 'TenantAccountEventLog')
 }

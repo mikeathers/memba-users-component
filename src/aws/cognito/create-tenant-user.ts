@@ -1,26 +1,16 @@
 import {cognito} from './index'
 
-interface CreateAdminUserProps {
+interface CreateTenantUserProps {
   firstName: string
   lastName: string
   userPoolClientId: string
   emailAddress: string
   password: string
-  tenantId: string
-  isTenantAdmin: boolean
 }
 
-export const createUser = (props: CreateAdminUserProps) => {
+export const createTenantUser = (props: CreateTenantUserProps) => {
   try {
-    const {
-      firstName,
-      lastName,
-      password,
-      emailAddress,
-      userPoolClientId,
-      tenantId,
-      isTenantAdmin,
-    } = props
+    const {firstName, lastName, password, emailAddress, userPoolClientId} = props
 
     const params = {
       ClientId: userPoolClientId,
@@ -37,7 +27,7 @@ export const createUser = (props: CreateAdminUserProps) => {
         },
         {
           Name: 'custom:isTenantAdmin',
-          Value: String(isTenantAdmin),
+          Value: 'true',
         },
         {
           Name: 'email',
@@ -47,7 +37,7 @@ export const createUser = (props: CreateAdminUserProps) => {
     }
     return cognito.signUp(params).promise()
   } catch (err) {
-    console.log('CREATE USER ERROR: ', err)
+    console.log('CREATE TENANT USER ERROR: ', err)
     return null
   }
 }

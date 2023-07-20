@@ -4,7 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="" />
+    <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api-gateway/tenant-accounts.api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/aws/cognito/create-tenant-user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-tenant.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/delete-account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-all-accounts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/handle-api-request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/rollback-create-account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/update-account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/event-bridge/create-account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/event-bridge/handle-event-bridge.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/event-bridge/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lambdas/tenant-accounts.lambda.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/create-axios-response/create-axios-response.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/create-axios-response/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/tenant-account.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/cognito/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/update-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/update-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lambdas/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lambdas/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/memba-users-component-stack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/memba-users-component-stack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validators/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +70,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src/handlers/accounts/functions/api&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src/lambdas&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -44,11 +85,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/lambdas" />
+      <recent name="$PROJECT_DIR$/src/handlers/tenant-accounts" />
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge" />
       <recent name="$PROJECT_DIR$/src/" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/aws" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
@@ -57,7 +98,19 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Custom Message Entry">
+  <component name="RunManager" selected="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created (1)">
+    <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
+      <test-names>
+        <test-name value="Account handler" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Account handler" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -76,36 +129,20 @@
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
         <test-name value="Handler" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Account handler.Handler.EventBridge Event.Create Account.should throw an error if event has no details" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
-      <test-names>
-        <test-name value="Account handler" />
-        <test-name value="Handler" />
-        <test-name value="EventBridge Event" />
-        <test-name value="Create Account" />
-        <test-name value="should throw an error if event has no details" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
         <test-name value="Handler" />
@@ -128,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created (1)" />
+        <item itemvalue="Jest.Account handler (1)" />
+        <item itemvalue="Jest.Account handler.Handler" />
         <item itemvalue="Jest.Custom Message Entry" />
         <item itemvalue="Jest.Account handler" />
-        <item itemvalue="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created" />
-        <item itemvalue="Jest.Account handler.Handler" />
-        <item itemvalue="Jest.Account handler.Handler.EventBridge Event.Create Account.should throw an error if event has no details" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +190,9 @@
       <workItem from="1687325240651" duration="608000" />
       <workItem from="1687328914681" duration="4067000" />
       <workItem from="1687443557636" duration="28592000" />
-      <workItem from="1687756580225" duration="861000" />
+      <workItem from="1687756580225" duration="1694000" />
+      <workItem from="1687842127150" duration="156000" />
+      <workItem from="1689763940367" duration="11097000" />
     </task>
     <servers />
   </component>
@@ -178,6 +217,12 @@
           <url>file://$PROJECT_DIR$/src/api-gateway/account.api.ts</url>
           <line>95</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts</url>
+          <line>81</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

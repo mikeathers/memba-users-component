@@ -6,7 +6,7 @@ import {mocked} from 'jest-mock'
 import AWS, {DynamoDB} from 'aws-sdk'
 
 import {queryBySecondaryKey} from '../../aws'
-import {createUser} from '../../aws/cognito'
+import {createTenantUser} from '../../aws/cognito'
 import {sampleAPIGatewayEvent, sampleEventBridgeEvent} from '../../test-support'
 import {
   publishCreateLogEvent,
@@ -14,6 +14,7 @@ import {
   publishDeleteLogEvent,
 } from '../../events'
 import {addCorsHeader} from '../../utils'
+import {createTenant} from './functions/api/create-tenant'
 
 import AttributeValue = DocumentClient.AttributeValue
 
@@ -22,6 +23,7 @@ jest.mock('uuid')
 jest.mock('../../events')
 jest.mock('../../utils')
 jest.mock('../../aws/cognito')
+jest.mock('./functions/api/create-tenant')
 
 const mockAddCorsHeader = mocked(addCorsHeader)
 const mockGetByPrimaryKey = mocked(getByPrimaryKey)
@@ -35,7 +37,8 @@ const mockedPut = jest.fn()
 const mockedUpdate = jest.fn()
 const mockedDelete = jest.fn()
 const mockUuidResult = '8f9e060d-3028-411a-9a00-d3b00966638b'
-const mockCreateUser = mocked(createUser)
+const mockCreateTenantUser = mocked(createTenantUser)
+const mockCreateTenant = mocked(createTenant)
 
 jest.doMock('aws-sdk', () => ({
   EventBridge: jest.fn(),
@@ -52,7 +55,7 @@ jest.doMock('aws-sdk', () => ({
   },
 }))
 
-import {handler} from '../index'
+import {handler} from './tenant-accounts.handler'
 
 const body = {
   townCity: 'Liverpool',
@@ -69,7 +72,7 @@ const body = {
 const apiResult = {
   ...body,
   id: mockUuidResult,
-  isTenantAdmin: false,
+  isTenantAdmin: true,
   authenticatedUserId: '12345',
 }
 
@@ -95,6 +98,13 @@ const eventBridgeResult = {
 describe('Account handler', () => {
   beforeEach(() => {
     jest.resetAllMocks()
+    mockCreateTenant.mockResolvedValue({
+      statusText: '',
+      headers: {},
+      config: expect.anything(),
+      status: 200,
+      data: {id: '1234', admins: [], apps: []},
+    })
     process.env.TABLE_NAME = 'Users-Dev'
   })
 
@@ -143,7 +153,10 @@ describe('Account handler', () => {
             detail,
           })
 
-          expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(eventBridgeResult)
+          expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(
+            eventBridgeResult,
+            'TenantAccountEventLog',
+          )
         })
 
         it('should throw an error if account already exists', async () => {
@@ -319,7 +332,7 @@ describe('Account handler', () => {
     describe('POST createAccount', () => {
       it('should return a 200 (OK) if account is created', async () => {
         mockQueryBySecondaryKey.mockResolvedValue([])
-        mockCreateUser.mockReturnValue(
+        mockCreateTenantUser.mockReturnValue(
           Promise.resolve({...expect.anything(), UserSub: '12345'}),
         )
         mockUuid.mockReturnValue(mockUuidResult)
@@ -350,7 +363,7 @@ describe('Account handler', () => {
 
       it('should call publishCreateAccountLogEvent if event created successfully', async () => {
         mockQueryBySecondaryKey.mockResolvedValue([])
-        mockCreateUser.mockReturnValue(
+        mockCreateTenantUser.mockReturnValue(
           Promise.resolve({...expect.anything(), UserSub: '12345'}),
         )
         mockUuid.mockReturnValue(mockUuidResult)
@@ -370,12 +383,15 @@ describe('Account handler', () => {
           path: '/create-account',
         })
 
-        expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(apiResult)
+        expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(
+          apiResult,
+          'TenantAccountEventLog',
+        )
       })
 
       it('should return a 400 (Bad Request) if account already exists', async () => {
         mockQueryBySecondaryKey.mockResolvedValue([{Item: apiResult} as AttributeValue])
-        mockCreateUser.mockReturnValue(
+        mockCreateTenantUser.mockReturnValue(
           Promise.resolve({...expect.anything(), UserSub: '12345'}),
         )
         mockUuid.mockReturnValue(mockUuidResult)
@@ -390,7 +406,7 @@ describe('Account handler', () => {
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
           body: JSON.stringify({
-            message: `Account details already exist for the user.`,
+            message: `An account already exists with the details you have provided.`,
           }),
         })
       })
@@ -419,7 +435,7 @@ describe('Account handler', () => {
         ...body,
         id: '8f9e060d-3028-411a-9a00-d3b00966638b',
         authenticatedUserId: '12345',
-        isTenantAdmin: false,
+        isTenantAdmin: true,
       }
 
       it('should return a 200 (OK) if account is updated', async () => {
@@ -469,7 +485,10 @@ describe('Account handler', () => {
           body: JSON.stringify(accountToUpdate),
         })
 
-        expect(mockPublishUpdateAccountLogEvent).toHaveBeenCalledWith(apiResult)
+        expect(mockPublishUpdateAccountLogEvent).toHaveBeenCalledWith(
+          apiResult,
+          'TenantAccountEventLog',
+        )
       })
 
       it('should return a 400 (Bad Request) if account to update does not exist', async () => {
@@ -558,10 +577,13 @@ describe('Account handler', () => {
           body: JSON.stringify(accountToDelete),
         })
 
-        expect(mockPublishDeleteAccountLogEvent).toHaveBeenCalledWith({
-          id: accountToDelete.id,
-          userWhoDeletedAccountId: accountToDelete.authenticatedUserId,
-        })
+        expect(mockPublishDeleteAccountLogEvent).toHaveBeenCalledWith(
+          {
+            id: accountToDelete.id,
+            userWhoDeletedAccountId: accountToDelete.authenticatedUserId,
+          },
+          'TenantAccountEventLog',
+        )
       })
 
       it('should return a 400 (Bad Request) if the account has been found but not deleted', async () => {

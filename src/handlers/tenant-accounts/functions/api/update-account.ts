@@ -67,7 +67,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
 
     const result = await dbClient.update(params).promise()
 
-    await publishUpdateLogEvent(updateAccountData, 'AccountEventLog')
+    await publishUpdateLogEvent(updateAccountData, 'TenantAccountEventLog')
 
     return {
       body: {

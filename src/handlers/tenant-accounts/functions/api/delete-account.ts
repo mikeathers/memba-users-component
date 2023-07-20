@@ -43,7 +43,7 @@ export const deleteAccount = async (props: DeleteAccountProps): Promise<QueryRes
           id,
           userWhoDeletedAccountId: authenticatedUserId,
         },
-        'AccountEventLog',
+        'TenantAccountEventLog',
       )
 
       return {

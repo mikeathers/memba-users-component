@@ -7,31 +7,36 @@ import {
   HttpStatusCode,
   QueryResult,
 } from '../../../../types'
-import {validateCreateAccountRequest} from '../../../../validators'
+import {
+  validateCreateAccountRequest,
+  validateCreateTenantAccountRequest,
+} from '../../../../validators'
 import {queryBySecondaryKey} from '../../../../aws'
 import {publishCreateLogEvent} from '../../../../events'
 import CONFIG from '../../../../config'
 import {addUserToGroup, createUser, createUserGroup} from '../../../../aws/cognito'
 import {rollbackCreateAccount} from './rollback-create-account'
+import {createTenantUser} from '../../../../aws/cognito'
+import {createTenant} from './create-tenant'
 
 interface CreateAccountProps {
   //eslint-disable-next-line
   event: any
   dbClient: DynamoDB.DocumentClient
-  isTenantAdmin: boolean
 }
 
 export const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
   //eslint-disable-next-line
-  const {event, dbClient, isTenantAdmin} = props
+  const {event, dbClient} = props
 
   const tableName = process.env.TABLE_NAME ?? ''
   const userPoolId = process.env.USER_POOL_ID ?? ''
   const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
-  const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
   const tenantAdminGroupName = process.env.TENANT_ADMIN_GROUP_NAME ?? ''
+  const tenantsApiUrl = process.env.TENANTS_API_URL ?? ''
+  const tenantsApiSecretName = process.env.TENANTS_API_SECRET_NAME ?? ''
 
   //eslint-disable-next-line
   if (!event.body) {
@@ -46,8 +51,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
-  item.isTenantAdmin = isTenantAdmin
-  validateCreateAccountRequest(item)
+  item.isTenantAdmin = true
+  validateCreateTenantAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
     queryKey: 'emailAddress',
@@ -59,32 +64,28 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   if (accountExists && accountExists?.length > 0) {
     return {
       body: {
-        message: 'Account details already exist for the user.',
+        message: 'An account already exists with the details you have provided.',
       },
       statusCode: HttpStatusCode.BAD_REQUEST,
     }
   }
 
-  if (isTenantAdmin) {
-    await createUserGroup({
-      userGroupRoleArn,
-      groupName: item.tenantName,
-      userPoolId,
-    })
-  }
-
   try {
-    const userResult = await createUser({
+    const userResult = await createTenantUser({
       firstName: item.firstName,
       lastName: item.lastName,
       password: item.password,
       emailAddress: item.emailAddress,
       userPoolClientId,
-      tenantId: item.tenantId,
-      isTenantAdmin,
     })
 
+    const tenant = await createTenant({
+      tenantAdminId: item.id,
+      tenantsApiUrl,
+      tenantsApiSecretName,
+    })
     item.authenticatedUserId = userResult?.UserSub ?? ''
+    item.tenantId = tenant.data.id
 
     const dbUserDetails = item as CreateAccountInDb
 
@@ -95,17 +96,13 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       })
       .promise()
 
-    const tenantGroups = isTenantAdmin
-      ? [item.tenantName, tenantAdminGroupName]
-      : [item.tenantName]
-
     await addUserToGroup({
-      groups: tenantGroups,
+      groups: [tenantAdminGroupName],
       username: item.emailAddress,
       userPoolId,
     })
 
-    await publishCreateLogEvent(item, 'AccountEventLog')
+    await publishCreateLogEvent(item, 'TenantAccountEventLog')
 
     return {
       body: {
@@ -115,12 +112,12 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       statusCode: HttpStatusCode.CREATED,
     }
   } catch (error) {
-    console.log('CREATE USER ERROR', error)
+    console.log('CREATE TENANT USER ERROR', error)
 
     await rollbackCreateAccount({
       userId: item.id,
       username: item.emailAddress,
-      groupName: item.tenantName,
+      groupName: tenantAdminGroupName,
       userPoolId,
       authenticatedUserId: item.authenticatedUserId,
       dbClient,
