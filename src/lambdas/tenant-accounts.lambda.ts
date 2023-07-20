@@ -109,6 +109,14 @@ export class TenantAccountsLambda {
       }),
     )
 
+    tenantAccountsLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['secretsmanager:GetSecretValue'],
+        resources: ['*'],
+        effect: Effect.ALLOW,
+      }),
+    )
+
     table.grantReadWriteData(tenantAccountsLambda)
 
     return tenantAccountsLambda

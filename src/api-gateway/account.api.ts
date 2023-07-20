@@ -91,6 +91,7 @@ export class AccountApi {
         domainName,
         certificate,
       },
+      defaultCorsPreflightOptions: optionsWithCors,
     })
 
     accountsLambda.grantInvoke(new ServicePrincipal('apigateway.amazonaws.com'))
