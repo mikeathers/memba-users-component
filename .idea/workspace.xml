@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/publishers/account/account.publisher.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +59,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler">
+  <component name="RunManager" selected="Jest.Custom Message Entry">
     <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -128,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Custom Message Entry" />
         <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created (1)" />
         <item itemvalue="Jest.Account handler (1)" />
         <item itemvalue="Jest.Account handler.Handler" />
-        <item itemvalue="Jest.Custom Message Entry" />
       </list>
     </recent_temporary>
   </component>
