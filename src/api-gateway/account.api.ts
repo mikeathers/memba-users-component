@@ -135,34 +135,36 @@ export class AccountApi {
     usagePlan.addApiKey(apiKey)
 
     const root = api.root
+    const usersRoot = root.addResource('users')
+    const tenantsRoot = root.addResource('tenants')
 
-    root
-      .addResource('users/get-all-accounts')
+    usersRoot
+      .addResource('get-all-accounts')
       .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    root
-      .addResource('users/create-account')
+    usersRoot
+      .addResource('create-account')
       .addMethod('POST', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    root
-      .addResource('users/create-tenant-admin-account')
+    usersRoot
+      .addResource('create-tenant-admin-account')
       .addMethod('POST', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
-    const getAccountById = root.addResource('users/get-account-by-id')
+    const getAccountById = usersRoot.addResource('get-account-by-id')
     getAccountById
       .addResource('{id}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    const getAccountByEmail = root.addResource('users/get-account-by-email')
+    const getAccountByEmail = usersRoot.addResource('get-account-by-email')
     getAccountByEmail
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
-    root
-      .addResource('users/update-account')
+    usersRoot
+      .addResource('update-account')
       .addMethod('PUT', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    const deleteAccount = root.addResource('users/delete-account')
+    const deleteAccount = usersRoot.addResource('delete-account')
 
     deleteAccount
       .addResource('{id}')
@@ -172,33 +174,35 @@ export class AccountApi {
     /////////////// TENANTS ////////////////
     ////////////////////////////////////////
 
-    root
+    tenantsRoot
       .addResource('tenants/get-all-accounts')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
-    root
+    tenantsRoot
       .addResource('tenants/create-account')
       .addMethod('POST', new LambdaIntegration(tenantAccountsLambda))
 
-    root
+    tenantsRoot
       .addResource('tenants/create-tenant-admin-account')
       .addMethod('POST', new LambdaIntegration(tenantAccountsLambda), apiKeyMethodOptions)
 
-    const getTenantAccountById = root.addResource('tenants/get-account-by-id')
+    const getTenantAccountById = tenantsRoot.addResource('tenants/get-account-by-id')
     getTenantAccountById
       .addResource('{id}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
-    const getTenantAccountByEmail = root.addResource('tenants/get-account-by-email')
+    const getTenantAccountByEmail = tenantsRoot.addResource(
+      'tenants/get-account-by-email',
+    )
     getTenantAccountByEmail
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), apiKeyMethodOptions)
 
-    root
+    tenantsRoot
       .addResource('tenants/update-account')
       .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
-    const deleteTenantAccount = root.addResource('tenants/delete-account')
+    const deleteTenantAccount = tenantsRoot.addResource('tenants/delete-account')
 
     deleteTenantAccount
       .addResource('{id}')
