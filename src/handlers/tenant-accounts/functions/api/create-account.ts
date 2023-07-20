@@ -102,7 +102,9 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       userPoolId,
     })
 
-    await publishCreateLogEvent(item, 'TenantAccountEventLog')
+    const {password, ...rest} = item
+
+    await publishCreateLogEvent({...rest}, 'TenantAccountEventLog')
 
     return {
       body: {

@@ -45,7 +45,7 @@ export const publishCreateUserAccountEvent = async (
 }
 
 export const publishCreateLogEvent = async (
-  requestDetails: CreateAccountLogEvent,
+  requestDetails: Omit<CreateAccountLogEvent, 'password'>,
   source: string,
 ) => {
   const updatedEvent = updateIdToAccountId(requestDetails)
