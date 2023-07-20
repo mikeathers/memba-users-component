@@ -43,7 +43,7 @@ export class TenantAccountsLambda {
       tenantAdminGroupName,
     } = props
 
-    const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
+    const lambdaName = `${CONFIG.STACK_PREFIX}TenantAccountsLambda`
     const tenantsApiUrl =
       stage === 'prod' ? CONFIG.TENANTS_API_URL : CONFIG.DEV_TENANTS_API_URL
     const tenantsApiSecret =

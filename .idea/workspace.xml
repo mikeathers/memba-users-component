@@ -59,7 +59,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created (1)">
+  <component name="RunManager" selected="Jest.Account handler">
     <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -126,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Account handler.Handler.POST createAccount.should return a 200 (OK) if account is created (1)" />
         <item itemvalue="Jest.Account handler (1)" />
         <item itemvalue="Jest.Account handler.Handler" />
         <item itemvalue="Jest.Custom Message Entry" />
-        <item itemvalue="Jest.Account handler" />
       </list>
     </recent_temporary>
   </component>
