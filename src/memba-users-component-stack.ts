@@ -14,7 +14,6 @@ import {AccountsLambda, TenantAccountsLambda} from './lambdas'
 import {AccountApi} from './api-gateway'
 import {UserAdminLambda} from './lambdas/user-admin.lambda'
 import {EventBus} from 'aws-cdk-lib/aws-events'
-import {TenantAccountsApi} from './api-gateway/tenant-accounts.api'
 
 interface MembaUserComponentStackProps extends StackProps {
   stage: string
@@ -96,14 +95,6 @@ export class MembaUsersComponentStack extends Stack {
       stage,
       userPool,
       accountsLambda,
-      certificate: accountApiCertificate,
-      hostedZone,
-    })
-
-    new TenantAccountsApi({
-      scope: this,
-      stage,
-      userPool,
       tenantAccountsLambda,
       certificate: accountApiCertificate,
       hostedZone,

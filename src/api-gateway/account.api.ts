@@ -24,6 +24,7 @@ import {UsagePlanPerApiStage} from 'aws-cdk-lib/aws-apigateway/lib/usage-plan'
 interface AccountApiProps {
   scope: Construct
   accountsLambda: IFunction
+  tenantAccountsLambda: IFunction
   stage: string
   userPool: IUserPool
   certificate: ICertificate
@@ -36,7 +37,15 @@ export class AccountApi {
   }
 
   private createAccountApi(props: AccountApiProps) {
-    const {scope, accountsLambda, stage, userPool, certificate, hostedZone} = props
+    const {
+      scope,
+      accountsLambda,
+      tenantAccountsLambda,
+      stage,
+      userPool,
+      certificate,
+      hostedZone,
+    } = props
 
     const restApiName = `${CONFIG.STACK_PREFIX}-Api`
 
@@ -128,36 +137,76 @@ export class AccountApi {
     const root = api.root
 
     root
-      .addResource('get-all-accounts')
+      .addResource('users/get-all-accounts')
       .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
     root
-      .addResource('create-account')
+      .addResource('users/create-account')
       .addMethod('POST', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
     root
-      .addResource('create-tenant-admin-account')
+      .addResource('users/create-tenant-admin-account')
       .addMethod('POST', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
-    const getAccountById = root.addResource('get-account-by-id')
+    const getAccountById = root.addResource('users/get-account-by-id')
     getAccountById
       .addResource('{id}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    const getAccountByEmail = root.addResource('get-account-by-email')
+    const getAccountByEmail = root.addResource('users/get-account-by-email')
     getAccountByEmail
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
     root
-      .addResource('update-account')
+      .addResource('users/update-account')
       .addMethod('PUT', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    const deleteAccount = root.addResource('delete-account')
+    const deleteAccount = root.addResource('users/delete-account')
 
     deleteAccount
       .addResource('{id}')
       .addMethod('DELETE', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+
+    ////////////////////////////////////////
+    /////////////// TENANTS ////////////////
+    ////////////////////////////////////////
+
+    root
+      .addResource('tenants/get-all-accounts')
+      .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
+
+    root
+      .addResource('tenants/create-account')
+      .addMethod('POST', new LambdaIntegration(tenantAccountsLambda))
+
+    root
+      .addResource('tenants/create-tenant-admin-account')
+      .addMethod('POST', new LambdaIntegration(tenantAccountsLambda), apiKeyMethodOptions)
+
+    const getTenantAccountById = root.addResource('tenants/get-account-by-id')
+    getTenantAccountById
+      .addResource('{id}')
+      .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
+
+    const getTenantAccountByEmail = root.addResource('tenants/get-account-by-email')
+    getTenantAccountByEmail
+      .addResource('{emailAddress}')
+      .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), apiKeyMethodOptions)
+
+    root
+      .addResource('tenants/update-account')
+      .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
+
+    const deleteTenantAccount = root.addResource('tenants/delete-account')
+
+    deleteTenantAccount
+      .addResource('{id}')
+      .addMethod(
+        'DELETE',
+        new LambdaIntegration(tenantAccountsLambda),
+        cognitoMethodOptions,
+      )
 
     new ARecord(scope, `${CONFIG.STACK_PREFIX}AccountApiAliasRecord`, {
       recordName: domainName,
