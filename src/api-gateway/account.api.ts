@@ -98,8 +98,6 @@ export class AccountApi {
 
     authorizer._attachToApi(api)
 
-    api.root.addCorsPreflight(optionsWithCors)
-
     const secret = new Secret(scope, `${CONFIG.STACK_PREFIX}ApiSecret`, {
       generateSecretString: {
         generateStringKey: 'api_key',
