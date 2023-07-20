@@ -1,6 +1,5 @@
 import {deleteUser} from '../../../../aws/cognito'
 import {DynamoDB} from 'aws-sdk'
-import {deleteUserGroup} from '../../../../aws/cognito/delete-user-group'
 import {deleteAccount} from './delete-account'
 
 interface RollbackCreateAccountProps {
@@ -16,11 +15,6 @@ export const rollbackCreateAccount = async (props: RollbackCreateAccountProps) =
 
   await deleteUser({
     username,
-    userPoolId,
-  })
-
-  await deleteUserGroup({
-    groupName,
     userPoolId,
   })
 
