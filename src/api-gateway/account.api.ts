@@ -98,9 +98,9 @@ export class AccountApi {
       },
     })
 
-    const apiKeyName = 'x-api-key'
+    const apiKeyName = 'users-api-key'
 
-    const apiKey = new ApiKey(scope, `AccountsApiKey`, {
+    const apiKey = new ApiKey(scope, `${CONFIG.STACK_PREFIX}AccountsApiKey`, {
       apiKeyName,
       description: `APIKey used to access resources`,
       enabled: true,
@@ -113,13 +113,16 @@ export class AccountApi {
     }
 
     const usagePlanProps: UsagePlanProps = {
-      name: 'AccountsApiUsagePlan',
+      name: `${CONFIG.STACK_PREFIX}AccountsApiUsagePlan`,
       apiStages: [apiStage],
       throttle: {burstLimit: 500, rateLimit: 1000},
       quota: {limit: 10000000, period: Period.MONTH},
     }
 
-    const usagePlan = api.addUsagePlan('AccountsUsagePlan', usagePlanProps)
+    const usagePlan = api.addUsagePlan(
+      `${CONFIG.STACK_PREFIX}AccountsUsagePlan`,
+      usagePlanProps,
+    )
     usagePlan.addApiKey(apiKey)
 
     const root = api.root

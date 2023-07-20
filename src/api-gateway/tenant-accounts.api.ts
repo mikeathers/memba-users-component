@@ -38,14 +38,14 @@ export class TenantAccountsApi {
   private createTenantAccountsApi(props: AccountApiProps) {
     const {scope, tenantAccountsLambda, stage, userPool, certificate, hostedZone} = props
 
-    const restApiName = `${CONFIG.STACK_PREFIX}-Api`
+    const restApiName = `${CONFIG.STACK_PREFIX}-Tenants-Api`
 
     const authorizer = new CognitoUserPoolsAuthorizer(
       scope,
-      `${CONFIG.STACK_PREFIX}ApiAuthorizer`,
+      `${CONFIG.STACK_PREFIX}TenantsApiAuthorizer`,
       {
         cognitoUserPools: [userPool],
-        authorizerName: `${CONFIG.STACK_PREFIX}ApiAuthorizer`,
+        authorizerName: `${CONFIG.STACK_PREFIX}TenantsApiAuthorizer`,
         identitySource: 'method.request.header.Authorization',
       },
     )
@@ -90,7 +90,7 @@ export class TenantAccountsApi {
 
     api.root.addCorsPreflight(optionsWithCors)
 
-    const secret = new Secret(scope, `${CONFIG.STACK_PREFIX}ApiSecret`, {
+    const secret = new Secret(scope, `${CONFIG.STACK_PREFIX}TenantsApiSecret`, {
       generateSecretString: {
         generateStringKey: 'api_key',
         secretStringTemplate: JSON.stringify({username: 'web_user'}),
@@ -98,9 +98,9 @@ export class TenantAccountsApi {
       },
     })
 
-    const apiKeyName = 'x-api-key'
+    const apiKeyName = 'users-tenants-api-key'
 
-    const apiKey = new ApiKey(scope, `AccountsApiKey`, {
+    const apiKey = new ApiKey(scope, `${CONFIG.STACK_PREFIX}TenantsApiKey`, {
       apiKeyName,
       description: `APIKey used to access resources`,
       enabled: true,
@@ -113,13 +113,16 @@ export class TenantAccountsApi {
     }
 
     const usagePlanProps: UsagePlanProps = {
-      name: 'AccountsApiUsagePlan',
+      name: `${CONFIG.STACK_PREFIX}TenantAccountsApiUsagePlan`,
       apiStages: [apiStage],
       throttle: {burstLimit: 500, rateLimit: 1000},
       quota: {limit: 10000000, period: Period.MONTH},
     }
 
-    const usagePlan = api.addUsagePlan('AccountsUsagePlan', usagePlanProps)
+    const usagePlan = api.addUsagePlan(
+      `${CONFIG.STACK_PREFIX}TenantAccountsUsagePlan`,
+      usagePlanProps,
+    )
     usagePlan.addApiKey(apiKey)
 
     const root = api.root
@@ -156,7 +159,7 @@ export class TenantAccountsApi {
         cognitoMethodOptions,
       )
 
-    new ARecord(scope, `${CONFIG.STACK_PREFIX}AccountApiAliasRecord`, {
+    new ARecord(scope, `${CONFIG.STACK_PREFIX}TenantAccountsApiAliasRecord`, {
       recordName: domainName,
       zone: hostedZone,
       target: RecordTarget.fromAlias(new ApiGateway(api)),
