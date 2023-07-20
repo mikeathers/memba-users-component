@@ -88,14 +88,6 @@ export class TenantAccountsLambda {
       ...lambdaProps,
     })
 
-    const createUserRule = new Rule(scope, 'CreateUserRule', {
-      eventBus,
-      eventPattern: {
-        source: ['Users'],
-        detailType: ['Create'],
-      },
-    })
-
     tenantAccountsLambda.addToRolePolicy(
       new PolicyStatement({
         actions: [
@@ -116,8 +108,6 @@ export class TenantAccountsLambda {
         effect: Effect.ALLOW,
       }),
     )
-
-    createUserRule.addTarget(new LambdaFunction(tenantAccountsLambda))
 
     table.grantReadWriteData(tenantAccountsLambda)
 
