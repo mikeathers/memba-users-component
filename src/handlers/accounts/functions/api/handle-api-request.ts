@@ -19,9 +19,8 @@ export const handleApiRequest = async (
   const result: APIGatewayProxyResult = {
     statusCode: HttpStatusCode.OK,
     body: '',
+    headers: addCorsHeader(),
   }
-
-  addCorsHeader(event)
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

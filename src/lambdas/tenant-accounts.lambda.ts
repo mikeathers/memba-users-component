@@ -22,6 +22,7 @@ interface TenantAccountLambdaProps {
   userPool: IUserPool
   userPoolClientId: string
   tenantAdminGroupName: string
+  userGroupRoleArn: string
 }
 
 export class TenantAccountsLambda {
@@ -41,6 +42,7 @@ export class TenantAccountsLambda {
       userPool,
       userPoolClientId,
       tenantAdminGroupName,
+      userGroupRoleArn,
     } = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}TenantAccountsLambda`
@@ -85,6 +87,37 @@ export class TenantAccountsLambda {
       entry: join(__dirname, '../handlers/tenant-accounts/index.ts'),
       ...lambdaProps,
     })
+
+    const createUserRule = new Rule(scope, 'CreateUserRule', {
+      eventBus,
+      eventPattern: {
+        source: ['Users'],
+        detailType: ['Create'],
+      },
+    })
+
+    tenantAccountsLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: [
+          'cognito-idp:CreateGroup',
+          'cognito-idp:SignUp',
+          'cognito-idp:AdminAddUserToGroup',
+          'cognito-idp:AdminDeleteUser',
+        ],
+        resources: [userPool.userPoolArn],
+        effect: Effect.ALLOW,
+      }),
+    )
+
+    tenantAccountsLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['iam:PassRole'],
+        resources: [userGroupRoleArn],
+        effect: Effect.ALLOW,
+      }),
+    )
+
+    createUserRule.addTarget(new LambdaFunction(tenantAccountsLambda))
 
     table.grantReadWriteData(tenantAccountsLambda)
 
