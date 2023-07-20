@@ -52,7 +52,7 @@ jest.doMock('aws-sdk', () => ({
   },
 }))
 
-import {handler} from '../index'
+import {handler} from './accounts.handler'
 
 const body = {
   townCity: 'Liverpool',
@@ -143,7 +143,10 @@ describe('Account handler', () => {
             detail,
           })
 
-          expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(eventBridgeResult)
+          expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(
+            eventBridgeResult,
+            'AccountEventLog',
+          )
         })
 
         it('should throw an error if account already exists', async () => {
@@ -370,7 +373,10 @@ describe('Account handler', () => {
           path: '/create-account',
         })
 
-        expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(apiResult)
+        expect(mockPublishCreateAccountLogEvent).toHaveBeenCalledWith(
+          apiResult,
+          'AccountEventLog',
+        )
       })
 
       it('should return a 400 (Bad Request) if account already exists', async () => {
@@ -469,7 +475,10 @@ describe('Account handler', () => {
           body: JSON.stringify(accountToUpdate),
         })
 
-        expect(mockPublishUpdateAccountLogEvent).toHaveBeenCalledWith(apiResult)
+        expect(mockPublishUpdateAccountLogEvent).toHaveBeenCalledWith(
+          apiResult,
+          'AccountEventLog',
+        )
       })
 
       it('should return a 400 (Bad Request) if account to update does not exist', async () => {
@@ -558,10 +567,13 @@ describe('Account handler', () => {
           body: JSON.stringify(accountToDelete),
         })
 
-        expect(mockPublishDeleteAccountLogEvent).toHaveBeenCalledWith({
-          id: accountToDelete.id,
-          userWhoDeletedAccountId: accountToDelete.authenticatedUserId,
-        })
+        expect(mockPublishDeleteAccountLogEvent).toHaveBeenCalledWith(
+          {
+            id: accountToDelete.id,
+            userWhoDeletedAccountId: accountToDelete.authenticatedUserId,
+          },
+          'AccountEventLog',
+        )
       })
 
       it('should return a 400 (Bad Request) if the account has been found but not deleted', async () => {
