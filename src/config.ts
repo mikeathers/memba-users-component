@@ -32,8 +32,8 @@ const CONFIG: ConfigProps = {
   API_URL: 'users.memba.co.uk',
   DEV_API_URL: 'users.dev.memba.co.uk',
   SHARED_EVENT_BUS_NAME: 'SharedEventBus',
-  DEV_TENANTS_API_URL: 'tenants.dev.mamba.co.uk',
-  TENANTS_API_URL: 'tenants.mamba.co.uk',
+  DEV_TENANTS_API_URL: 'https://tenants.dev.mamba.co.uk',
+  TENANTS_API_URL: 'https://tenants.mamba.co.uk',
   DEV_TENANTS_API_SECRET_NAME: 'TenantsApiSecret17D4018F-nKLmRF8VYKDR',
   TENANTS_API_SECRET_NAME: 'TenantsApiSecret17D4018F-h7NuQvhBk9mS',
 }
