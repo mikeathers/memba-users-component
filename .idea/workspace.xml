@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws/cognito/create-tenant-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-tenant-user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-tenant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-tenant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +155,7 @@
       <workItem from="1687842127150" duration="156000" />
       <workItem from="1689763940367" duration="11097000" />
       <workItem from="1689920507523" duration="1929000" />
-      <workItem from="1689954322562" duration="3728000" />
+      <workItem from="1689954322562" duration="4356000" />
     </task>
     <servers />
   </component>

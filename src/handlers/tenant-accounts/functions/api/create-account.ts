@@ -84,6 +84,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       tenantsApiUrl,
       tenantsApiSecretName,
     })
+    console.log('TENANT: ', tenant)
     item.authenticatedUserId = userResult?.UserSub ?? ''
     item.tenantId = tenant.id
 
