@@ -12,15 +12,19 @@ interface SecretResult {
   username: string
 }
 
-type CreateTenantResult = {
-  id: string
-  admins: string[]
-  apps: string[]
-}
-
 const httpClient = axios.create()
 
-export const createTenant = async (props: CheckIfTenantAdminExistsProps) => {
+interface CreateTenantResponse {
+  message: string
+  item: {
+    admins: string[]
+    apps: string[]
+    id: string
+  }
+}
+export const createTenant = async (
+  props: CheckIfTenantAdminExistsProps,
+): Promise<CreateTenantResponse | null> => {
   const {tenantsApiUrl, tenantAdminId, tenantsApiSecretName} = props
   const params = {
     SecretId: tenantsApiSecretName,
@@ -32,18 +36,19 @@ export const createTenant = async (props: CheckIfTenantAdminExistsProps) => {
   try {
     const parsedApiKey = JSON.parse(apiKey.SecretString || '') as SecretResult
 
-    const response = await httpClient.request<unknown, AxiosResponse<CreateTenantResult>>(
-      {
-        url: `${tenantsApiUrl}/create-tenant`,
-        data: {
-          admins: [tenantAdminId],
-        },
-        method: 'POST',
-        headers: {
-          ['x-api-key']: parsedApiKey.api_key,
-        },
+    const response = await httpClient.request<
+      unknown,
+      AxiosResponse<CreateTenantResponse>
+    >({
+      url: `${tenantsApiUrl}/create-tenant`,
+      data: {
+        admins: [tenantAdminId],
       },
-    )
+      method: 'POST',
+      headers: {
+        ['x-api-key']: parsedApiKey.api_key,
+      },
+    })
 
     console.log('CREATE TENANT RESULT:', response)
 

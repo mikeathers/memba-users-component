@@ -86,14 +86,14 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     })
     console.log('TENANT: ', tenant)
     item.authenticatedUserId = userResult?.UserSub ?? ''
-    item.tenantId = tenant.id
+    item.tenantId = tenant?.item.id ?? ''
 
-    const dbUserDetails = item as CreateAccountInDb
+    const {password, ...rest} = item
 
     await dbClient
       .put({
         TableName: tableName,
-        Item: dbUserDetails,
+        Item: {...rest},
       })
       .promise()
 
@@ -102,8 +102,6 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       username: item.emailAddress,
       userPoolId,
     })
-
-    const {password, ...rest} = item
 
     await publishCreateLogEvent({...rest}, 'TenantAccountEventLog')
 
