@@ -82,5 +82,7 @@ export const handleApiRequest = async (
     if (errorHasMessage(err)) result.body = err.message
     else result.body = 'Something went very wrong.'
   }
+
+  console.log('RESULT: ', result)
   return result
 }
