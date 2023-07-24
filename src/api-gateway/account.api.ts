@@ -190,10 +190,16 @@ export class AccountApi {
       .addResource('{id}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
-    const getTenantAccountByEmail = tenantsRoot.addResource('get-account-by-email')
-    getTenantAccountByEmail
+    const getTenantAccountByEmailUsingAPIKey =
+      tenantsRoot.addResource('get-account-by-email')
+    getTenantAccountByEmailUsingAPIKey
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), apiKeyMethodOptions)
+
+    const getTenantAccountByEmailUsingJWT = tenantsRoot.addResource('get-account')
+    getTenantAccountByEmailUsingJWT
+      .addResource('{emailAddress}')
+      .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
     tenantsRoot
       .addResource('update-account')
