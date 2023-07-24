@@ -1,4 +1,5 @@
 import {cognito} from './index'
+import {CognitoIdentityServiceProvider} from 'aws-sdk'
 
 interface CreateTenantUserProps {
   firstName: string
@@ -8,7 +9,9 @@ interface CreateTenantUserProps {
   password: string
 }
 
-export const createTenantUser = (props: CreateTenantUserProps) => {
+export const createTenantUser = (
+  props: CreateTenantUserProps,
+): Promise<CognitoIdentityServiceProvider.Types.SignUpResponse | null> => {
   try {
     const {firstName, lastName, password, emailAddress, userPoolClientId} = props
 
@@ -38,6 +41,6 @@ export const createTenantUser = (props: CreateTenantUserProps) => {
     return cognito.signUp(params).promise()
   } catch (err) {
     console.log('CREATE TENANT USER ERROR: ', err)
-    return null
+    return Promise.reject(null)
   }
 }

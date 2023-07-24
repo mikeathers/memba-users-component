@@ -98,13 +98,7 @@ const eventBridgeResult = {
 describe('Account handler', () => {
   beforeEach(() => {
     jest.resetAllMocks()
-    mockCreateTenant.mockResolvedValue({
-      statusText: '',
-      headers: {},
-      config: expect.anything(),
-      status: 200,
-      data: {id: '1234', admins: [], apps: []},
-    })
+    mockCreateTenant.mockResolvedValue({id: '1234', admins: [], apps: []})
     process.env.TABLE_NAME = 'Users-Dev'
   })
 

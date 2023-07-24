@@ -85,7 +85,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       tenantsApiSecretName,
     })
     item.authenticatedUserId = userResult?.UserSub ?? ''
-    item.tenantId = tenant.data.id
+    item.tenantId = tenant.id
 
     const dbUserDetails = item as CreateAccountInDb
 

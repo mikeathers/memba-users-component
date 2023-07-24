@@ -1,4 +1,4 @@
-import axios, {AxiosError, AxiosResponse} from 'axios'
+import axios, {AxiosResponse} from 'axios'
 import {SecretsManager} from 'aws-sdk'
 
 interface CheckIfTenantAdminExistsProps {
@@ -12,7 +12,7 @@ interface SecretResult {
   username: string
 }
 
-interface CreateTenantResult {
+type CreateTenantResult = {
   id: string
   admins: string[]
   apps: string[]
@@ -32,20 +32,22 @@ export const createTenant = async (props: CheckIfTenantAdminExistsProps) => {
   try {
     const parsedApiKey = JSON.parse(apiKey.SecretString || '') as SecretResult
 
-    const result = await httpClient.request<CreateTenantResult>({
-      url: `${tenantsApiUrl}/create-tenant`,
-      data: {
-        admins: [tenantAdminId],
+    const response = await httpClient.request<unknown, AxiosResponse<CreateTenantResult>>(
+      {
+        url: `${tenantsApiUrl}/create-tenant`,
+        data: {
+          admins: [tenantAdminId],
+        },
+        method: 'POST',
+        headers: {
+          ['x-api-key']: parsedApiKey.api_key,
+        },
       },
-      method: 'POST',
-      headers: {
-        ['x-api-key']: parsedApiKey.api_key,
-      },
-    })
+    )
 
-    console.log('CREATE TENANT RESULT:', result)
+    console.log('CREATE TENANT RESULT:', response)
 
-    return result
+    return response.data
   } catch (error) {
     console.log('CREATE TENANT ERROR: ', error)
     throw error
