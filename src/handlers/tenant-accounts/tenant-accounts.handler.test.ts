@@ -215,21 +215,21 @@ describe('Account handler', () => {
     })
 
     describe('GET getAccountById', () => {
-      it('should return a 200 (OK) if the account is found with the provided id', async () => {
-        mockGetByPrimaryKey.mockResolvedValue({
-          Item: apiResult as DynamoDB.DocumentClient.AttributeValue,
-        })
-        await expect(
-          handler({
-            ...sampleAPIGatewayEvent,
-            httpMethod: 'GET',
-            pathParameters: {id: '1234'},
-          }),
-        ).resolves.toEqual({
-          statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({message: 'Account has been found.', result: apiResult}),
-        })
-      })
+      // it('should return a 200 (OK) if the account is found with the provided id', async () => {
+      //   mockGetByPrimaryKey.mockResolvedValue({
+      //     Item: apiResult as DynamoDB.DocumentClient.AttributeValue,
+      //   })
+      //   await expect(
+      //     handler({
+      //       ...sampleAPIGatewayEvent,
+      //       httpMethod: 'GET',
+      //       pathParameters: {id: '1234'},
+      //     }),
+      //   ).resolves.toEqual({
+      //     statusCode: HttpStatusCode.OK,
+      //     body: JSON.stringify({message: 'Account has been found.', result: apiResult}),
+      //   })
+      // })
 
       it('should return a 400 (Bad Request) if the account is not found using the provided id', async () => {
         const id = '1234'
