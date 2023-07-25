@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api-gateway/account.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-gateway/account.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +35,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src/lambdas&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michaelatherton/Development/memba/memba-users-component/src/handlers/tenant-accounts/functions/api&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -48,11 +50,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api" />
       <recent name="$PROJECT_DIR$/src/lambdas" />
       <recent name="$PROJECT_DIR$/src/handlers/tenant-accounts" />
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/event-bridge" />
-      <recent name="$PROJECT_DIR$/src/" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/handlers/accounts/functions/api" />
@@ -180,7 +182,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/api-gateway/account.api.ts</url>
-          <line>104</line>
+          <line>103</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

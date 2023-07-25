@@ -195,6 +195,7 @@ export class AccountApi {
 
     const getTenantAccountByEmailUsingAPIKey =
       tenantsRoot.addResource('get-account-by-email')
+
     getTenantAccountByEmailUsingAPIKey
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), apiKeyMethodOptions)

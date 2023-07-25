@@ -1,6 +1,16 @@
 import {PromiseResult} from 'aws-sdk/lib/request'
 import {AWSError, DynamoDB} from 'aws-sdk'
 
+export type MembaUser = {
+  authenticatedUserId: string
+  emailAddress: string
+  firstName: string
+  id: string
+  isTenantAdmin: boolean
+  lastName: string
+  tenantId: string
+}
+
 export type CreateAccountRequest = {
   authenticatedUserId: string
   addressLineOne: string
