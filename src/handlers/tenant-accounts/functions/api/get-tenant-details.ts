@@ -37,7 +37,7 @@ export const getTenantDetails = async (
     const parsedApiKey = JSON.parse(apiKey.SecretString || '') as SecretResult
 
     const response = await httpClient.request<unknown, AxiosResponse<GetTenantResponse>>({
-      url: `${tenantsApiUrl}/get-tenant/${tenantId}`,
+      url: `${tenantsApiUrl}/get-tenant-by-id/${tenantId}`,
       method: 'GET',
       headers: {
         ['x-api-key']: parsedApiKey.api_key,
