@@ -1,6 +1,7 @@
 import {DynamoDB} from 'aws-sdk'
-import {HttpStatusCode, QueryResult} from '../../../../types'
+import {HttpStatusCode, MembaUser, QueryResult} from '../../../../types'
 import {queryBySecondaryKey} from '../../../../aws'
+import {getTenantDetails} from './get-tenant-details'
 
 interface GetAccountByIdProps {
   emailAddress: string
@@ -11,6 +12,8 @@ export const getAccountByEmail = async (
 ): Promise<QueryResult> => {
   const {emailAddress, dbClient} = props
   const tableName = process.env.TABLE_NAME ?? ''
+  const tenantsApiUrl = process.env.TENANTS_API_URL ?? ''
+  const tenantsApiSecretName = process.env.TENANTS_API_SECRET_NAME ?? ''
   const queryKey = 'emailAddress'
   const queryValue = emailAddress
 
@@ -21,11 +24,19 @@ export const getAccountByEmail = async (
     dbClient,
   })
 
+  console.log({queryResponse})
   if (queryResponse && queryResponse.length > 0) {
+    const tenant = await getTenantDetails({
+      tenantId: (queryResponse[0] as unknown as MembaUser).tenantId,
+      tenantsApiUrl,
+      tenantsApiSecretName,
+    })
+
+    console.log({tenant})
     return {
       body: {
         message: 'Account has been found.',
-        result: queryResponse[0],
+        result: {...queryResponse[0], tenant},
       },
       statusCode: HttpStatusCode.OK,
     }
