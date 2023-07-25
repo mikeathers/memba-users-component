@@ -16,7 +16,7 @@ const httpClient = axios.create()
 
 interface GetTenantResponse {
   message: string
-  item: {
+  result: {
     admins: string[]
     apps: string[]
     id: string

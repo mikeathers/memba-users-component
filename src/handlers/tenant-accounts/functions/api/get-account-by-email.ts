@@ -36,7 +36,7 @@ export const getAccountByEmail = async (
     return {
       body: {
         message: 'Account has been found.',
-        result: {...queryResponse[0], tenant: {...tenant?.item}},
+        result: {...queryResponse[0], tenant: {...tenant?.result}},
       },
       statusCode: HttpStatusCode.OK,
     }
