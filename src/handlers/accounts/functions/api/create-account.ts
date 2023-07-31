@@ -18,27 +18,22 @@ interface CreateAccountProps {
   //eslint-disable-next-line
   event: any
   dbClient: DynamoDB.DocumentClient
-  isTenantAdmin: boolean
 }
 
 export const cognito = new CognitoIdentityServiceProvider({region: CONFIG.REGION})
 
 export const createAccount = async (props: CreateAccountProps): Promise<QueryResult> => {
   //eslint-disable-next-line
-  const {event, dbClient, isTenantAdmin} = props
+  const {event, dbClient} = props
 
   const tableName = process.env.TABLE_NAME ?? ''
   const userPoolId = process.env.USER_POOL_ID ?? ''
   const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
-  const userGroupRoleArn = process.env.USER_GROUP_ROLE_ARN ?? ''
-  const tenantAdminGroupName = process.env.TENANT_ADMIN_GROUP_NAME ?? ''
 
   //eslint-disable-next-line
   if (!event.body) {
     return {
-      body: {
-        message: 'The event is missing a body and cannot be parsed.',
-      },
+      body: 'The event is missing a body and cannot be parsed.',
       statusCode: HttpStatusCode.INTERNAL_SERVER,
     }
   }
@@ -46,7 +41,6 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
-  item.isTenantAdmin = isTenantAdmin
   validateCreateAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
@@ -58,19 +52,9 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
   if (accountExists && accountExists?.length > 0) {
     return {
-      body: {
-        message: 'Account details already exist for the user.',
-      },
+      body: 'Account details already exist for the user.',
       statusCode: HttpStatusCode.BAD_REQUEST,
     }
-  }
-
-  if (isTenantAdmin) {
-    await createUserGroup({
-      userGroupRoleArn,
-      groupName: item.tenantName,
-      userPoolId,
-    })
   }
 
   try {
@@ -80,8 +64,6 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       password: item.password,
       emailAddress: item.emailAddress,
       userPoolClientId,
-      tenantId: item.tenantId,
-      isTenantAdmin,
     })
 
     item.authenticatedUserId = userResult?.UserSub ?? ''
@@ -95,12 +77,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       })
       .promise()
 
-    const tenantGroups = isTenantAdmin
-      ? [item.tenantName, tenantAdminGroupName]
-      : [item.tenantName]
-
     await addUserToGroup({
-      groups: tenantGroups,
+      groups: [item.appName],
       username: item.emailAddress,
       userPoolId,
     })
@@ -108,10 +86,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     await publishCreateLogEvent(item, 'AccountEventLog')
 
     return {
-      body: {
-        message: 'Account created successfully!',
-        result: item,
-      },
+      body: item,
       statusCode: HttpStatusCode.CREATED,
     }
   } catch (error) {
@@ -120,17 +95,14 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     await rollbackCreateAccount({
       userId: item.id,
       username: item.emailAddress,
-      groupName: item.tenantName,
+      groupName: item.appName,
       userPoolId,
       authenticatedUserId: item.authenticatedUserId,
       dbClient,
     })
 
     return {
-      body: {
-        message: 'The account failed to create.',
-        result: item,
-      },
+      body: 'The account failed to create.',
       statusCode: HttpStatusCode.INTERNAL_SERVER,
     }
   }

@@ -13,45 +13,23 @@ export type MembaUser = {
 
 export type CreateAccountRequest = {
   authenticatedUserId: string
-  addressLineOne: string
-  addressLineTwo: string
-  doorNumber: string
-  townCity: string
-  postCode: string
   firstName: string
   lastName: string
   emailAddress: string
   password: string
-  tenantName: string
   id: string
-  tenantUrl: string
-  tenantId: string
-  isTenantAdmin: boolean
+  appName: string
 }
 export type CreateAccountInDb = Omit<CreateAccountRequest, 'password'>
 
 export type UpdateAccountRequest = Pick<
   CreateAccountRequest,
-  | 'id'
-  | 'doorNumber'
-  | 'addressLineOne'
-  | 'addressLineTwo'
-  | 'townCity'
-  | 'postCode'
-  | 'lastName'
-  | 'firstName'
-  | 'emailAddress'
-  | 'tenantName'
+  'lastName' | 'firstName' | 'emailAddress' | 'appName' | 'id'
 >
 
 export type QueryResult = {
-  body: {
-    message?: string
-    result?:
-      | PromiseResult<DynamoDB.DocumentClient.PutItemOutput, AWSError>
-      | string
-      | DynamoDB.DocumentClient.AttributeMap
-  }
+  // eslint-disable-next-line
+  body: any
   statusCode: number
 }
 

@@ -16,18 +16,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
 
   if (event.body) {
     const updateAccountData = JSON.parse(event.body) as UpdateAccountRequest
-    const {
-      id,
-      doorNumber,
-      addressLineOne,
-      addressLineTwo,
-      townCity,
-      postCode,
-      firstName,
-      lastName,
-      emailAddress,
-      tenantName,
-    } = updateAccountData
+    const {id, firstName, lastName, emailAddress, appName} = updateAccountData
 
     const accountExists = await getByPrimaryKey({
       queryKey: 'id',
@@ -38,9 +27,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
 
     if (!accountExists.Item) {
       return {
-        body: {
-          message: `Account with Id: ${id} does not exist and could not be updated.`,
-        },
+        body: `Account with Id: ${id} does not exist and could not be updated.`,
         statusCode: HttpStatusCode.BAD_REQUEST,
       }
     }
@@ -49,18 +36,12 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
       TableName: tableName,
       Key: {id},
       UpdateExpression:
-        'SET addressLineOne = :addressLineOne, addressLineTwo = :addressLineTwo, doorNumber = :doorNumber, townCity = :townCity, postCode = :postCode,' +
-        ' lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, tenantName = :tenantName',
+        'SET lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, appName = :appName',
       ExpressionAttributeValues: {
-        ':doorNumber': doorNumber,
-        ':addressLineOne': addressLineOne,
-        ':addressLineTwo': addressLineTwo,
-        ':townCity': townCity,
-        ':postCode': postCode,
         ':lastName': lastName,
         ':firstName': firstName,
         ':emailAddress': emailAddress,
-        ':tenantName': tenantName,
+        ':appName': appName,
       },
       ReturnValues: 'ALL_NEW',
     }
@@ -79,9 +60,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
   }
 
   return {
-    body: {
-      message: 'Event has no body so account cannot be updated.',
-    },
+    body: 'Event has no body so account cannot be updated.',
     statusCode: HttpStatusCode.INTERNAL_SERVER,
   }
 }

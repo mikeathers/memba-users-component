@@ -35,20 +35,15 @@ export const getAccountById = async (
     console.log('TENANT: ', tenant)
     return {
       body: {
-        message: 'Account has been found.',
-        result: {
-          ...queryResponse.Item,
-          tenant,
-        },
+        ...queryResponse.Item,
+        tenant,
       },
       statusCode: HttpStatusCode.OK,
     }
   }
 
   return {
-    body: {
-      message: `Account with Id: ${id} does not exist.`,
-    },
+    body: `Account with Id: ${id} does not exist.`,
     statusCode: HttpStatusCode.BAD_REQUEST,
   }
 }

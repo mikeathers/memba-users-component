@@ -11,18 +11,18 @@ const eventBridge = new EventBridge()
 
 const updateIdToAccountId = (
   event:
-    | CreateAccountLogEvent
+    | Omit<CreateAccountLogEvent, 'password'>
     | UpdateAccountLogEvent
     | DeleteAccountLogEvent
     | CreateAccountEvent,
 ) => {
-  const accountId = event.id
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const {id, ...rest} = event
-  return {
-    ...rest,
-    accountId,
-  }
+  // const accountId = event.id
+  // // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const {id, ...rest} = event
+  // return {
+  //   ...rest,
+  //   accountId,
+  // }
 }
 
 export const publishCreateUserAccountEvent = async (

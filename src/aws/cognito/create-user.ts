@@ -1,4 +1,5 @@
 import {cognito} from './index'
+import {CognitoIdentityServiceProvider} from 'aws-sdk'
 
 interface CreateAdminUserProps {
   firstName: string
@@ -6,21 +7,13 @@ interface CreateAdminUserProps {
   userPoolClientId: string
   emailAddress: string
   password: string
-  tenantId: string
-  isTenantAdmin: boolean
 }
 
-export const createUser = (props: CreateAdminUserProps) => {
+export const createUser = (
+  props: CreateAdminUserProps,
+): Promise<CognitoIdentityServiceProvider.Types.SignUpResponse> | null => {
   try {
-    const {
-      firstName,
-      lastName,
-      password,
-      emailAddress,
-      userPoolClientId,
-      tenantId,
-      isTenantAdmin,
-    } = props
+    const {firstName, lastName, password, emailAddress, userPoolClientId} = props
 
     const params = {
       ClientId: userPoolClientId,
@@ -34,10 +27,6 @@ export const createUser = (props: CreateAdminUserProps) => {
         {
           Name: 'family_name',
           Value: lastName,
-        },
-        {
-          Name: 'custom:isTenantAdmin',
-          Value: String(isTenantAdmin),
         },
         {
           Name: 'email',

@@ -50,15 +50,6 @@ export const handleApiRequest = async (
           const response = await createAccount({
             event,
             dbClient,
-            isTenantAdmin: false,
-          })
-          result.body = JSON.stringify(response.body)
-          result.statusCode = response.statusCode
-        } else if (event.path.includes('create-tenant-admin-account')) {
-          const response = await createAccount({
-            event,
-            dbClient,
-            isTenantAdmin: true,
           })
           result.body = JSON.stringify(response.body)
           result.statusCode = response.statusCode

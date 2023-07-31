@@ -41,9 +41,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   if (!event.body) {
     return {
-      body: {
-        message: 'The event is missing a body and cannot be parsed.',
-      },
+      body: 'The event is missing a body and cannot be parsed.',
       statusCode: HttpStatusCode.INTERNAL_SERVER,
     }
   }
@@ -51,7 +49,6 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
-  item.isTenantAdmin = true
   validateCreateTenantAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
@@ -63,9 +60,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
   if (accountExists && accountExists?.length > 0) {
     return {
-      body: {
-        message: 'An account already exists with the details you have provided.',
-      },
+      body: 'An account already exists with the details you have provided.',
       statusCode: HttpStatusCode.BAD_REQUEST,
     }
   }
@@ -86,7 +81,6 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     })
     console.log('TENANT: ', tenant)
     item.authenticatedUserId = userResult?.UserSub ?? ''
-    item.tenantId = tenant?.item.id ?? ''
 
     const {password, ...rest} = item
 
@@ -106,10 +100,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     await publishCreateLogEvent({...rest}, 'TenantAccountEventLog')
 
     return {
-      body: {
-        message: 'Account created successfully!',
-        result: item,
-      },
+      body: item,
       statusCode: HttpStatusCode.CREATED,
     }
   } catch (error) {
@@ -125,10 +116,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     })
 
     return {
-      body: {
-        message: 'The account failed to create.',
-        result: item,
-      },
+      body: 'The account failed to create.',
       statusCode: HttpStatusCode.INTERNAL_SERVER,
     }
   }

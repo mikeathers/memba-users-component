@@ -34,18 +34,13 @@ export const getAccountByEmail = async (
 
     console.log({tenant})
     return {
-      body: {
-        message: 'Account has been found.',
-        result: {...queryResponse[0], tenant: {...tenant?.result}},
-      },
+      body: {...queryResponse[0], tenant: {...tenant?.result}},
       statusCode: HttpStatusCode.OK,
     }
   }
 
   return {
-    body: {
-      message: `Account with email: ${emailAddress} does not exist.`,
-    },
+    body: `Account with email: ${emailAddress} does not exist.`,
     statusCode: HttpStatusCode.BAD_REQUEST,
   }
 }
