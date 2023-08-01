@@ -34,7 +34,7 @@ export const getAccountByEmail = async (
 
     console.log({tenant})
     return {
-      body: {...queryResponse[0].Item, tenant: {...tenant}},
+      body: {...queryResponse[0], tenant: {...tenant}},
       statusCode: HttpStatusCode.OK,
     }
   }

@@ -6,17 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/delete-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/update-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/update-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/event-bridge/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/event-bridge/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validators/tenant-account.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/tenant-account.validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +60,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler.Handler.PUT updateAccount.should return a 200 (OK) if account is updated">
+  <component name="RunManager" selected="Jest.Account handler (1)">
     <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -143,8 +132,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Account handler.Handler.PUT updateAccount.should return a 200 (OK) if account is updated" />
         <item itemvalue="Jest.Account handler (1)" />
+        <item itemvalue="Jest.Account handler.Handler.PUT updateAccount.should return a 200 (OK) if account is updated" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountById.should return a 200 (OK) if the account is found with the provided id" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountById.should return a 400 (Bad Request) if the account is not found using the provided id" />
         <item itemvalue="Jest.Account handler" />
@@ -175,7 +164,7 @@
       <workItem from="1689954322562" duration="5089000" />
       <workItem from="1690265408917" duration="12287000" />
       <workItem from="1690549518556" duration="9124000" />
-      <workItem from="1690820705585" duration="5975000" />
+      <workItem from="1690820705585" duration="7959000" />
     </task>
     <servers />
   </component>
