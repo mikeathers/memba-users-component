@@ -26,15 +26,16 @@ export const getAccountByEmail = async (
 
   console.log({queryResponse})
   if (queryResponse && queryResponse.length > 0) {
+    const result = queryResponse[0] as unknown as MembaUser
     const tenant = await getTenantDetails({
-      tenantId: (queryResponse[0] as unknown as MembaUser).tenantId,
+      tenantId: result.tenantId,
       tenantsApiUrl,
       tenantsApiSecretName,
     })
 
     console.log({tenant})
     return {
-      body: {...queryResponse[0], tenant: {...tenant}},
+      body: {...result, tenant},
       statusCode: HttpStatusCode.OK,
     }
   }

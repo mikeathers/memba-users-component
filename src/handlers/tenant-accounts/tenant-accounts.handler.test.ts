@@ -283,7 +283,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({...apiResult, tenant}),
+          body: JSON.stringify({Item: {...apiResult}, tenant}),
         })
       })
 
