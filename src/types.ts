@@ -11,6 +11,22 @@ export type MembaUser = {
   tenantId: string
 }
 
+export type Membership = {
+  name: string
+  price: number
+}
+
+export type MembaApp = {
+  name: string
+  memberships: Membership[]
+  id: string
+  url: string
+  tier: string
+  type: 'gym-management'
+  tenantId: string
+  groupName: string
+}
+
 export type CreateAccountRequest = {
   authenticatedUserId: string
   firstName: string
@@ -20,6 +36,17 @@ export type CreateAccountRequest = {
   id: string
   appName: string
 }
+
+export type CreateTenantAccountRequest = {
+  authenticatedUserId: string
+  firstName: string
+  lastName: string
+  emailAddress: string
+  password: string
+  id: string
+  isTenantAdmin?: boolean
+}
+
 export type CreateAccountInDb = Omit<CreateAccountRequest, 'password'>
 
 export type UpdateAccountRequest = Pick<

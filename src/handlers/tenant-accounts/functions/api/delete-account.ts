@@ -22,9 +22,7 @@ export const deleteAccount = async (props: DeleteAccountProps): Promise<QueryRes
 
   if (accountExists && accountExists.length < 1) {
     return {
-      body: {
-        message: `Account ${id} was not deleted because it does not exist.`,
-      },
+      body: `Account ${id} was not deleted because it does not exist.`,
       statusCode: HttpStatusCode.BAD_REQUEST,
     }
   }
@@ -47,25 +45,18 @@ export const deleteAccount = async (props: DeleteAccountProps): Promise<QueryRes
       )
 
       return {
-        body: {
-          message: `Account ${id} has been deleted successfully.`,
-          result,
-        },
+        body: `Account ${id} has been deleted successfully.`,
         statusCode: HttpStatusCode.OK,
       }
     } else {
       return {
-        body: {
-          message: `Account ${id} could not be deleted at this time.`,
-        },
+        body: `Account ${id} could not be deleted at this time.`,
         statusCode: HttpStatusCode.BAD_REQUEST,
       }
     }
   } else {
     return {
-      body: {
-        message: `An Account Id was missing from the request..`,
-      },
+      body: `An Account Id was missing from the request..`,
       statusCode: HttpStatusCode.BAD_REQUEST,
     }
   }

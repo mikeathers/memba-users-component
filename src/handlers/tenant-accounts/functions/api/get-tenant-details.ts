@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from 'axios'
 import {SecretsManager} from 'aws-sdk'
+import {MembaApp} from '../../../../types'
 
 interface GetTenantDetailsProps {
   tenantId: string
@@ -15,12 +16,9 @@ interface SecretResult {
 const httpClient = axios.create()
 
 interface GetTenantResponse {
-  message: string
-  result: {
-    admins: string[]
-    apps: string[]
-    id: string
-  }
+  admins: string[]
+  apps: MembaApp[]
+  id: string
 }
 export const getTenantDetails = async (
   props: GetTenantDetailsProps,

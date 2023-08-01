@@ -51,7 +51,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
     await publishUpdateLogEvent(updateAccountData, 'TenantAccountEventLog')
 
     return {
-      body: result,
+      body: {...result},
       statusCode: HttpStatusCode.OK,
     }
   }

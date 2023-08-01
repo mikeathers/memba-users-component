@@ -4,6 +4,7 @@ import {v4 as uuidv4} from 'uuid'
 import {
   CreateAccountInDb,
   CreateAccountRequest,
+  CreateTenantAccountRequest,
   HttpStatusCode,
   QueryResult,
 } from '../../../../types'
@@ -47,8 +48,10 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   }
 
   //eslint-disable-next-line
-  const item = JSON.parse(event.body) as CreateAccountRequest
+  const item = JSON.parse(event.body) as CreateTenantAccountRequest
   item.id = uuidv4()
+  item.isTenantAdmin = true
+
   validateCreateTenantAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({

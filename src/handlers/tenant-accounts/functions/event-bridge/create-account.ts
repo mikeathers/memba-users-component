@@ -1,8 +1,8 @@
 import {DynamoDB} from 'aws-sdk'
 import {v4 as uuidv4} from 'uuid'
 
-import {CreateAccountRequest} from '../../../../types'
-import {validateCreateAccountRequest} from '../../../../validators'
+import {CreateTenantAccountRequest} from '../../../../types'
+import {validateCreateTenantAccountRequest} from '../../../../validators'
 import {queryBySecondaryKey} from '../../../../aws'
 import {publishCreateLogEvent} from '../../../../events'
 
@@ -12,7 +12,7 @@ interface CreateAccountProps {
   dbClient: DynamoDB.DocumentClient
 }
 
-type CreateAccountRequestEventBridge = Omit<CreateAccountRequest, 'id'>
+type CreateTenantAccountRequestEventBridge = Omit<CreateTenantAccountRequest, 'id'>
 
 export const createAccount = async (props: CreateAccountProps) => {
   //eslint-disable-next-line
@@ -29,14 +29,14 @@ export const createAccount = async (props: CreateAccountProps) => {
   }
 
   //eslint-disable-next-line
-  const paredItem = event.detail as CreateAccountRequestEventBridge
+  const paredItem = event.detail as CreateTenantAccountRequestEventBridge
 
-  const item: CreateAccountRequest = {
+  const item: CreateTenantAccountRequest = {
     ...paredItem,
     id: uuidv4(),
   }
 
-  validateCreateAccountRequest(item)
+  validateCreateTenantAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
     queryKey: 'authenticatedUserId',

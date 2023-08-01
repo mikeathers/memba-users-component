@@ -55,36 +55,23 @@ jest.doMock('aws-sdk', () => ({
 import {handler} from './accounts.handler'
 
 const body = {
-  townCity: 'Liverpool',
   lastName: 'Bloggs',
   firstName: 'Joe',
-  addressLineOne: 'First Street',
   emailAddress: 'joebloggs@gmail.com',
-  postCode: 'L1 2HK',
-  doorNumber: '12',
-  tenantName: 'test-tenant',
-  tenantUrl: 'test-tenant.memba.co.uk',
-  tenantId: '1234',
+  appName: 'Test App',
 }
 const apiResult = {
   ...body,
   id: mockUuidResult,
-  isTenantAdmin: false,
   authenticatedUserId: '12345',
 }
 
 const detail = {
   authenticatedUserId: '4148b339-319c-426f-8e1f-a9eabe018cc6',
-  addressLineOne: 'Test Street',
-  addressLineTwo: 'Buckingham',
-  doorNumber: '1',
-  townCity: 'Birmingham',
-  postCode: 'BL1 6HY',
   firstName: 'Mike',
   lastName: 'Atherton',
   emailAddress: 'test@test.com',
-  tenantName: 'test-tenant',
-  tenantUrl: 'test-tenant.memba.co.uk',
+  appName: 'Test App',
 }
 
 const eventBridgeResult = {
@@ -344,10 +331,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.CREATED,
-          body: JSON.stringify({
-            message: 'Account created successfully!',
-            result: apiResult,
-          }),
+          body: JSON.stringify(apiResult),
         })
       })
 
@@ -395,9 +379,8 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account details already exist for the user.`,
-          }),
+          body: JSON.stringify('Account details already exist for the user.'),
+          headers: undefined,
         })
       })
 
@@ -413,9 +396,8 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.INTERNAL_SERVER,
-          body: JSON.stringify({
-            message: `The event is missing a body and cannot be parsed.`,
-          }),
+          body: JSON.stringify('The event is missing a body and cannot be parsed.'),
+          headers: undefined,
         })
       })
     })
@@ -425,7 +407,6 @@ describe('Account handler', () => {
         ...body,
         id: '8f9e060d-3028-411a-9a00-d3b00966638b',
         authenticatedUserId: '12345',
-        isTenantAdmin: false,
       }
 
       it('should return a 200 (OK) if account is updated', async () => {
@@ -493,9 +474,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account with Id: ${accountToUpdate.id} does not exist and could not be updated.`,
-          }),
+          body: JSON.stringify(
+            `Account with Id: ${accountToUpdate.id} does not exist and could not be updated.`,
+          ),
         })
       })
 
@@ -511,9 +492,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.INTERNAL_SERVER,
-          body: JSON.stringify({
-            message: `Event has no body so account cannot be updated.`,
-          }),
+          body: JSON.stringify(`Event has no body so account cannot be updated.`),
         })
       })
     })

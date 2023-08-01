@@ -1,7 +1,9 @@
-import {CreateAccountRequest} from '../types'
+import {CreateTenantAccountRequest} from '../types'
 import {MissingFieldError} from './account.validator'
 
-export const validateCreateTenantAccountRequest = (arg: CreateAccountRequest): void => {
+export const validateCreateTenantAccountRequest = (
+  arg: CreateTenantAccountRequest,
+): void => {
   if (!arg.firstName) {
     throw new MissingFieldError('Value for firstName required!')
   }

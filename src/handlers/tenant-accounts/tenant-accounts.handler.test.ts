@@ -1,6 +1,6 @@
 import {DocumentClient} from 'aws-sdk/lib/dynamodb/document_client'
 import {v4 as uuidv4} from 'uuid'
-import {HttpStatusCode} from '../../types'
+import {HttpStatusCode, MembaApp} from '../../types'
 import {getByPrimaryKey} from '../../aws'
 import {mocked} from 'jest-mock'
 import AWS, {DynamoDB} from 'aws-sdk'
@@ -15,6 +15,7 @@ import {
 } from '../../events'
 import {addCorsHeader} from '../../utils'
 import {createTenant} from './functions/api/create-tenant'
+import {getTenantDetails} from './functions/api/get-tenant-details'
 
 import AttributeValue = DocumentClient.AttributeValue
 
@@ -24,6 +25,7 @@ jest.mock('../../events')
 jest.mock('../../utils')
 jest.mock('../../aws/cognito')
 jest.mock('./functions/api/create-tenant')
+jest.mock('./functions/api/get-tenant-details')
 
 const mockAddCorsHeader = mocked(addCorsHeader)
 const mockGetByPrimaryKey = mocked(getByPrimaryKey)
@@ -39,6 +41,16 @@ const mockedDelete = jest.fn()
 const mockUuidResult = '8f9e060d-3028-411a-9a00-d3b00966638b'
 const mockCreateTenantUser = mocked(createTenantUser)
 const mockCreateTenant = mocked(createTenant)
+const mockGetTenantDetails = mocked(getTenantDetails)
+
+const exampleResponse = {
+  ARN: 'x',
+  Name: 'test_creds',
+  VersionId: 'x',
+  SecretString: '{"api_key":"test","username":"password"}',
+  VersionStages: ['x'],
+  CreatedDate: 'x',
+}
 
 jest.doMock('aws-sdk', () => ({
   EventBridge: jest.fn(),
@@ -53,21 +65,36 @@ jest.doMock('aws-sdk', () => ({
       }
     }),
   },
+  SecretsManager: function () {
+    return {
+      getSecretValue: function ({SecretId}: {SecretId: string}) {
+        {
+          if (SecretId === 'testSecretName') {
+            return {
+              promise: function () {
+                return exampleResponse
+              },
+            }
+          } else {
+            throw new Error('mock error')
+          }
+        }
+      },
+    }
+  },
 }))
 
 import {handler} from './tenant-accounts.handler'
 
+const tenant = {
+  admins: [''],
+  apps: [expect.anything()],
+  id: '',
+}
 const body = {
-  townCity: 'Liverpool',
   lastName: 'Bloggs',
   firstName: 'Joe',
-  addressLineOne: 'First Street',
   emailAddress: 'joebloggs@gmail.com',
-  postCode: 'L1 2HK',
-  doorNumber: '12',
-  tenantName: 'test-tenant',
-  tenantUrl: 'test-tenant.memba.co.uk',
-  tenantId: '1234',
 }
 const apiResult = {
   ...body,
@@ -78,16 +105,9 @@ const apiResult = {
 
 const detail = {
   authenticatedUserId: '4148b339-319c-426f-8e1f-a9eabe018cc6',
-  addressLineOne: 'Test Street',
-  addressLineTwo: 'Buckingham',
-  doorNumber: '1',
-  townCity: 'Birmingham',
-  postCode: 'BL1 6HY',
   firstName: 'Mike',
   lastName: 'Atherton',
   emailAddress: 'test@test.com',
-  tenantName: 'test-tenant',
-  tenantUrl: 'test-tenant.memba.co.uk',
 }
 
 const eventBridgeResult = {
@@ -98,11 +118,16 @@ const eventBridgeResult = {
 describe('Account handler', () => {
   beforeEach(() => {
     jest.resetAllMocks()
+    process.env.TABLE_NAME = 'Users-Dev'
     mockCreateTenant.mockResolvedValue({
       message: '',
       item: {id: '1234', admins: [], apps: []},
     })
-    process.env.TABLE_NAME = 'Users-Dev'
+    mockGetTenantDetails.mockResolvedValue({
+      admins: [''],
+      apps: [expect.anything()],
+      id: '',
+    })
   })
 
   describe('Handler', () => {
@@ -215,21 +240,21 @@ describe('Account handler', () => {
     })
 
     describe('GET getAccountById', () => {
-      // it('should return a 200 (OK) if the account is found with the provided id', async () => {
-      //   mockGetByPrimaryKey.mockResolvedValue({
-      //     Item: apiResult as DynamoDB.DocumentClient.AttributeValue,
-      //   })
-      //   await expect(
-      //     handler({
-      //       ...sampleAPIGatewayEvent,
-      //       httpMethod: 'GET',
-      //       pathParameters: {id: '1234'},
-      //     }),
-      //   ).resolves.toEqual({
-      //     statusCode: HttpStatusCode.OK,
-      //     body: JSON.stringify({message: 'Account has been found.', result: apiResult}),
-      //   })
-      // })
+      it('should return a 200 (OK) if the account is found with the provided id', async () => {
+        mockGetByPrimaryKey.mockResolvedValue({
+          Item: apiResult as DynamoDB.DocumentClient.AttributeValue,
+        })
+        await expect(
+          handler({
+            ...sampleAPIGatewayEvent,
+            httpMethod: 'GET',
+            pathParameters: {id: '1234'},
+          }),
+        ).resolves.toEqual({
+          statusCode: HttpStatusCode.OK,
+          body: JSON.stringify({...apiResult, tenant}),
+        })
+      })
 
       it('should return a 400 (Bad Request) if the account is not found using the provided id', async () => {
         const id = '1234'
@@ -242,28 +267,25 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({message: `Account with Id: ${id} does not exist.`}),
+          body: JSON.stringify(`Account with Id: ${id} does not exist.`),
         })
       })
     })
 
     describe('GET getAccountByEmail', () => {
-      // it('should return a 200 (OK) if the account is found with the provided email address', async () => {
-      //   mockQueryBySecondaryKey.mockResolvedValue([{Item: apiResult} as AttributeValue])
-      //   await expect(
-      //     handler({
-      //       ...sampleAPIGatewayEvent,
-      //       httpMethod: 'GET',
-      //       pathParameters: {emailAddress: 'joe@gmail.com'},
-      //     }),
-      //   ).resolves.toEqual({
-      //     statusCode: HttpStatusCode.OK,
-      //     body: JSON.stringify({
-      //       message: 'Account has been found.',
-      //       result: {Item: {...apiResult}},
-      //     }),
-      //   })
-      // })
+      it('should return a 200 (OK) if the account is found with the provided email address', async () => {
+        mockQueryBySecondaryKey.mockResolvedValue([{Item: apiResult} as AttributeValue])
+        await expect(
+          handler({
+            ...sampleAPIGatewayEvent,
+            httpMethod: 'GET',
+            pathParameters: {emailAddress: 'joe@gmail.com'},
+          }),
+        ).resolves.toEqual({
+          statusCode: HttpStatusCode.OK,
+          body: JSON.stringify({...apiResult, tenant}),
+        })
+      })
 
       it('should return a 400 (Bad Request) if the account is not found using the provided email address', async () => {
         const emailAddress = 'joe@gmail.com'
@@ -276,9 +298,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account with email: ${emailAddress} does not exist.`,
-          }),
+          body: JSON.stringify(`Account with email: ${emailAddress} does not exist.`),
         })
       })
     })
@@ -301,7 +321,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({result: [apiResult, apiResult, apiResult]}),
+          body: JSON.stringify([apiResult, apiResult, apiResult]),
         })
       })
 
@@ -321,7 +341,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({result: []}),
+          body: JSON.stringify([]),
         })
       })
     })
@@ -351,10 +371,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.CREATED,
-          body: JSON.stringify({
-            message: 'Account created successfully!',
-            result: apiResult,
-          }),
+          body: JSON.stringify(apiResult),
         })
       })
 
@@ -402,9 +419,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `An account already exists with the details you have provided.`,
-          }),
+          body: JSON.stringify(
+            `An account already exists with the details you have provided.`,
+          ),
         })
       })
 
@@ -420,9 +437,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.INTERNAL_SERVER,
-          body: JSON.stringify({
-            message: `The event is missing a body and cannot be parsed.`,
-          }),
+          body: JSON.stringify(`The event is missing a body and cannot be parsed.`),
         })
       })
     })
@@ -456,10 +471,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({
-            message: 'Account updated successfully.',
-            result: {Item: apiResult},
-          }),
+          body: JSON.stringify({Item: apiResult}),
         })
       })
 
@@ -500,9 +512,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account with Id: ${accountToUpdate.id} does not exist and could not be updated.`,
-          }),
+          body: JSON.stringify(
+            `Account with Id: ${accountToUpdate.id} does not exist and could not be updated.`,
+          ),
         })
       })
 
@@ -518,9 +530,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.INTERNAL_SERVER,
-          body: JSON.stringify({
-            message: `Event has no body so account cannot be updated.`,
-          }),
+          body: JSON.stringify(`Event has no body so account cannot be updated.`),
         })
       })
     })
@@ -550,10 +560,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({
-            message: `Account ${accountToDelete.id} has been deleted successfully.`,
-            result: {Attributes: apiResult},
-          }),
+          body: JSON.stringify(
+            `Account ${accountToDelete.id} has been deleted successfully.`,
+          ),
         })
       })
 
@@ -602,9 +611,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account ${accountToDelete.id} could not be deleted at this time.`,
-          }),
+          body: JSON.stringify(
+            `Account ${accountToDelete.id} could not be deleted at this time.`,
+          ),
         })
       })
 
@@ -619,9 +628,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `An Account Id was missing from the request..`,
-          }),
+          body: JSON.stringify(`An Account Id was missing from the request..`),
         })
       })
 
@@ -636,9 +643,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account ${accountToDelete.id} was not deleted because it does not exist.`,
-          }),
+          body: JSON.stringify(
+            `Account ${accountToDelete.id} was not deleted because it does not exist.`,
+          ),
         })
       })
     })

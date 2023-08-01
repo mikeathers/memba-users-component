@@ -1,8 +1,12 @@
-import {CreateAccountRequest, UpdateAccountRequest} from '../types'
+import {
+  CreateAccountRequest,
+  CreateTenantAccountRequest,
+  UpdateAccountRequest,
+} from '../types'
 
 export type CreateAccountEvent = CreateAccountRequest
 
-export type CreateAccountLogEvent = CreateAccountRequest
+export type CreateAccountLogEvent = CreateAccountRequest | CreateTenantAccountRequest
 export type UpdateAccountLogEvent = UpdateAccountRequest
 export type DeleteAccountLogEvent = {
   id: string
