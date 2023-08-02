@@ -155,8 +155,13 @@ export class AccountApi {
       .addResource('{id}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
-    const getAccountByEmail = usersRoot.addResource('get-account-by-email')
+    const getAccountByEmail = usersRoot.addResource('get-account')
     getAccountByEmail
+      .addResource('{emailAddress}')
+      .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+
+    const getAccountByEmailUsingApiKey = usersRoot.addResource('get-account-by-email')
+    getAccountByEmailUsingApiKey
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
