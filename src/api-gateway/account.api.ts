@@ -92,6 +92,7 @@ export class AccountApi {
         domainName,
         certificate,
       },
+      defaultCorsPreflightOptions: optionsWithCors,
     })
 
     accountsLambda.grantInvoke(new ServicePrincipal('apigateway.amazonaws.com'))
@@ -136,9 +137,6 @@ export class AccountApi {
     const root = api.root
     const usersRoot = root.addResource('users')
     const tenantsRoot = root.addResource('tenants')
-
-    usersRoot.addCorsPreflight(optionsWithCors)
-    tenantsRoot.addCorsPreflight(optionsWithCors)
 
     usersRoot
       .addResource('get-all-accounts')
