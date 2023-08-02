@@ -34,7 +34,9 @@ export type CreateAccountRequest = {
   emailAddress: string
   password: string
   id: string
-  appName: string
+  groupName: string
+  isTenantAdmin?: boolean
+  tenantId?: string
 }
 
 export type CreateTenantAccountRequest = {
@@ -51,7 +53,7 @@ export type CreateAccountInDb = Omit<CreateAccountRequest, 'password'>
 
 export type UpdateAccountRequest = Pick<
   CreateAccountRequest,
-  'lastName' | 'firstName' | 'emailAddress' | 'appName' | 'id'
+  'lastName' | 'firstName' | 'emailAddress' | 'groupName' | 'id'
 >
 
 export type QueryResult = {

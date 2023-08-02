@@ -16,7 +16,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
 
   if (event.body) {
     const updateAccountData = JSON.parse(event.body) as UpdateAccountRequest
-    const {id, firstName, lastName, emailAddress, appName} = updateAccountData
+    const {id, firstName, lastName, emailAddress, groupName} = updateAccountData
 
     const accountExists = await getByPrimaryKey({
       queryKey: 'id',
@@ -36,12 +36,12 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
       TableName: tableName,
       Key: {id},
       UpdateExpression:
-        'SET lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, appName = :appName',
+        'SET lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, groupName = :groupName',
       ExpressionAttributeValues: {
         ':lastName': lastName,
         ':firstName': firstName,
         ':emailAddress': emailAddress,
-        ':appName': appName,
+        ':groupName': groupName,
       },
       ReturnValues: 'ALL_NEW',
     }

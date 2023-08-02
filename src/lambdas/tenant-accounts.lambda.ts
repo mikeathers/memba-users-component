@@ -95,6 +95,7 @@ export class TenantAccountsLambda {
           'cognito-idp:SignUp',
           'cognito-idp:AdminAddUserToGroup',
           'cognito-idp:AdminDeleteUser',
+          'cognito-idp:DeleteGroup',
         ],
         resources: [userPool.userPoolArn],
         effect: Effect.ALLOW,

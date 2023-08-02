@@ -16,7 +16,7 @@ export const validateCreateAccountRequest = (arg: CreateAccountRequest): void =>
   if (!arg.id) {
     throw new MissingFieldError('Value for id required!')
   }
-  if (!arg.appName) {
+  if (!arg.groupName) {
     throw new MissingFieldError('Value for appName required!')
   }
 }

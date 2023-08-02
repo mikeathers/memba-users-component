@@ -41,6 +41,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   //eslint-disable-next-line
   const item = JSON.parse(event.body) as CreateAccountRequest
   item.id = uuidv4()
+  item.isTenantAdmin = false
+  item.tenantId = ''
   validateCreateAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
@@ -68,7 +70,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
     item.authenticatedUserId = userResult?.UserSub ?? ''
 
-    const dbUserDetails = item as CreateAccountInDb
+    const dbUserDetails = item as Omit<CreateAccountInDb, 'password'>
 
     await dbClient
       .put({
@@ -78,7 +80,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       .promise()
 
     await addUserToGroup({
-      groups: [item.appName],
+      groups: [item.groupName],
       username: item.emailAddress,
       userPoolId,
     })
@@ -95,7 +97,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     await rollbackCreateAccount({
       userId: item.id,
       username: item.emailAddress,
-      groupName: item.appName,
+      groupName: item.groupName,
       userPoolId,
       authenticatedUserId: item.authenticatedUserId,
       dbClient,
