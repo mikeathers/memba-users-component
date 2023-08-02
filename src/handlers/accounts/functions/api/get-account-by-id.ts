@@ -23,18 +23,13 @@ export const getAccountById = async (
 
   if (queryResponse && queryResponse.Item) {
     return {
-      body: {
-        message: 'Account has been found.',
-        result: queryResponse.Item,
-      },
+      body: queryResponse.Item,
       statusCode: HttpStatusCode.OK,
     }
   }
 
   return {
-    body: {
-      message: `Account with Id: ${id} does not exist.`,
-    },
+    body: `Account with Id: ${id} does not exist.`,
     statusCode: HttpStatusCode.BAD_REQUEST,
   }
 }

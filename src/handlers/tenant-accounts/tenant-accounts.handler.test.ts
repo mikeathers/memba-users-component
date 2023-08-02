@@ -471,7 +471,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({Item: apiResult}),
+          body: JSON.stringify(apiResult),
         })
       })
 

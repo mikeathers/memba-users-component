@@ -23,18 +23,13 @@ export const getAccountByEmail = async (
 
   if (queryResponse && queryResponse.length > 0) {
     return {
-      body: {
-        message: 'Account has been found.',
-        result: queryResponse[0],
-      },
+      body: queryResponse[0],
       statusCode: HttpStatusCode.OK,
     }
   }
 
   return {
-    body: {
-      message: `Account with email: ${emailAddress} does not exist.`,
-    },
+    body: `Account with email: ${emailAddress} does not exist.`,
     statusCode: HttpStatusCode.BAD_REQUEST,
   }
 }

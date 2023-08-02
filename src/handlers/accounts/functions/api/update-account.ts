@@ -51,10 +51,7 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
     await publishUpdateLogEvent(updateAccountData, 'AccountEventLog')
 
     return {
-      body: {
-        message: 'Account updated successfully.',
-        result,
-      },
+      body: result,
       statusCode: HttpStatusCode.OK,
     }
   }

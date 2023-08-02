@@ -16,9 +16,7 @@ export const getAllAccounts = async (
     .promise()
 
   return {
-    body: {
-      result: queryResponse.Items,
-    },
+    body: queryResponse.Items,
     statusCode: HttpStatusCode.OK,
   }
 }

@@ -209,7 +209,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({message: 'Account has been found.', result: apiResult}),
+          body: JSON.stringify(apiResult),
         })
       })
 
@@ -224,7 +224,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({message: `Account with Id: ${id} does not exist.`}),
+          body: JSON.stringify(`Account with Id: ${id} does not exist.`),
         })
       })
     })
@@ -240,10 +240,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({
-            message: 'Account has been found.',
-            result: {Item: {...apiResult}},
-          }),
+          body: JSON.stringify({Item: {...apiResult}}),
         })
       })
 
@@ -258,9 +255,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account with email: ${emailAddress} does not exist.`,
-          }),
+          body: JSON.stringify(`Account with email: ${emailAddress} does not exist.`),
         })
       })
     })
@@ -283,7 +278,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({result: [apiResult, apiResult, apiResult]}),
+          body: JSON.stringify([apiResult, apiResult, apiResult]),
         })
       })
 
@@ -303,7 +298,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({result: []}),
+          body: JSON.stringify([]),
         })
       })
     })
@@ -432,10 +427,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({
-            message: 'Account updated successfully.',
-            result: {Item: apiResult},
-          }),
+          body: JSON.stringify({Item: apiResult}),
         })
       })
 
@@ -524,10 +516,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({
-            message: `Account ${accountToDelete.id} has been deleted successfully.`,
-            result: {Attributes: apiResult},
-          }),
+          body: JSON.stringify(
+            `Account ${accountToDelete.id} has been deleted successfully.`,
+          ),
         })
       })
 
@@ -576,9 +567,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account ${accountToDelete.id} could not be deleted at this time.`,
-          }),
+          body: JSON.stringify(
+            `Account ${accountToDelete.id} could not be deleted at this time.`,
+          ),
         })
       })
 
@@ -593,9 +584,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `An Account Id was missing from the request..`,
-          }),
+          body: JSON.stringify(`An Account Id was missing from the request..`),
         })
       })
 
@@ -610,9 +599,9 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
-          body: JSON.stringify({
-            message: `Account ${accountToDelete.id} was not deleted because it does not exist.`,
-          }),
+          body: JSON.stringify(
+            `Account ${accountToDelete.id} was not deleted because it does not exist.`,
+          ),
         })
       })
     })
