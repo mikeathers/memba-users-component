@@ -58,7 +58,9 @@ const body = {
   lastName: 'Bloggs',
   firstName: 'Joe',
   emailAddress: 'joebloggs@gmail.com',
-  appName: 'Test App',
+  groupName: 'Test Group',
+  isTenantAdmin: false,
+  tenantId: '',
 }
 const apiResult = {
   ...body,
@@ -71,7 +73,7 @@ const detail = {
   firstName: 'Mike',
   lastName: 'Atherton',
   emailAddress: 'test@test.com',
-  appName: 'Test App',
+  groupName: 'Test Group',
 }
 
 const eventBridgeResult = {
