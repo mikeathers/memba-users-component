@@ -146,7 +146,7 @@ export class AccountApi {
 
     usersRoot
       .addResource('create-account')
-      .addMethod('POST', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+      .addMethod('POST', new LambdaIntegration(accountsLambda))
 
     usersRoot
       .addResource('create-tenant-admin-account')

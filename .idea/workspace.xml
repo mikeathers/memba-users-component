@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,15 +73,18 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Account handler" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
+    <configuration name="Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
+        <test-name value="Handler" />
+        <test-name value="GET getAccountByEmail" />
+        <test-name value="should return a 200 (OK) if the account is found with the provided email address" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -132,10 +136,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Jest.Account handler (1)" />
+        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" />
         <item itemvalue="Jest.Account handler.Handler.PUT updateAccount.should return a 200 (OK) if account is updated" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountById.should return a 200 (OK) if the account is found with the provided id" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountById.should return a 400 (Bad Request) if the account is not found using the provided id" />
-        <item itemvalue="Jest.Account handler" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +167,8 @@
       <workItem from="1689954322562" duration="5089000" />
       <workItem from="1690265408917" duration="12287000" />
       <workItem from="1690549518556" duration="9124000" />
-      <workItem from="1690820705585" duration="8387000" />
+      <workItem from="1690820705585" duration="9222000" />
+      <workItem from="1690958154918" duration="1962000" />
     </task>
     <servers />
   </component>
@@ -197,7 +202,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts</url>
           <line>28</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
