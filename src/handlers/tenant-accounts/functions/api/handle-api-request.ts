@@ -28,11 +28,15 @@ export const handleApiRequest = async (
 
     switch (event.httpMethod) {
       case 'GET':
-        if (event.pathParameters?.id) {
+        if (event.path.includes('get-account-by-id') && event.pathParameters?.id) {
           const response = await getAccountById({id: event.pathParameters.id, dbClient})
           result.body = JSON.stringify(response.body)
           result.statusCode = response.statusCode
-        } else if (event.pathParameters?.emailAddress) {
+        } else if (
+          (event.path.includes('get-account') ||
+            event.path.includes('get-account-by-email')) &&
+          event.pathParameters?.emailAddress
+        ) {
           const response = await getAccountByEmail({
             emailAddress: event.pathParameters.emailAddress,
             dbClient,
