@@ -22,6 +22,6 @@ export const addUserToGroup = (props: AddAdminToUserGroupProps) => {
     return Promise.all(results)
   } catch (error) {
     console.log('ADD USER TO GROUP ERROR: ', error)
-    return null
+    throw error
   }
 }

@@ -37,6 +37,6 @@ export const createUser = (
     return cognito.signUp(params).promise()
   } catch (err) {
     console.log('CREATE USER ERROR: ', err)
-    return null
+    throw err
   }
 }

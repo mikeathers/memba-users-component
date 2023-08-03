@@ -110,8 +110,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       username: item.emailAddress,
       groupName: item.groupName,
       userPoolId,
-      authenticatedUserId: item.authenticatedUserId,
       dbClient,
+      tableName,
     })
 
     return {

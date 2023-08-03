@@ -2,6 +2,7 @@ import {deleteUser} from '../../../../aws/cognito'
 import {DynamoDB} from 'aws-sdk'
 import {deleteUserGroup} from '../../../../aws/cognito/delete-user-group'
 import {deleteAccount} from './delete-account'
+import {deleteItem} from '../../../../aws'
 
 interface RollbackCreateAccountProps {
   username: string
@@ -9,24 +10,24 @@ interface RollbackCreateAccountProps {
   userPoolId: string
   groupName: string
   dbClient: DynamoDB.DocumentClient
-  authenticatedUserId: string
+  tableName: string
 }
 export const rollbackCreateAccount = async (props: RollbackCreateAccountProps) => {
-  const {username, userPoolId, authenticatedUserId, dbClient, groupName, userId} = props
+  const {username, userPoolId, dbClient, groupName, userId, tableName} = props
 
   await deleteUser({
     username,
     userPoolId,
   })
 
+  await deleteItem({
+    dbClient,
+    id: userId,
+    tableName,
+  })
+
   await deleteUserGroup({
     groupName,
     userPoolId,
-  })
-
-  await deleteAccount({
-    dbClient,
-    authenticatedUserId,
-    id: userId,
   })
 }

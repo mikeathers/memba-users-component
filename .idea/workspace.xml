@@ -5,6 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/delete-item.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/dynamodb/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/dynamodb/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/rollback-create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/rollback-create-account.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +173,7 @@
       <workItem from="1690549518556" duration="9124000" />
       <workItem from="1690820705585" duration="9222000" />
       <workItem from="1690958154918" duration="4661000" />
-      <workItem from="1690999111063" duration="12452000" />
+      <workItem from="1690999111063" duration="13846000" />
     </task>
     <servers />
   </component>
