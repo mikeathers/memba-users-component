@@ -16,6 +16,9 @@ import {
 import {addCorsHeader} from '../../utils'
 import {createTenant} from './functions/api/create-tenant'
 import {getTenantDetails} from './functions/api/get-tenant-details'
+import {getAllAccounts} from './functions/api/get-all-accounts'
+import {getAccountByEmail} from './functions/api/get-account-by-email'
+import {getAccountById} from './functions/api/get-account-by-id'
 
 import AttributeValue = DocumentClient.AttributeValue
 
@@ -217,6 +220,13 @@ describe('Account handler', () => {
 
     describe('API Event', () => {
       it('should call addCorsHeader', async () => {
+        mockedScan.mockImplementation(() => {
+          return {
+            promise: () => ({
+              Items: [apiResult, apiResult, apiResult],
+            }),
+          }
+        })
         await handler({
           ...sampleAPIGatewayEvent,
           httpMethod: 'GET',
@@ -249,6 +259,7 @@ describe('Account handler', () => {
             ...sampleAPIGatewayEvent,
             httpMethod: 'GET',
             pathParameters: {id: '1234'},
+            path: 'get-account-by-id',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
@@ -264,6 +275,7 @@ describe('Account handler', () => {
             ...sampleAPIGatewayEvent,
             httpMethod: 'GET',
             pathParameters: {id},
+            path: 'get-account-by-id',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
@@ -280,6 +292,7 @@ describe('Account handler', () => {
             ...sampleAPIGatewayEvent,
             httpMethod: 'GET',
             pathParameters: {emailAddress: 'joe@gmail.com'},
+            path: 'get-account-by-email',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
@@ -295,6 +308,7 @@ describe('Account handler', () => {
             ...sampleAPIGatewayEvent,
             httpMethod: 'GET',
             pathParameters: {emailAddress},
+            path: 'get-account-by-email',
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.BAD_REQUEST,
