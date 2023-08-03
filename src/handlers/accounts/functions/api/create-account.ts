@@ -5,6 +5,7 @@ import {
   CreateAccountInDb,
   CreateAccountRequest,
   HttpStatusCode,
+  MembaUser,
   QueryResult,
 } from '../../../../types'
 import {validateCreateAccountRequest} from '../../../../validators'
@@ -13,6 +14,7 @@ import {publishCreateLogEvent} from '../../../../events'
 import CONFIG from '../../../../config'
 import {addUserToGroup, createUser, createUserGroup} from '../../../../aws/cognito'
 import {rollbackCreateAccount} from './rollback-create-account'
+import {addUserToApp} from './add-user-to-app'
 
 interface CreateAccountProps {
   //eslint-disable-next-line
@@ -29,6 +31,8 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   const tableName = process.env.TABLE_NAME ?? ''
   const userPoolId = process.env.USER_POOL_ID ?? ''
   const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
+  const tenantsApiUrl = process.env.TENANTS_API_URL ?? ''
+  const tenantsApiSecretName = process.env.TENANTS_API_SECRET_NAME ?? ''
 
   //eslint-disable-next-line
   if (!event.body) {
@@ -70,12 +74,12 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
     item.authenticatedUserId = userResult?.UserSub ?? ''
 
-    const dbUserDetails = item as Omit<CreateAccountInDb, 'password'>
+    const {password, ...rest} = item
 
     await dbClient
       .put({
         TableName: tableName,
-        Item: dbUserDetails,
+        Item: {...rest},
       })
       .promise()
 
@@ -83,6 +87,13 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       groups: [item.groupName],
       username: item.emailAddress,
       userPoolId,
+    })
+
+    await addUserToApp({
+      tenantsApiUrl,
+      tenantsApiSecretName,
+      user: {...rest} as MembaUser,
+      appId: item.appId,
     })
 
     await publishCreateLogEvent(item, 'AccountEventLog')

@@ -37,6 +37,7 @@ export type CreateAccountRequest = {
   groupName: string
   isTenantAdmin?: boolean
   tenantId?: string
+  appId: string
 }
 
 export type CreateTenantAccountRequest = {

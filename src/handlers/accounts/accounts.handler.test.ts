@@ -61,6 +61,7 @@ const body = {
   groupName: 'Test Group',
   isTenantAdmin: false,
   tenantId: '',
+  appId: '1234-1234',
 }
 const apiResult = {
   ...body,

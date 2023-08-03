@@ -15,6 +15,7 @@ import {Effect, PolicyStatement} from 'aws-cdk-lib/aws-iam'
 
 interface AccountLambdaProps {
   scope: Construct
+  stage: string
   table: ITable
   deadLetterQueue: Queue
   eventBus: IEventBus
@@ -41,9 +42,17 @@ export class AccountsLambda {
       userPoolClientId,
       userGroupRoleArn,
       tenantAdminGroupName,
+      stage,
     } = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}AccountsLambda`
+
+    const tenantsApiUrl =
+      stage === 'prod' ? CONFIG.TENANTS_API_URL : CONFIG.DEV_TENANTS_API_URL
+    const tenantsApiSecret =
+      stage === 'prod'
+        ? CONFIG.TENANTS_API_SECRET_NAME
+        : CONFIG.DEV_TENANTS_API_SECRET_NAME
 
     const lambdaProps: NodejsFunctionProps = {
       functionName: lambdaName,
@@ -55,6 +64,8 @@ export class AccountsLambda {
         USER_POOL_CLIENT_ID: userPoolClientId,
         USER_GROUP_ROLE_ARN: userGroupRoleArn,
         TENANT_ADMIN_GROUP_NAME: tenantAdminGroupName,
+        TENANTS_API_URL: tenantsApiUrl,
+        TENANTS_API_SECRET_NAME: tenantsApiSecret,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,

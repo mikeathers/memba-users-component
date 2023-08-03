@@ -60,6 +60,7 @@ export class MembaUsersComponentStack extends Stack {
 
     const {accountsLambda} = new AccountsLambda({
       scope: this,
+      stage,
       eventBus,
       deadLetterQueue,
       table: databases.accountsTable,
