@@ -123,8 +123,9 @@ describe('Account handler', () => {
     jest.resetAllMocks()
     process.env.TABLE_NAME = 'Users-Dev'
     mockCreateTenant.mockResolvedValue({
-      message: '',
-      item: {id: '1234', admins: [], apps: []},
+      id: '1234',
+      admins: [],
+      apps: [],
     })
     mockGetTenantDetails.mockResolvedValue({
       admins: [''],

@@ -90,7 +90,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
     await dbClient
       .put({
         TableName: tableName,
-        Item: {...rest},
+        Item: {...rest, tenantId: tenant?.id},
       })
       .promise()
 

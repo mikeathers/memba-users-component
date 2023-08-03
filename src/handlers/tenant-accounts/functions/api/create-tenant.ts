@@ -15,12 +15,9 @@ interface SecretResult {
 const httpClient = axios.create()
 
 interface CreateTenantResponse {
-  message: string
-  item: {
-    admins: string[]
-    apps: string[]
-    id: string
-  }
+  admins: string[]
+  apps: string[]
+  id: string
 }
 export const createTenant = async (
   props: CheckIfTenantAdminExistsProps,
