@@ -120,6 +120,14 @@ export class AccountsLambda {
       }),
     )
 
+    accountLambda.addToRolePolicy(
+      new PolicyStatement({
+        actions: ['secretsmanager:GetSecretValue'],
+        resources: ['*'],
+        effect: Effect.ALLOW,
+      }),
+    )
+
     createUserRule.addTarget(new LambdaFunction(accountLambda))
 
     table.grantReadWriteData(accountLambda)
