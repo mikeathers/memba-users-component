@@ -14,6 +14,7 @@ import {
   publishDeleteLogEvent,
 } from '../../events'
 import {addCorsHeader} from '../../utils'
+import {addUserToApp} from './functions/api/add-user-to-app'
 
 import AttributeValue = DocumentClient.AttributeValue
 
@@ -22,6 +23,7 @@ jest.mock('uuid')
 jest.mock('../../events')
 jest.mock('../../utils')
 jest.mock('../../aws/cognito')
+jest.mock('./functions/api/add-user-to-app')
 
 const mockAddCorsHeader = mocked(addCorsHeader)
 const mockGetByPrimaryKey = mocked(getByPrimaryKey)
@@ -36,6 +38,7 @@ const mockedUpdate = jest.fn()
 const mockedDelete = jest.fn()
 const mockUuidResult = '8f9e060d-3028-411a-9a00-d3b00966638b'
 const mockCreateUser = mocked(createUser)
+const mockAddUserToApp = mocked(addUserToApp)
 
 jest.doMock('aws-sdk', () => ({
   EventBridge: jest.fn(),
