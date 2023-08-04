@@ -7,7 +7,7 @@ interface IsTenantAdminProps {
   dbClient: DynamoDB.DocumentClient
 }
 
-export const isAdmin = async (props: IsTenantAdminProps) => {
+export const adminCheck = async (props: IsTenantAdminProps) => {
   const {emailAddress, dbClient} = props
   const tableName = process.env.TABLE_NAME ?? ''
 

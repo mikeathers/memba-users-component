@@ -208,7 +208,7 @@ export class AccountApi {
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
-    const isAdmin = tenantsRoot.addResource('is-admin')
+    const isAdmin = tenantsRoot.addResource('admin-check')
     isAdmin
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda))
