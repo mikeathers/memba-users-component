@@ -39,7 +39,7 @@ export const createTenantUser = (
           Value: emailAddress,
         },
         {
-          Name: 'tenantId',
+          Name: 'custom:tenantId',
           Value: tenantId,
         },
       ],
