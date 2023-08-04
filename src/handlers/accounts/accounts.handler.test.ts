@@ -235,7 +235,7 @@ describe('Account handler', () => {
 
     describe('GET getAccountByEmail', () => {
       it('should return a 200 (OK) if the account is found with the provided email address', async () => {
-        mockQueryBySecondaryKey.mockResolvedValue([{Item: apiResult} as AttributeValue])
+        mockQueryBySecondaryKey.mockResolvedValue([apiResult as AttributeValue])
         await expect(
           handler({
             ...sampleAPIGatewayEvent,
@@ -244,7 +244,7 @@ describe('Account handler', () => {
           }),
         ).resolves.toEqual({
           statusCode: HttpStatusCode.OK,
-          body: JSON.stringify({Item: {...apiResult}}),
+          body: JSON.stringify(apiResult),
         })
       })
 

@@ -1,15 +1,16 @@
 import {DynamoDB} from 'aws-sdk'
-import {HttpStatusCode, QueryResult} from '../../../../types'
+import {HttpStatusCode, MembaUser, QueryResult} from '../../../../types'
 import {queryBySecondaryKey} from '../../../../aws'
 
 interface GetAccountByIdProps {
   emailAddress: string
   dbClient: DynamoDB.DocumentClient
+  authenticatedUserId: string
 }
 export const getAccountByEmail = async (
   props: GetAccountByIdProps,
 ): Promise<QueryResult> => {
-  const {emailAddress, dbClient} = props
+  const {emailAddress, dbClient, authenticatedUserId} = props
   const tableName = process.env.TABLE_NAME ?? ''
   const queryKey = 'emailAddress'
   const queryValue = emailAddress
@@ -22,8 +23,17 @@ export const getAccountByEmail = async (
   })
 
   if (queryResponse && queryResponse.length > 0) {
+    const result = queryResponse[0] as unknown as MembaUser
+
+    if (result.authenticatedUserId !== authenticatedUserId) {
+      return {
+        body: `Unauthorized access`,
+        statusCode: HttpStatusCode.FORBIDDEN,
+      }
+    }
+
     return {
-      body: queryResponse[0],
+      body: result,
       statusCode: HttpStatusCode.OK,
     }
   }

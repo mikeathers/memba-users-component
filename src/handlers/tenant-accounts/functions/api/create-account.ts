@@ -69,19 +69,21 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   }
 
   try {
+    const tenant = await createTenant({
+      tenantAdminId: item.id,
+      tenantsApiUrl,
+      tenantsApiSecretName,
+    })
+
     const userResult = await createTenantUser({
       firstName: item.firstName,
       lastName: item.lastName,
       password: item.password,
       emailAddress: item.emailAddress,
       userPoolClientId,
+      tenantId: tenant?.id || '',
     })
 
-    const tenant = await createTenant({
-      tenantAdminId: item.id,
-      tenantsApiUrl,
-      tenantsApiSecretName,
-    })
     console.log('TENANT: ', tenant)
     item.authenticatedUserId = userResult?.UserSub ?? ''
 

@@ -6,11 +6,12 @@ import {getTenantDetails} from './get-tenant-details'
 interface GetAccountByIdProps {
   emailAddress: string
   dbClient: DynamoDB.DocumentClient
+  authenticatedUserId: string
 }
 export const getAccountByEmail = async (
   props: GetAccountByIdProps,
 ): Promise<QueryResult> => {
-  const {emailAddress, dbClient} = props
+  const {emailAddress, dbClient, authenticatedUserId} = props
   const tableName = process.env.TABLE_NAME ?? ''
   const tenantsApiUrl = process.env.TENANTS_API_URL ?? ''
   const tenantsApiSecretName = process.env.TENANTS_API_SECRET_NAME ?? ''
@@ -25,8 +26,17 @@ export const getAccountByEmail = async (
   })
 
   console.log({queryResponse})
+
   if (queryResponse && queryResponse.length > 0) {
     const result = queryResponse[0] as unknown as MembaUser
+
+    if (result.authenticatedUserId !== authenticatedUserId) {
+      return {
+        body: `Unauthorized access`,
+        statusCode: HttpStatusCode.FORBIDDEN,
+      }
+    }
+
     const tenant = await getTenantDetails({
       tenantId: result.tenantId,
       tenantsApiUrl,

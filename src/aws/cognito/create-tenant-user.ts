@@ -7,13 +7,15 @@ interface CreateTenantUserProps {
   userPoolClientId: string
   emailAddress: string
   password: string
+  tenantId: string
 }
 
 export const createTenantUser = (
   props: CreateTenantUserProps,
 ): Promise<CognitoIdentityServiceProvider.Types.SignUpResponse | null> => {
   try {
-    const {firstName, lastName, password, emailAddress, userPoolClientId} = props
+    const {firstName, lastName, password, emailAddress, userPoolClientId, tenantId} =
+      props
 
     const params = {
       ClientId: userPoolClientId,
@@ -35,6 +37,10 @@ export const createTenantUser = (
         {
           Name: 'email',
           Value: emailAddress,
+        },
+        {
+          Name: 'tenantId',
+          Value: tenantId,
         },
       ],
     }

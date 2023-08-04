@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/aws/dynamodb/delete-item.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/add-user-to-group.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws/dynamodb/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/dynamodb/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/delete-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/rollback-create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/rollback-create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/cognito/create-tenant-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-tenant-user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-account-by-email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-account-by-email.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-account-by-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/get-account-by-id.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/handle-api-request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/handle-api-request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/handle-api-request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +69,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler (1)">
+  <component name="RunManager" selected="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address">
     <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -92,6 +94,20 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="Account handler.Handler.GET getAccountByEmail" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
+      <test-names>
+        <test-name value="Account handler" />
+        <test-name value="Handler" />
+        <test-name value="GET getAccountByEmail" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -104,21 +120,6 @@
         <test-name value="Handler" />
         <test-name value="GET getAccountByEmail" />
         <test-name value="should return a 200 (OK) if the account is found with the provided email address" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Account handler.Handler.GET getAccountById.should return a 200 (OK) if the account is found with the provided id" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
-      <test-names>
-        <test-name value="Account handler" />
-        <test-name value="Handler" />
-        <test-name value="GET getAccountById" />
-        <test-name value="should return a 200 (OK) if the account is found with the provided id" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -139,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail" />
+        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" />
         <item itemvalue="Jest.Account handler (1)" />
         <item itemvalue="Jest.Account handler" />
-        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" />
         <item itemvalue="Jest.Account handler.Handler.PUT updateAccount.should return a 200 (OK) if account is updated" />
-        <item itemvalue="Jest.Account handler.Handler.GET getAccountById.should return a 200 (OK) if the account is found with the provided id" />
       </list>
     </recent_temporary>
   </component>
@@ -173,7 +174,7 @@
       <workItem from="1690549518556" duration="9124000" />
       <workItem from="1690820705585" duration="9222000" />
       <workItem from="1690958154918" duration="4661000" />
-      <workItem from="1690999111063" duration="13846000" />
+      <workItem from="1690999111063" duration="18035000" />
     </task>
     <servers />
   </component>
@@ -201,18 +202,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts</url>
-          <line>79</line>
+          <line>71</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-id.ts</url>
-          <line>28</line>
+          <line>29</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts</url>
           <line>87</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts</url>
+          <line>29</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
