@@ -63,6 +63,7 @@ const body = {
   emailAddress: 'joebloggs@gmail.com',
   groupName: 'Test Group',
   isTenantAdmin: false,
+  isMembaAdmin: false,
   tenantId: '',
   appId: '1234-1234',
 }

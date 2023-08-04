@@ -208,6 +208,11 @@ export class AccountApi {
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
+    const isAdmin = tenantsRoot.addResource('is-admin')
+    isAdmin
+      .addResource('{emailAddress}')
+      .addMethod('GET', new LambdaIntegration(tenantAccountsLambda))
+
     tenantsRoot
       .addResource('update-account')
       .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)

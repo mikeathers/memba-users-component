@@ -9,6 +9,7 @@ import {createAccount} from './create-account'
 import {updateAccount} from './update-account'
 import {deleteAccount} from './delete-account'
 import {getAccountByEmail} from './get-account-by-email'
+import {isAdmin} from './is-admin'
 
 export const handleApiRequest = async (
   event: APIGatewayProxyEvent,
@@ -45,6 +46,16 @@ export const handleApiRequest = async (
             emailAddress: event.pathParameters.emailAddress,
             dbClient,
             authenticatedUserId,
+          })
+          result.body = JSON.stringify(response.body)
+          result.statusCode = response.statusCode
+        } else if (
+          event.path.includes('is-admin') &&
+          event.pathParameters?.emailAddress
+        ) {
+          const response = await isAdmin({
+            emailAddress: event.pathParameters.emailAddress,
+            dbClient,
           })
           result.body = JSON.stringify(response.body)
           result.statusCode = response.statusCode

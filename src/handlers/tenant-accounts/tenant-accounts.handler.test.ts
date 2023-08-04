@@ -103,6 +103,7 @@ const apiResult = {
   ...body,
   id: mockUuidResult,
   isTenantAdmin: true,
+  isMembaAdmin: false,
   authenticatedUserId: '12345',
 }
 
@@ -463,6 +464,7 @@ describe('Account handler', () => {
         id: '8f9e060d-3028-411a-9a00-d3b00966638b',
         authenticatedUserId: '12345',
         isTenantAdmin: true,
+        isMembaAdmin: false,
       }
 
       it('should return a 200 (OK) if account is updated', async () => {

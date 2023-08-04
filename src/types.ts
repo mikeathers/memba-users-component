@@ -7,6 +7,7 @@ export type MembaUser = {
   firstName: string
   id: string
   isTenantAdmin: boolean
+  isMembaAdmin: boolean
   lastName: string
   tenantId: string
 }
@@ -36,6 +37,7 @@ export type CreateAccountRequest = {
   id: string
   groupName: string
   isTenantAdmin?: boolean
+  isMembaAdmin?: boolean
   tenantId?: string
   appId: string
 }
@@ -48,6 +50,7 @@ export type CreateTenantAccountRequest = {
   password: string
   id: string
   isTenantAdmin?: boolean
+  isMembaAdmin?: boolean
 }
 
 export type CreateAccountInDb = Omit<CreateAccountRequest, 'password'>

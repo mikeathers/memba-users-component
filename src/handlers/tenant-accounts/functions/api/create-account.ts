@@ -51,6 +51,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   const item = JSON.parse(event.body) as CreateTenantAccountRequest
   item.id = uuidv4()
   item.isTenantAdmin = true
+  item.isMembaAdmin = false
 
   validateCreateTenantAccountRequest(item)
 
