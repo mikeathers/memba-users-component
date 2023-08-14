@@ -165,7 +165,8 @@
       <workItem from="1690549518556" duration="9124000" />
       <workItem from="1690820705585" duration="9222000" />
       <workItem from="1690958154918" duration="4661000" />
-      <workItem from="1690999111063" duration="21317000" />
+      <workItem from="1690999111063" duration="22096000" />
+      <workItem from="1692000369414" duration="358000" />
     </task>
     <servers />
   </component>
@@ -209,7 +210,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts</url>
           <line>29</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>

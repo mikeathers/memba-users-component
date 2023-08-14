@@ -26,11 +26,15 @@ export type Event = {
   }
 }
 
-export function handler(event: Event, _context: Context, callback: Callback): void {
+// @ts-ignore
+export function handler(event, _context: Context, callback: Callback): void {
+  console.log('CUSTOM MESSAGE EVENT: ', event)
+
+  const parsedEvent = event as Event
   const {
     triggerSource,
     request: {codeParameter, userAttributes, usernameParameter},
-  } = event
+  } = parsedEvent
 
   const customMessage = new CustomMessage({
     userAttributes,
@@ -42,17 +46,17 @@ export function handler(event: Event, _context: Context, callback: Callback): vo
     triggerSource === 'CustomMessage_SignUp' &&
     userAttributes['cognito:user_status'] === 'UNCONFIRMED'
   ) {
-    event.response = customMessage.sendCodePostSignUp()
+    parsedEvent.response = customMessage.sendCodePostSignUp()
   } else if (triggerSource === 'CustomMessage_ForgotPassword') {
-    event.response = customMessage.sendCodeForgotPassword()
+    parsedEvent.response = customMessage.sendCodeForgotPassword()
   } else if (triggerSource === 'CustomMessage_UpdateUserAttribute') {
-    event.response = customMessage.sendCodeVerifyNewEmail()
+    parsedEvent.response = customMessage.sendCodeVerifyNewEmail()
   } else if (triggerSource === 'CustomMessage_AdminCreateUser') {
-    event.response = customMessage.sendTemporaryPassword()
+    parsedEvent.response = customMessage.sendTemporaryPassword()
   } else if (triggerSource === 'CustomMessage_ResendCode') {
-    event.response = customMessage.resendConfirmationCode()
+    parsedEvent.response = customMessage.resendConfirmationCode()
   }
 
   // Return to Amazon Cognito
-  callback(null, event)
+  callback(null, parsedEvent)
 }
