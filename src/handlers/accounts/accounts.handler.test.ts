@@ -64,6 +64,7 @@ const body = {
   groupName: 'Test Group',
   isTenantAdmin: false,
   isMembaAdmin: false,
+  signUpRedirectUrl: 'https://test.com',
   tenantId: '',
   appId: '1234-1234',
 }
@@ -79,6 +80,7 @@ const detail = {
   lastName: 'Atherton',
   emailAddress: 'test@test.com',
   groupName: 'Test Group',
+  signUpRedirectUrl: 'https://test.com',
 }
 
 const eventBridgeResult = {
