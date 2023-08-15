@@ -48,6 +48,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   item.isTenantAdmin = false
   item.isMembaAdmin = false
   item.tenantId = ''
+
   validateCreateAccountRequest(item)
 
   const accountExists = await queryBySecondaryKey({
@@ -76,12 +77,12 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
 
     item.authenticatedUserId = userResult?.UserSub ?? ''
 
-    const {password, ...rest} = item
+    const {password, membership, ...rest} = item
 
     await dbClient
       .put({
         TableName: tableName,
-        Item: {...rest},
+        Item: {memberships: [membership], ...rest},
       })
       .promise()
 

@@ -28,6 +28,14 @@ export type MembaApp = {
   groupName: string
 }
 
+export type UserMembership = {
+  name: string
+  id: string
+  url: string
+  tier: string
+  type: 'gym-management'
+}
+
 export type CreateAccountRequest = {
   authenticatedUserId: string
   firstName: string
@@ -41,6 +49,7 @@ export type CreateAccountRequest = {
   tenantId?: string
   appId: string
   signUpRedirectUrl: string
+  membership: UserMembership
 }
 
 export type CreateTenantAccountRequest = {
