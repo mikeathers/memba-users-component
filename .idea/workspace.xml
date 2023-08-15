@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +170,7 @@
       <workItem from="1690820705585" duration="9222000" />
       <workItem from="1690958154918" duration="4661000" />
       <workItem from="1690999111063" duration="22096000" />
-      <workItem from="1692000369414" duration="358000" />
+      <workItem from="1692000369414" duration="2360000" />
     </task>
     <servers />
   </component>

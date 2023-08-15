@@ -18,6 +18,10 @@ export type CustomMessageProps = {
     // eslint-disable-next-line camelcase
     family_name: string
     email: string
+    'custom:isTenantAdmin': boolean
+    'custom:isMembaAdmin': boolean
+    'custom:tenantId': string
+    'custom:signUpRedirectUrl': string
   }
   usernameParameter: string
 }
@@ -38,6 +42,10 @@ class CustomMessage {
     // eslint-disable-next-line camelcase
     family_name: string
     email: string
+    'custom:isTenantAdmin': boolean
+    'custom:isMembaAdmin': boolean
+    'custom:tenantId': string
+    'custom:signUpRedirectUrl': string
   }
 
   private readonly codeParameter: string
@@ -49,11 +57,11 @@ class CustomMessage {
     this.usernameParameter = props.usernameParameter
 
     this.FRONTEND_LINKS = {
-      SEND_CODE_POST_SIGN_UP: `${this.FRONTEND_BASE_URL}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      SEND_CODE_POST_SIGN_UP: `${this.userAttributes['custom:signUpRedirectUrl']}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
       SEND_CODE_FORGOT_PASSWORD: `${this.FRONTEND_BASE_URL}/reset-password?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
       SEND_CODE_VERIFY_NEW_EMAIL: `${this.FRONTEND_BASE_URL}/verify-new-email?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
       SEND_TEMPORARY_PASSWORD: `${this.FRONTEND_BASE_URL}/login-with-temp-credentials`,
-      RESEND_CONFIRMATION_CODE: `${this.FRONTEND_BASE_URL}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      RESEND_CONFIRMATION_CODE: `${this.userAttributes['custom:signUpRedirectUrl']}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
     }
   }
 

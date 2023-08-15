@@ -17,6 +17,10 @@ export type Event = {
       // eslint-disable-next-line camelcase
       family_name: string
       email: string
+      'custom:isTenantAdmin': boolean
+      'custom:isMembaAdmin': boolean
+      'custom:tenantId': string
+      'custom:signUpRedirectUrl': string
     }
     usernameParameter: string
   }
@@ -27,14 +31,12 @@ export type Event = {
 }
 
 // @ts-ignore
-export function handler(event, _context: Context, callback: Callback): void {
+export function handler(event: Event, _context: Context, callback: Callback): void {
   console.log('CUSTOM MESSAGE EVENT: ', event)
-
-  const parsedEvent = event as Event
   const {
     triggerSource,
     request: {codeParameter, userAttributes, usernameParameter},
-  } = parsedEvent
+  } = event
 
   const customMessage = new CustomMessage({
     userAttributes,
@@ -46,17 +48,17 @@ export function handler(event, _context: Context, callback: Callback): void {
     triggerSource === 'CustomMessage_SignUp' &&
     userAttributes['cognito:user_status'] === 'UNCONFIRMED'
   ) {
-    parsedEvent.response = customMessage.sendCodePostSignUp()
+    event.response = customMessage.sendCodePostSignUp()
   } else if (triggerSource === 'CustomMessage_ForgotPassword') {
-    parsedEvent.response = customMessage.sendCodeForgotPassword()
+    event.response = customMessage.sendCodeForgotPassword()
   } else if (triggerSource === 'CustomMessage_UpdateUserAttribute') {
-    parsedEvent.response = customMessage.sendCodeVerifyNewEmail()
+    event.response = customMessage.sendCodeVerifyNewEmail()
   } else if (triggerSource === 'CustomMessage_AdminCreateUser') {
-    parsedEvent.response = customMessage.sendTemporaryPassword()
+    event.response = customMessage.sendTemporaryPassword()
   } else if (triggerSource === 'CustomMessage_ResendCode') {
-    parsedEvent.response = customMessage.resendConfirmationCode()
+    event.response = customMessage.resendConfirmationCode()
   }
 
   // Return to Amazon Cognito
-  callback(null, parsedEvent)
+  callback(null, event)
 }

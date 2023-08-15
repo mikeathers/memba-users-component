@@ -176,6 +176,7 @@ export class UserPoolConstruct {
         isMembaAdmin: new BooleanAttribute({mutable: true}),
         isTenantAdmin: new BooleanAttribute({mutable: true}),
         tenantId: new StringAttribute({mutable: true}),
+        signUpRedirectUrl: new StringAttribute({mutable: true}),
       },
       passwordPolicy: {
         minLength: 6,

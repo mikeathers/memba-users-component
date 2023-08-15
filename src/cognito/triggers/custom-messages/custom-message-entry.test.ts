@@ -13,6 +13,7 @@ const mockContext = {} as Context
 const codeParam = '1000'
 const giveName = 'Joe'
 const email = 'joe@gmail.com'
+const signUpRedirectUrl = 'https://test.co.uk'
 
 const defaultEvent: Event = {
   triggerSource: '',
@@ -25,6 +26,10 @@ const defaultEvent: Event = {
       // eslint-disable-next-line camelcase
       family_name: '',
       email,
+      'custom:isTenantAdmin': false,
+      'custom:isMembaAdmin': false,
+      'custom:tenantId': '1234',
+      'custom:signUpRedirectUrl': signUpRedirectUrl,
     },
     usernameParameter: email,
   },
@@ -55,7 +60,7 @@ describe('Custom Message Entry', () => {
     handler(event, mockContext, mockCallBack)
 
     const expectedResult = completeSignup(
-      `${CONFIG.FRONTEND_BASE_URL_DEV}/complete-sign-up?code=${codeParam}&emailAddress=${email}`,
+      `${signUpRedirectUrl}/complete-sign-up?code=${codeParam}&emailAddress=${email}`,
     )
 
     const expectedEvent: Event = {
