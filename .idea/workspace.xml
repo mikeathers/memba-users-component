@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +62,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Custom Message Entry">
+  <component name="RunManager" selected="Jest.Custom Message Entry.should invoke callback with correct event for email confirmation">
     <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -81,20 +84,6 @@
       <test-file value="$PROJECT_DIR$/src/handlers/accounts/accounts.handler.test.ts" />
       <test-names>
         <test-name value="Account handler" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Account handler.Handler.GET getAccountByEmail" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
-      <test-names>
-        <test-name value="Account handler" />
-        <test-name value="Handler" />
-        <test-name value="GET getAccountByEmail" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -125,13 +114,26 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="Custom Message Entry.should invoke callback with correct event for email confirmation" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" />
+      <test-names>
+        <test-name value="Custom Message Entry" />
+        <test-name value="should invoke callback with correct event for email confirmation" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Custom Message Entry.should invoke callback with correct event for email confirmation" />
         <item itemvalue="Jest.Custom Message Entry" />
         <item itemvalue="Jest.Account handler (1)" />
         <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address (1)" />
-        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail" />
       </list>
     </recent_temporary>
   </component>
@@ -162,7 +164,7 @@
       <workItem from="1690820705585" duration="9222000" />
       <workItem from="1690958154918" duration="4661000" />
       <workItem from="1690999111063" duration="22096000" />
-      <workItem from="1692000369414" duration="6070000" />
+      <workItem from="1692000369414" duration="8867000" />
     </task>
     <servers />
   </component>
@@ -207,6 +209,12 @@
           <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-account-by-email.ts</url>
           <line>29</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts</url>
+          <line>41</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

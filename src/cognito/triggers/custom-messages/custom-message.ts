@@ -56,12 +56,18 @@ class CustomMessage {
     this.codeParameter = props.codeParameter
     this.usernameParameter = props.usernameParameter
 
+    const signupUrl =
+      props.userAttributes['custom:isTenantAdmin'] ||
+      props.userAttributes['custom:isMembaAdmin']
+        ? this.FRONTEND_BASE_URL
+        : props.userAttributes['custom:signUpRedirectUrl']
+
     this.FRONTEND_LINKS = {
-      SEND_CODE_POST_SIGN_UP: `${this.userAttributes['custom:signUpRedirectUrl']}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      SEND_CODE_POST_SIGN_UP: `${signupUrl}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
       SEND_CODE_FORGOT_PASSWORD: `${this.FRONTEND_BASE_URL}/reset-password?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
       SEND_CODE_VERIFY_NEW_EMAIL: `${this.FRONTEND_BASE_URL}/verify-new-email?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
       SEND_TEMPORARY_PASSWORD: `${this.FRONTEND_BASE_URL}/login-with-temp-credentials`,
-      RESEND_CONFIRMATION_CODE: `${this.userAttributes['custom:signUpRedirectUrl']}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
+      RESEND_CONFIRMATION_CODE: `${signupUrl}/complete-sign-up?code=${this.codeParameter}&emailAddress=${this.userAttributes.email}`,
     }
   }
 
