@@ -7,13 +7,21 @@ interface CreateAdminUserProps {
   userPoolClientId: string
   emailAddress: string
   password: string
+  signUpRedirectUrl: string
 }
 
 export const createUser = (
   props: CreateAdminUserProps,
 ): Promise<CognitoIdentityServiceProvider.Types.SignUpResponse> | null => {
   try {
-    const {firstName, lastName, password, emailAddress, userPoolClientId} = props
+    const {
+      firstName,
+      lastName,
+      password,
+      emailAddress,
+      userPoolClientId,
+      signUpRedirectUrl,
+    } = props
 
     const params = {
       ClientId: userPoolClientId,
@@ -31,6 +39,10 @@ export const createUser = (
         {
           Name: 'email',
           Value: emailAddress,
+        },
+        {
+          Name: 'custom:signUpRedirectUrl',
+          Value: signUpRedirectUrl,
         },
       ],
     }

@@ -71,6 +71,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       password: item.password,
       emailAddress: item.emailAddress,
       userPoolClientId,
+      signUpRedirectUrl: item.signUpRedirectUrl,
     })
 
     item.authenticatedUserId = userResult?.UserSub ?? ''

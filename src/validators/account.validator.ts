@@ -19,4 +19,7 @@ export const validateCreateAccountRequest = (arg: CreateAccountRequest): void =>
   if (!arg.groupName) {
     throw new MissingFieldError('Value for groupName required!')
   }
+  if (!arg.signUpRedirectUrl) {
+    throw new MissingFieldError('Value for signUpRedirectUrl required!')
+  }
 }

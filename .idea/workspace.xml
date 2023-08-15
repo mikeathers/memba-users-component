@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool-client/user-pool-client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/user-pool/user-pool.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws/cognito/create-user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/accounts/functions/api/create-account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validators/account.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validators/account.validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +65,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Account handler (1)">
+  <component name="RunManager" selected="Jest.Custom Message Entry">
     <configuration name="Account handler (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -118,28 +119,25 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
+    <configuration name="Custom Message Entry" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/handlers/tenant-accounts/tenant-accounts.handler.test.ts" />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts" />
       <test-names>
-        <test-name value="Account handler" />
-        <test-name value="Handler" />
-        <test-name value="GET getAccountByEmail" />
-        <test-name value="should return a 200 (OK) if the account is found with the provided email address" />
+        <test-name value="Custom Message Entry" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Custom Message Entry" />
         <item itemvalue="Jest.Account handler (1)" />
         <item itemvalue="Jest.Account handler" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address (1)" />
         <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail" />
-        <item itemvalue="Jest.Account handler.Handler.GET getAccountByEmail.should return a 200 (OK) if the account is found with the provided email address" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +168,7 @@
       <workItem from="1690820705585" duration="9222000" />
       <workItem from="1690958154918" duration="4661000" />
       <workItem from="1690999111063" duration="22096000" />
-      <workItem from="1692000369414" duration="2360000" />
+      <workItem from="1692000369414" duration="4408000" />
     </task>
     <servers />
   </component>

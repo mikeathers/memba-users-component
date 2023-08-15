@@ -40,6 +40,7 @@ export type CreateAccountRequest = {
   isMembaAdmin?: boolean
   tenantId?: string
   appId: string
+  signUpRedirectUrl: string
 }
 
 export type CreateTenantAccountRequest = {

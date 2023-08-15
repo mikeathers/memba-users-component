@@ -33,7 +33,6 @@ const head = `
   body {
       margin: 0;
       padding: 0;      
-      background-color: #1f2128;
       color: #828892; 
       font-family: "Roboto", sans-serif ;
     }
@@ -43,7 +42,6 @@ const head = `
     }
     
     .container {
-      background-color: #1f2128;
       padding: 24px;
       width: 100%;
     }
@@ -57,12 +55,12 @@ const head = `
 
 
    h2 {
-      color: #fff;
+      color: #1f2128;
       margin-left: 8px;
     }
     
    h4 {
-     color: #BDB6A9;
+     color: #1f2128;
      font-size: 18px;
    }     
    
@@ -141,7 +139,7 @@ export const completeSignup = (link: string): CustomMessageReturnValue => {
   }
 }
 
-export const forgotPassword = (link: string): CustomMessageReturnValue => {
+export const forgotPassword = (code: string): CustomMessageReturnValue => {
   return {
     emailSubject: `Change your password`,
     emailMessage: `
@@ -163,26 +161,9 @@ export const forgotPassword = (link: string): CustomMessageReturnValue => {
           <h2 style="font-family: Roboto,arial;">Let's solve this</h1>
         </div>
         <h4 style="font-family: Roboto,arial;">Reset your password</h4>
-        <p style="font-family: Roboto,arial; margin-top: 24px; margin-bottom: 32px; font-size: 16px; line-height: 26px;">Once you’ve pressed the link you will be directed back to the app, you can then choose your new password.</p>
-        <a href=${link}
-          style="height: 48px;
-          font-family: Roboto,arial;
-           width: 189px;
-           background-color: #fff;
-           color: #1F2128;
-           border-radius: 8px;
-           display: table-cell;
-           text-align: center;
-           vertical-align: middle;
-           font-weight: 600;
-           font-size: 16px;
-           text-decoration: none;
-           margin-bottom: 16px;"
-         >
-          Reset password       
-<!--         <img style="height: 10px; margin-top: 3px; margin-left: 4px;" src="https://heatio-assets.s3.eu-west-2.amazonaws.com/arrow-icon-x4.png" />   -->
-        </a>      
-        <p style="font-family: Roboto,arial; margin-top: 24px; word-wrap: break-word; line-height: 26px; font-size: 16px;">Or paste this link: <span style="color: #F5EFE3 !important; font-size: 16px;">${link}</strong></p>
+        <p style="font-family: Roboto,arial; margin-top: 24px; margin-bottom: 32px; font-size: 16px; line-height: 26px;">Here is your unique code, use it to reset your password.</p>
+        <p style="font-size: 26px; letter-spacing: 1px">{code}</p>
+            
         <div style="background-color: #37302A; display: flex; padding: 16px; font-size: 14px; margin-top: 32px; border-radius: 4px">   
 <!--          <img style="height: 13px; margin-top: 3px; margin-right: 8px;" src="https://heatio-assets.s3.eu-west-2.amazonaws.com/envelope-icon-x4.png" />        -->
           <p style="font-family: Roboto,arial; color: #FF8720;">Got a question? <a href="www.memba.co.uk" style=" color: #FF8720; font-size: 14px;">Reach out to us</a></p>

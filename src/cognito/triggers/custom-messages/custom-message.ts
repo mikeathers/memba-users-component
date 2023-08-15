@@ -73,7 +73,7 @@ class CustomMessage {
 
   sendCodeForgotPassword(): CustomMessageReturnValue {
     return {
-      ...forgotPassword(this.FRONTEND_LINKS.SEND_CODE_FORGOT_PASSWORD),
+      ...forgotPassword(this.codeParameter),
     }
   }
 
