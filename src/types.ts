@@ -32,7 +32,6 @@ export type UserMembership = {
   name: string
   id: string
   url: string
-  tier: string
   type: 'gym-management'
 }
 

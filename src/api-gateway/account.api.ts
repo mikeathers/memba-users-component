@@ -138,9 +138,9 @@ export class AccountApi {
     const usersRoot = root.addResource('users')
     const tenantsRoot = root.addResource('tenants')
 
-    usersRoot
-      .addResource('get-all-accounts')
-      .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+    // usersRoot
+    //   .addResource('get-all-accounts')
+    //   .addMethod('GET', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
     usersRoot
       .addResource('create-account')
@@ -165,23 +165,23 @@ export class AccountApi {
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
-    usersRoot
-      .addResource('update-account')
-      .addMethod('PUT', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
-
-    const deleteAccount = usersRoot.addResource('delete-account')
-
-    deleteAccount
-      .addResource('{id}')
-      .addMethod('DELETE', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+    // usersRoot
+    //   .addResource('update-account')
+    //   .addMethod('PUT', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+    //
+    // const deleteAccount = usersRoot.addResource('delete-account')
+    //
+    // deleteAccount
+    //   .addResource('{id}')
+    //   .addMethod('DELETE', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
 
     ////////////////////////////////////////
     /////////////// TENANTS ////////////////
     ////////////////////////////////////////
 
-    tenantsRoot
-      .addResource('get-all-accounts')
-      .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
+    // tenantsRoot
+    //   .addResource('get-all-accounts')
+    //   .addMethod('GET', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
 
     tenantsRoot
       .addResource('create-account')
@@ -213,19 +213,19 @@ export class AccountApi {
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda))
 
-    tenantsRoot
-      .addResource('update-account')
-      .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
-
-    const deleteTenantAccount = tenantsRoot.addResource('delete-account')
-
-    deleteTenantAccount
-      .addResource('{id}')
-      .addMethod(
-        'DELETE',
-        new LambdaIntegration(tenantAccountsLambda),
-        cognitoMethodOptions,
-      )
+    // tenantsRoot
+    //   .addResource('update-account')
+    //   .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
+    //
+    // const deleteTenantAccount = tenantsRoot.addResource('delete-account')
+    //
+    // deleteTenantAccount
+    //   .addResource('{id}')
+    //   .addMethod(
+    //     'DELETE',
+    //     new LambdaIntegration(tenantAccountsLambda),
+    //     cognitoMethodOptions,
+    //   )
 
     new ARecord(scope, `${CONFIG.STACK_PREFIX}AccountApiAliasRecord`, {
       recordName: domainName,

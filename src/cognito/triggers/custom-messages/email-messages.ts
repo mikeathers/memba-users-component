@@ -33,6 +33,7 @@ const head = `
   body {
       margin: 0;
       padding: 0;      
+      background-color: #1f2128;
       color: #828892; 
       font-family: "Roboto", sans-serif ;
     }
@@ -42,6 +43,7 @@ const head = `
     }
     
     .container {
+      background-color: #1f2128;
       padding: 24px;
       width: 100%;
     }
@@ -55,12 +57,12 @@ const head = `
 
 
    h2 {
-      color: #1f2128;
+      color: #fff;
       margin-left: 8px;
     }
     
    h4 {
-     color: #1f2128;
+     color: #BDB6A9;
      font-size: 18px;
    }     
    
@@ -161,9 +163,9 @@ export const forgotPassword = (code: string): CustomMessageReturnValue => {
           <h2 style="font-family: Roboto,arial;">Let's solve this</h1>
         </div>
         <h4 style="font-family: Roboto,arial;">Reset your password</h4>
-        <p style="font-family: Roboto,arial; margin-top: 24px; margin-bottom: 32px; font-size: 16px; line-height: 26px;">Here is your unique code, use it to reset your password.</p>
-        <p style="font-size: 26px; letter-spacing: 1px">{code}</p>
+        <p style="font-family: Roboto,arial; margin-top: 24px; margin-bottom: 32px; font-size: 16px; line-height: 26px;">Here is your unique code, use it to change your password.</p>
             
+        <p style="font-family: Roboto,arial; margin-top: 24px; word-wrap: break-word; line-height: 26px; font-size: 22px; letter-spacing: 1px;"><strong>${code}</strong></p>
         <div style="background-color: #37302A; display: flex; padding: 16px; font-size: 14px; margin-top: 32px; border-radius: 4px">   
 <!--          <img style="height: 13px; margin-top: 3px; margin-right: 8px;" src="https://heatio-assets.s3.eu-west-2.amazonaws.com/envelope-icon-x4.png" />        -->
           <p style="font-family: Roboto,arial; color: #FF8720;">Got a question? <a href="www.memba.co.uk" style=" color: #FF8720; font-size: 14px;">Reach out to us</a></p>

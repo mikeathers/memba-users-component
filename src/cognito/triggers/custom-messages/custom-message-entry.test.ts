@@ -79,9 +79,7 @@ describe('Custom Message Entry', () => {
 
     handler(event, mockContext, mockCallBack)
 
-    const expectedResult = forgotPassword(
-      `${CONFIG.FRONTEND_BASE_URL_DEV}/reset-password?code=${codeParam}&emailAddress=${email}`,
-    )
+    const expectedResult = forgotPassword(codeParam)
 
     const expectedEvent: Event = {
       ...event,
