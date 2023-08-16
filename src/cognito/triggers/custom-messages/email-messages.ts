@@ -93,10 +93,11 @@ export const completeSignup = (link: string): CustomMessageReturnValue => {
     <body>
     <div class="container">
         <div style="margin-bottom: 24px; ">
+        <h1 style="font-size: 22px; color: #828892;">Memba</h1>
 <!--          <img src="" style="width: 105px;" />-->
           <p style="font-size: 12px; color: #828892; float: right; font-family: Roboto,arial;">Didn't request this? Ignore me</p>  
         </div>
-        <div style="background-color: #252C37; border-radius: 8px; overflow: hidden; ">
+        <div style="background-color: #252C37; border-radius: 8px; overflow: hidden; ">        
 <!--        <img class="heroImage" src="https://heatio-assets.s3.eu-west-2.amazonaws.com/confirm-account-hero.png"/>-->
         <div style="padding: 32px; margin-top: -15px;">  
           <div style="display: flex; margin-bottom: 8px; margin-top: 8px;">     
@@ -152,7 +153,8 @@ export const forgotPassword = (code: string): CustomMessageReturnValue => {
   <body>
     <div class="container">
       <div style="margin-bottom: 24px; ">
-        <img src="https://heatio-assets.s3.eu-west-2.amazonaws.com/heatio-text-taupe.png" style="width: 105px;" />
+      <h1 style="font-size: 22px; color: #828892;">Memba</h1>
+<!--        <img src="https://heatio-assets.s3.eu-west-2.amazonaws.com/heatio-text-taupe.png" style="width: 105px;" />-->
         <p style="font-size: 12px; color: #828892; float: right; font-family: Roboto,arial;">Didn't request this? Ignore me</p>  
       </div>
       <div style="background-color: #252C37; border-radius: 8px; overflow: hidden; ">
