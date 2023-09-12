@@ -20,7 +20,6 @@ export type Event = {
       'custom:isTenantAdmin': boolean
       'custom:isMembaAdmin': boolean
       'custom:tenantId': string
-      'custom:signUpRedirectUrl': string
     }
     usernameParameter: string
   }

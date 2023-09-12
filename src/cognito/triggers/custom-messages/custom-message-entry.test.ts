@@ -13,7 +13,7 @@ const mockContext = {} as Context
 const codeParam = '1000'
 const giveName = 'Joe'
 const email = 'joe@gmail.com'
-const signUpRedirectUrl = 'https://test.co.uk'
+const frontendUrl = 'https://id.dev.memba.co.uk'
 
 const defaultEvent: Event = {
   triggerSource: '',
@@ -29,7 +29,6 @@ const defaultEvent: Event = {
       'custom:isTenantAdmin': false,
       'custom:isMembaAdmin': false,
       'custom:tenantId': '1234',
-      'custom:signUpRedirectUrl': signUpRedirectUrl,
     },
     usernameParameter: email,
   },
@@ -60,7 +59,7 @@ describe('Custom Message Entry', () => {
     handler(event, mockContext, mockCallBack)
 
     const expectedResult = completeSignup(
-      `${signUpRedirectUrl}/complete-sign-up?code=${codeParam}&emailAddress=${email}`,
+      `${frontendUrl}/complete-sign-up?code=${codeParam}&emailAddress=${email}`,
     )
 
     const expectedEvent: Event = {
@@ -79,7 +78,9 @@ describe('Custom Message Entry', () => {
 
     handler(event, mockContext, mockCallBack)
 
-    const expectedResult = forgotPassword(codeParam)
+    const expectedResult = forgotPassword(
+      `${frontendUrl}/reset-password?code=${codeParam}&emailAddress=${email}`,
+    )
 
     const expectedEvent: Event = {
       ...event,

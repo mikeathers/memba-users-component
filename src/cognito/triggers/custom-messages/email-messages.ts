@@ -142,7 +142,7 @@ export const completeSignup = (link: string): CustomMessageReturnValue => {
   }
 }
 
-export const forgotPassword = (code: string): CustomMessageReturnValue => {
+export const forgotPassword = (link: string): CustomMessageReturnValue => {
   return {
     emailSubject: `Change your password`,
     emailMessage: `
@@ -165,9 +165,24 @@ export const forgotPassword = (code: string): CustomMessageReturnValue => {
           <h2 style="font-family: Roboto,arial;">Let's solve this</h1>
         </div>
         <h4 style="font-family: Roboto,arial;">Reset your password</h4>
-        <p style="font-family: Roboto,arial; margin-top: 24px; margin-bottom: 32px; font-size: 16px; line-height: 26px;">Here is your unique code, use it to change your password.</p>
+        <p style="font-family: Roboto,arial; margin-top: 24px; margin-bottom: 32px; font-size: 16px; line-height: 26px;">Once you’ve pressed the link you will be directed back to Memba, you can then choose your new password.</p>
             
-        <p style="font-family: Roboto,arial; margin-top: 24px; word-wrap: break-word; line-height: 26px; font-size: 22px; letter-spacing: 1px;"><strong>${code}</strong></p>
+        <a href=${link}
+          style="height: 48px;
+           width: 189px;
+           background-color: #fff;
+           color: #1F2128;
+           border-radius: 8px;
+           display: table-cell;
+           text-align: center;
+           vertical-align: middle;
+           font-weight: 600;
+           font-size: 16px;
+           text-decoration: none;
+           margin-bottom: 16px;"
+         >
+          Reset password       
+        </a> 
         <div style="background-color: #37302A; display: flex; padding: 16px; font-size: 14px; margin-top: 32px; border-radius: 4px">   
 <!--          <img style="height: 13px; margin-top: 3px; margin-right: 8px;" src="https://heatio-assets.s3.eu-west-2.amazonaws.com/envelope-icon-x4.png" />        -->
           <p style="font-family: Roboto,arial; color: #FF8720;">Got a question? <a href="www.memba.co.uk" style=" color: #FF8720; font-size: 14px;">Reach out to us</a></p>
