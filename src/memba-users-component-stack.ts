@@ -31,11 +31,8 @@ export class MembaUsersComponentStack extends Stack {
 
     const {userPool} = new UserPoolConstruct({scope: this, stage, region, accountId})
     const {userPoolClient} = new UserPoolClientConstruct(this, userPool, stage)
-    const {identityPool, usersRole, tenantAdminGroupName} = new IdentityPoolConstruct(
-      this,
-      userPool,
-      userPoolClient,
-    )
+    const {identityPool, usersRole, tenantAdminGroupName, usersGroupName} =
+      new IdentityPoolConstruct(this, userPool, userPoolClient)
 
     const hostedZoneUrl = stage === 'prod' ? CONFIG.DOMAIN_URL : CONFIG.DEV_DOMAIN_URL
 
@@ -68,6 +65,7 @@ export class MembaUsersComponentStack extends Stack {
       userPoolClientId: userPoolClient.userPoolClientId,
       userGroupRoleArn: usersRole.roleArn,
       tenantAdminGroupName,
+      usersGroupName,
     })
 
     const {tenantAccountsLambda} = new TenantAccountsLambda({
@@ -80,6 +78,7 @@ export class MembaUsersComponentStack extends Stack {
       userPoolClientId: userPoolClient.userPoolClientId,
       tenantAdminGroupName,
       userGroupRoleArn: usersRole.roleArn,
+      usersGroupName,
     })
 
     new UserAdminLambda({

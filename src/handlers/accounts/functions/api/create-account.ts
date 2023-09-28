@@ -33,6 +33,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
   const tenantsApiUrl = process.env.TENANTS_API_URL ?? ''
   const tenantsApiSecretName = process.env.TENANTS_API_SECRET_NAME ?? ''
+  const usersGroupName = process.env.USERS_GROUP_NAME ?? ''
 
   //eslint-disable-next-line
   if (!event.body) {
@@ -87,7 +88,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       .promise()
 
     await addUserToGroup({
-      groups: [item.groupName],
+      groups: [item.groupName, usersGroupName],
       username: item.emailAddress,
       userPoolId,
     })

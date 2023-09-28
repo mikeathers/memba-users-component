@@ -36,6 +36,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
   const userPoolId = process.env.USER_POOL_ID ?? ''
   const userPoolClientId = process.env.USER_POOL_CLIENT_ID ?? ''
   const tenantAdminGroupName = process.env.TENANT_ADMIN_GROUP_NAME ?? ''
+  const usersGroupName = process.env.USERS_GROUP_NAME ?? ''
   const tenantsApiUrl = process.env.TENANTS_API_URL ?? ''
   const tenantsApiSecretName = process.env.TENANTS_API_SECRET_NAME ?? ''
 
@@ -98,7 +99,7 @@ export const createAccount = async (props: CreateAccountProps): Promise<QueryRes
       .promise()
 
     await addUserToGroup({
-      groups: [tenantAdminGroupName],
+      groups: [tenantAdminGroupName, usersGroupName],
       username: item.emailAddress,
       userPoolId,
     })

@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,6 +171,7 @@
       <workItem from="1694595592413" duration="759000" />
       <workItem from="1695806902526" duration="28000" />
       <workItem from="1695806970595" duration="1033000" />
+      <workItem from="1695894864329" duration="1532000" />
     </task>
     <servers />
   </component>

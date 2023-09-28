@@ -23,6 +23,7 @@ interface TenantAccountLambdaProps {
   userPoolClientId: string
   tenantAdminGroupName: string
   userGroupRoleArn: string
+  usersGroupName: string
 }
 
 export class TenantAccountsLambda {
@@ -43,6 +44,7 @@ export class TenantAccountsLambda {
       userPoolClientId,
       tenantAdminGroupName,
       userGroupRoleArn,
+      usersGroupName,
     } = props
 
     const lambdaName = `${CONFIG.STACK_PREFIX}TenantAccountsLambda`
@@ -64,6 +66,7 @@ export class TenantAccountsLambda {
         TENANT_ADMIN_GROUP_NAME: tenantAdminGroupName,
         TENANTS_API_URL: tenantsApiUrl,
         TENANTS_API_SECRET_NAME: tenantsApiSecret,
+        USERS_GROUP_NAME: usersGroupName,
       },
       runtime: Runtime.NODEJS_16_X,
       reservedConcurrentExecutions: 1,
