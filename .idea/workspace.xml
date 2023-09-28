@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/identity-pool/identity-pool.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +174,7 @@
       <workItem from="1695806902526" duration="28000" />
       <workItem from="1695806970595" duration="1033000" />
       <workItem from="1695894864329" duration="1532000" />
-      <workItem from="1695912979996" duration="832000" />
+      <workItem from="1695912979996" duration="1923000" />
     </task>
     <servers />
   </component>

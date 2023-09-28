@@ -170,10 +170,7 @@ export class IdentityPoolConstruct {
     const readPolicy = new PolicyStatement({
       effect: Effect.ALLOW,
       actions: ['s3:GetObject*'],
-      resources: [
-        `arn:aws:s3:::idwebstack-nextjs-image-uploads/cognito/` +
-          '${cognito-identity.amazonaws.com:sub}/*',
-      ],
+      resources: ['arn:aws:s3:::idwebstack-nextjs-image-uploads/*'],
     })
 
     userRole.addToPolicy(readPolicy)
