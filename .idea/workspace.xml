@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="af0810bc-d005-4e68-b848-afbf6c3ffad4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cognito/triggers/custom-messages/email-messages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/get-tenant-details.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.tsbuildinfo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,9 +20,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2QxTLcWO0gYnUhjTk73tmALYMOj" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -170,7 +169,10 @@
       <workItem from="1692000369414" duration="22679000" />
       <workItem from="1692698686011" duration="971000" />
       <workItem from="1692887223733" duration="604000" />
-      <workItem from="1694507838080" duration="816000" />
+      <workItem from="1694507838080" duration="1999000" />
+      <workItem from="1694595592413" duration="759000" />
+      <workItem from="1695806902526" duration="28000" />
+      <workItem from="1695806970595" duration="1033000" />
     </task>
     <servers />
   </component>
@@ -218,7 +220,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/cognito/triggers/custom-messages/custom-message-entry.test.ts</url>
-          <line>41</line>
+          <line>40</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>

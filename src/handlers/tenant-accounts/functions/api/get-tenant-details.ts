@@ -46,7 +46,7 @@ export const getTenantDetails = async (
 
     return response.data
   } catch (error) {
-    console.log('CREATE TENANT ERROR: ', error)
+    console.log('GET TENANT ERROR: ', error)
     throw error
   }
 }

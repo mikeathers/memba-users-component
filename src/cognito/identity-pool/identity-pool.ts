@@ -6,7 +6,14 @@ import {
   UserPool,
   UserPoolClient,
 } from 'aws-cdk-lib/aws-cognito'
-import {FederatedPrincipal, ManagedPolicy, Role} from 'aws-cdk-lib/aws-iam'
+import {
+  AnyPrincipal,
+  Effect,
+  FederatedPrincipal,
+  ManagedPolicy,
+  PolicyStatement,
+  Role,
+} from 'aws-cdk-lib/aws-iam'
 
 import CONFIG from '../../config'
 
@@ -135,7 +142,7 @@ export class IdentityPoolConstruct {
   private createUsersCognitoGroupRole() {
     const roleName = `${CONFIG.STACK_PREFIX}-UsersGroupRole`
 
-    return new Role(this.scope, roleName, {
+    const userRole = new Role(this.scope, roleName, {
       roleName,
       description: 'Default role for users',
       assumedBy: new FederatedPrincipal(
@@ -157,6 +164,20 @@ export class IdentityPoolConstruct {
         ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayInvokeFullAccess'),
       ],
     })
+
+    const readPolicy = new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: ['s3:GetObject*'],
+      resources: [
+        `arn:aws:s3:::idwebstack-nextjs-image-uploads/cognito/` +
+          '${cognito-identity.amazonaws.com:sub}/*',
+      ],
+      principals: [new AnyPrincipal()],
+    })
+
+    userRole.addToPolicy(readPolicy)
+
+    return userRole
   }
 
   private createUserGroupsAndAttachRoles() {
@@ -182,7 +203,7 @@ export class IdentityPoolConstruct {
     new CfnIdentityPoolRoleAttachment(this.scope, 'IdentityPoolRoleAttachment', {
       identityPoolId: this.identityPool.ref,
       roles: {
-        authenticated: this.tenantAdminRole.roleArn,
+        authenticated: this.usersRole.roleArn,
         unauthenticated: this.anonymousRole.roleArn,
       },
     })
