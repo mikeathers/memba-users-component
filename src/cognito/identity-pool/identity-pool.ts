@@ -172,7 +172,6 @@ export class IdentityPoolConstruct {
         `arn:aws:s3:::idwebstack-nextjs-image-uploads/cognito/` +
           '${cognito-identity.amazonaws.com:sub}/*',
       ],
-      principals: [new AnyPrincipal()],
     })
 
     userRole.addToPolicy(readPolicy)
