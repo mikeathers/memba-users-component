@@ -186,7 +186,7 @@ export class IdentityPoolConstruct {
     const membaAdmins = this.membaAdminGroupName
     const users = this.usersGroupName
 
-    new CfnUserPoolGroup(this.scope, tenantAdmins, {
+    new CfnUserPoolGroup(this.scope, users, {
       groupName: users,
       userPoolId: this.userPool.userPoolId,
       description: 'The group for all users',

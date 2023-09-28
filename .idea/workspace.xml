@@ -172,6 +172,7 @@
       <workItem from="1695806902526" duration="28000" />
       <workItem from="1695806970595" duration="1033000" />
       <workItem from="1695894864329" duration="1532000" />
+      <workItem from="1695912979996" duration="832000" />
     </task>
     <servers />
   </component>
@@ -199,7 +200,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/handlers/tenant-accounts/functions/api/create-account.ts</url>
-          <line>72</line>
+          <line>73</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
