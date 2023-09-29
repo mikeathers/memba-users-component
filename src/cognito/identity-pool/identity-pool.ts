@@ -144,7 +144,7 @@ export class IdentityPoolConstruct {
   private createUsersCognitoGroupRole() {
     const roleName = `${CONFIG.STACK_PREFIX}-UsersGroupRole`
 
-    const userRole = new Role(this.scope, roleName, {
+    return new Role(this.scope, roleName, {
       roleName,
       description: 'Default role for users',
       assumedBy: new FederatedPrincipal(
@@ -166,16 +166,6 @@ export class IdentityPoolConstruct {
         ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayInvokeFullAccess'),
       ],
     })
-
-    const readPolicy = new PolicyStatement({
-      effect: Effect.ALLOW,
-      actions: ['s3:GetObject*'],
-      resources: ['arn:aws:s3:::idwebstack-nextjs-image-uploads/*'],
-    })
-
-    userRole.addToPolicy(readPolicy)
-
-    return userRole
   }
 
   private createUserGroupsAndAttachRoles() {
