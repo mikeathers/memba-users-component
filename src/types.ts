@@ -1,15 +1,24 @@
-import {PromiseResult} from 'aws-sdk/lib/request'
-import {AWSError, DynamoDB} from 'aws-sdk'
+export type Tenant = {
+  admins: string[]
+  apps: string[]
+  id: string
+}
 
 export type MembaUser = {
   authenticatedUserId: string
   emailAddress: string
   firstName: string
+  lastName: string
   id: string
+  groupName: string
   isTenantAdmin: boolean
   isMembaAdmin: boolean
-  lastName: string
   tenantId: string
+  tenant: Tenant
+  appId: string
+  signUpRedirectUrl: string
+  memberships: UserMembership[]
+  avatar?: string
 }
 
 export type Membership = {

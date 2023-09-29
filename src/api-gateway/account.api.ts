@@ -165,9 +165,9 @@ export class AccountApi {
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(accountsLambda), apiKeyMethodOptions)
 
-    // usersRoot
-    //   .addResource('update-account')
-    //   .addMethod('PUT', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
+    usersRoot
+      .addResource('update-account')
+      .addMethod('PUT', new LambdaIntegration(accountsLambda), cognitoMethodOptions)
     //
     // const deleteAccount = usersRoot.addResource('delete-account')
     //
@@ -213,10 +213,10 @@ export class AccountApi {
       .addResource('{emailAddress}')
       .addMethod('GET', new LambdaIntegration(tenantAccountsLambda))
 
-    // tenantsRoot
-    //   .addResource('update-account')
-    //   .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
-    //
+    tenantsRoot
+      .addResource('update-account')
+      .addMethod('PUT', new LambdaIntegration(tenantAccountsLambda), cognitoMethodOptions)
+
     // const deleteTenantAccount = tenantsRoot.addResource('delete-account')
     //
     // deleteTenantAccount

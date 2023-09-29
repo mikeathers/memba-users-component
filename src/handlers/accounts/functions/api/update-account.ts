@@ -1,7 +1,7 @@
 import {DynamoDB} from 'aws-sdk'
 import {APIGatewayProxyEvent} from 'aws-lambda'
 
-import {HttpStatusCode, QueryResult, UpdateAccountRequest} from '../../../../types'
+import {HttpStatusCode, MembaUser, QueryResult} from '../../../../types'
 import {getByPrimaryKey} from '../../../../aws'
 import {publishUpdateLogEvent} from '../../../../events'
 
@@ -15,8 +15,8 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
   const {dbClient, event} = props
 
   if (event.body) {
-    const updateAccountData = JSON.parse(event.body) as UpdateAccountRequest
-    const {id, firstName, lastName, emailAddress, groupName} = updateAccountData
+    const updateAccountData = JSON.parse(event.body) as MembaUser
+    const {id, firstName, lastName, emailAddress, avatar} = updateAccountData
 
     const accountExists = await getByPrimaryKey({
       queryKey: 'id',
@@ -36,12 +36,12 @@ export const updateAccount = async (props: UpdateAccountProps): Promise<QueryRes
       TableName: tableName,
       Key: {id},
       UpdateExpression:
-        'SET lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, groupName = :groupName',
+        'SET lastName = :lastName, firstName = :firstName, emailAddress = :emailAddress, avatar = :avatar',
       ExpressionAttributeValues: {
         ':lastName': lastName,
         ':firstName': firstName,
         ':emailAddress': emailAddress,
-        ':groupName': groupName,
+        ':avatar': avatar,
       },
       ReturnValues: 'ALL_NEW',
     }
